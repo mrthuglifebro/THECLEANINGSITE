@@ -43,3 +43,4 @@ Once it's pushed, you can connect the repo to Vercel or Netlify (both free) to g
 - Swap the sample products, mess categories, and site name for real ones
 - Build out `products.html`, `fix-mess.html`, and `compare.html` with real data
 - Once there's real content, we can talk about where the product data should actually live (a simple JSON file is enough for v1 — no database needed yet)
+
