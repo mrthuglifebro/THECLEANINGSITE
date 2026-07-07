@@ -28,9 +28,39 @@
   </div>
 </nav>
 
-<section class="placeholder container">
-  <h1>Fix a mess</h1>
-  <p>This is where visitors pick a mess (mold, wine, grease, pet stains) and see ranked products that solve it. Next step: connect this page to your data.</p>
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>Fix this mess</h2>
+        <p>Pick a problem, see what actually gets rid of it.</p>
+      </div>
+    </div>
+
+    <div class="mess-grid" style="margin-bottom:44px">
+      <button class="mess-card mess-filter-btn" data-mess="mold">
+        <svg class="mess-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.5" fill="currentColor" stroke="none"/><circle cx="14" cy="14" r="1" fill="currentColor" stroke="none"/><circle cx="15" cy="9" r="1" fill="currentColor" stroke="none"/></svg>
+        <h3>Mold &amp; mildew</h3>
+      </button>
+      <button class="mess-card mess-filter-btn" data-mess="wine">
+        <svg class="mess-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 3h8l-1 6a3 3 0 0 1-6 0L8 3z"/><path d="M12 9v6"/><path d="M9 20h6l-1-5H10l-1 5z"/></svg>
+        <h3>Wine &amp; stains</h3>
+      </button>
+      <button class="mess-card mess-filter-btn" data-mess="grease">
+        <svg class="mess-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c3 3 6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 3-7 6-10z"/></svg>
+        <h3>Grease &amp; grime</h3>
+      </button>
+      <button class="mess-card mess-filter-btn" data-mess="pet">
+        <svg class="mess-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l6 6M20 4l-6 6M12 10v10"/><circle cx="12" cy="10" r="3"/></svg>
+        <h3>Pet messes</h3>
+      </button>
+    </div>
+
+    <h3 id="mess-heading" style="font-family:'Space Grotesk',sans-serif;margin-bottom:20px">Results</h3>
+    <div class="product-grid" id="product-grid">
+      <p style="color:#64748b">Loading products…</p>
+    </div>
+  </div>
 </section>
 
 <footer class="footer">
@@ -45,5 +75,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/mess.js"></script>
 </body>
 </html>

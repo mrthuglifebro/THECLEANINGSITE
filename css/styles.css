@@ -439,3 +439,15 @@ img { max-width: 100%; display: block; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+/* ---------- Mess filter buttons ---------- */
+.mess-filter-btn {
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  width: 100%;
+}
+
+.mess-filter-btn.active-mess {
+  border-color: var(--sky);
+  background: var(--mist);
+}
