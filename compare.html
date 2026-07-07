@@ -28,9 +28,22 @@
   </div>
 </nav>
 
-<section class="placeholder container">
-  <h1>Compare products</h1>
-  <p>This is where visitors pick two products and see them side by side — price, ingredients, ratings, and cost per use. Next step: connect this page to your data.</p>
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>Compare products</h2>
+        <p>Pick two products to see them side by side.</p>
+      </div>
+    </div>
+
+    <div class="compare-picker">
+      <select id="compare-a"><option>Loading…</option></select>
+      <select id="compare-b"><option>Loading…</option></select>
+    </div>
+
+    <div class="compare-grid" id="compare-result"></div>
+  </div>
 </section>
 
 <footer class="footer">
@@ -45,5 +58,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/compare.js"></script>
 </body>
 </html>
