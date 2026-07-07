@@ -1,0 +1,80 @@
+[
+  {
+    "id": "degreaser-01",
+    "name": "All-Purpose Degreaser",
+    "brand": "Sample Brand",
+    "category": "Degreaser",
+    "price": 6.99,
+    "sizeOz": 32,
+    "ingredients": ["Water", "Sodium citrate", "Alcohol ethoxylate", "Fragrance"],
+    "rating": 4.8,
+    "reviewCount": 214,
+    "messes": ["grease"],
+    "buyUrl": "https://example.com/affiliate/degreaser-01"
+  },
+  {
+    "id": "glass-01",
+    "name": "Glass & Mirror Spray",
+    "brand": "Sample Brand",
+    "category": "Glass cleaner",
+    "price": 3.49,
+    "sizeOz": 26,
+    "ingredients": ["Water", "Isopropyl alcohol", "Ammonium hydroxide", "Fragrance"],
+    "rating": 4.6,
+    "reviewCount": 132,
+    "messes": ["grease"],
+    "buyUrl": "https://example.com/affiliate/glass-01"
+  },
+  {
+    "id": "enzyme-01",
+    "name": "Enzyme Stain Remover",
+    "brand": "Sample Brand",
+    "category": "Stain remover",
+    "price": 8.99,
+    "sizeOz": 24,
+    "ingredients": ["Water", "Enzyme blend", "Surfactants", "Citric acid"],
+    "rating": 4.9,
+    "reviewCount": 301,
+    "messes": ["wine", "pet"],
+    "buyUrl": "https://example.com/affiliate/enzyme-01"
+  },
+  {
+    "id": "mold-01",
+    "name": "Mold & Mildew Foam Spray",
+    "brand": "Sample Brand",
+    "category": "Mold remover",
+    "price": 5.49,
+    "sizeOz": 30,
+    "ingredients": ["Water", "Sodium hypochlorite", "Surfactants"],
+    "rating": 4.5,
+    "reviewCount": 98,
+    "messes": ["mold"],
+    "buyUrl": "https://example.com/affiliate/mold-01"
+  },
+  {
+    "id": "pet-01",
+    "name": "Pet Odor & Stain Eliminator",
+    "brand": "Sample Brand",
+    "category": "Pet cleaner",
+    "price": 9.99,
+    "sizeOz": 32,
+    "ingredients": ["Water", "Enzyme blend", "Surfactants", "Baking soda"],
+    "rating": 4.7,
+    "reviewCount": 176,
+    "messes": ["pet"],
+    "buyUrl": "https://example.com/affiliate/pet-01"
+  },
+  {
+    "id": "wine-01",
+    "name": "Fabric Wine Stain Spray",
+    "brand": "Sample Brand",
+    "category": "Stain remover",
+    "price": 7.49,
+    "sizeOz": 16,
+    "ingredients": ["Water", "Sodium percarbonate", "Surfactants"],
+    "rating": 4.4,
+    "reviewCount": 87,
+    "messes": ["wine"],
+    "buyUrl": "https://example.com/affiliate/wine-01"
+  }
+]

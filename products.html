@@ -28,9 +28,23 @@
   </div>
 </nav>
 
-<section class="placeholder container">
-  <h1>Product database</h1>
-  <p>This is where the full, searchable product list will live — each with price, ingredients, cost-per-use, and reviews. Next step: connect this page to your data.</p>
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>All products</h2>
+        <p>Search by name, brand, or category.</p>
+      </div>
+    </div>
+
+    <div class="search-bar" style="margin-bottom:36px;max-width:100%">
+      <input type="text" id="product-search" placeholder="Search products...">
+    </div>
+
+    <div class="product-grid" id="product-grid">
+      <p style="color:#64748b">Loading products…</p>
+    </div>
+  </div>
 </section>
 
 <footer class="footer">
@@ -45,5 +59,6 @@
 </footer>
 
 <script src="js/main.js"></script>
+<script src="js/products.js"></script>
 </body>
 </html>
