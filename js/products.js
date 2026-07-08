@@ -1,3 +1,10 @@
+function productThumb(p) {
+  if (p.image) {
+    return `<img src="${p.image}" alt="${p.name}" loading="lazy">`;
+  }
+  return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 2h6v3l2 2v13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V7l2-2V2z"/><path d="M7 11h10"/></svg>`;
+}
+
 async function loadProducts() {
   const grid = document.getElementById('product-grid');
   const searchInput = document.getElementById('product-search');
@@ -6,7 +13,7 @@ async function loadProducts() {
   let products = [];
 
   try {
-    const response = await fetch('data/products.json');
+    const response = await fetch('data/products-v2.json');
     products = await response.json();
   } catch (err) {
     grid.innerHTML = '<p style="color:#64748b">Could not load products right now.</p>';
@@ -24,7 +31,7 @@ async function loadProducts() {
       return `
         <div class="product-card">
           <div class="product-thumb">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 2h6v3l2 2v13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V7l2-2V2z"/><path d="M7 11h10"/></svg>
+            ${productThumb(p)}
           </div>
           <div class="product-body">
             <div class="product-brand">${p.brand}</div>

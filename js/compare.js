@@ -1,3 +1,10 @@
+function productThumb(p) {
+  if (p.image) {
+    return `<img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:16px">`;
+  }
+  return '';
+}
+
 async function loadComparePage() {
   const selectA = document.getElementById('compare-a');
   const selectB = document.getElementById('compare-b');
@@ -7,7 +14,7 @@ async function loadComparePage() {
   let products = [];
 
   try {
-    const response = await fetch('data/products.json');
+    const response = await fetch('data/products-v2.json');
     products = await response.json();
   } catch (err) {
     resultBox.innerHTML = '<p style="color:#64748b">Could not load products right now.</p>';
@@ -28,6 +35,7 @@ async function loadComparePage() {
     const costPerUse = (p.price / p.sizeOz).toFixed(2);
     return `
       <div class="compare-col">
+        ${productThumb(p)}
         <div class="product-brand">${p.brand}</div>
         <div class="product-name" style="font-size:20px;margin-bottom:16px">${p.name}</div>
         <table class="compare-table">
