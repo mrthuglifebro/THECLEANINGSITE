@@ -47,7 +47,22 @@ async function loadHomepage() {
   }
 
   if (productGrid) {
-    const top = products.slice().sort(function (a, b) { return b.rating - a.rating; }).slice(0, 3);
+    let ratings = {};
+    try {
+      ratings = await fetchRatingsMap(products.map(function (p) { return p.id; }));
+    } catch (err) {
+      ratings = {};
+    }
+
+    // "Top" = highest real average rating among products that actually have
+    // reviews. Products with no reviews yet sort to the back instead of
+    // being ranked by a made-up number.
+    const top = products.slice().sort(function (a, b) {
+      const ra = ratings[a.id] && ratings[a.id].count > 0 ? ratings[a.id].avg : -1;
+      const rb = ratings[b.id] && ratings[b.id].count > 0 ? ratings[b.id].avg : -1;
+      return rb - ra;
+    }).slice(0, 3);
+
     productGrid.innerHTML = top.map(function (p) {
       const costPerUse = (p.price / p.sizeOz).toFixed(2);
       return `
@@ -58,10 +73,7 @@ async function loadHomepage() {
             <div class="product-name">${p.name}</div>
             <div class="product-meta">
               <span class="product-price">$${costPerUse} / oz</span>
-              <span class="product-rating">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.4 7 0.7-5.3 4.7 1.6 6.9L12 17.3 5.8 20.7l1.6-6.9L2.1 9.1l7-0.7z"/></svg>
-                ${p.rating}
-              </span>
+              ${ratingBadgeHTML(ratings[p.id])}
             </div>
             <a href="product.html?id=${p.id}" class="section-link" style="display:block;margin-top:12px">See reviews →</a>
           </div>

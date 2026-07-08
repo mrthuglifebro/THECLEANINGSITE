@@ -6,10 +6,15 @@
     "category": "Dish soap",
     "price": 4.44,
     "sizeOz": 19.4,
-    "ingredients": ["Water", "Sodium lauryl sulfate", "Alcohol ethoxysulfate", "Fragrance"],
-    "rating": 4.8,
-    "reviewCount": 15200,
-    "messes": ["grease"],
+    "ingredients": [
+      "Water",
+      "Sodium lauryl sulfate",
+      "Alcohol ethoxysulfate",
+      "Fragrance"
+    ],
+    "messes": [
+      "grease"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Dawn+Ultra+Dishwashing+Liquid&tag=YOUR-AFFILIATE-ID"
   },
@@ -20,10 +25,14 @@
     "category": "Scouring powder",
     "price": 4.99,
     "sizeOz": 21,
-    "ingredients": ["Oxalic acid", "Feldspar", "Sodium alkylbenzene sulfonate"],
-    "rating": 4.7,
-    "reviewCount": 8900,
-    "messes": ["grease"],
+    "ingredients": [
+      "Oxalic acid",
+      "Feldspar",
+      "Sodium alkylbenzene sulfonate"
+    ],
+    "messes": [
+      "grease"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Bar+Keepers+Friend+Powder&tag=YOUR-AFFILIATE-ID"
   },
@@ -34,10 +43,15 @@
     "category": "All-purpose cleaner",
     "price": 5.29,
     "sizeOz": 16,
-    "ingredients": ["Water", "Alcohol", "Sodium lauryl sulfate", "Essential oils"],
-    "rating": 4.7,
-    "reviewCount": 11400,
-    "messes": ["grease"],
+    "ingredients": [
+      "Water",
+      "Alcohol",
+      "Sodium lauryl sulfate",
+      "Essential oils"
+    ],
+    "messes": [
+      "grease"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Mrs+Meyers+Multi+Surface+Spray&tag=YOUR-AFFILIATE-ID"
   },
@@ -48,10 +62,14 @@
     "category": "Degreaser",
     "price": 7.98,
     "sizeOz": 32,
-    "ingredients": ["Water", "Glycol ether", "Surfactants"],
-    "rating": 4.6,
-    "reviewCount": 6300,
-    "messes": ["grease"],
+    "ingredients": [
+      "Water",
+      "Glycol ether",
+      "Surfactants"
+    ],
+    "messes": [
+      "grease"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Krud+Kutter+Original+Cleaner+Degreaser&tag=YOUR-AFFILIATE-ID"
   },
@@ -62,10 +80,14 @@
     "category": "Stain remover",
     "price": 9.97,
     "sizeOz": 56.3,
-    "ingredients": ["Sodium carbonate", "Sodium percarbonate", "Surfactants"],
-    "rating": 4.8,
-    "reviewCount": 21500,
-    "messes": ["wine"],
+    "ingredients": [
+      "Sodium carbonate",
+      "Sodium percarbonate",
+      "Surfactants"
+    ],
+    "messes": [
+      "wine"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=OxiClean+Versatile+Stain+Remover&tag=YOUR-AFFILIATE-ID"
   },
@@ -76,10 +98,14 @@
     "category": "Mold remover",
     "price": 6.48,
     "sizeOz": 32,
-    "ingredients": ["Water", "Surfactants", "Sodium hydroxide"],
-    "rating": 4.5,
-    "reviewCount": 3800,
-    "messes": ["mold"],
+    "ingredients": [
+      "Water",
+      "Surfactants",
+      "Sodium hydroxide"
+    ],
+    "messes": [
+      "mold"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Zep+Shower+Tub+and+Tile+Cleaner&tag=YOUR-AFFILIATE-ID"
   },
@@ -90,10 +116,14 @@
     "category": "Mold remover",
     "price": 12.97,
     "sizeOz": 32,
-    "ingredients": ["Sodium hypochlorite", "Water", "Surfactants"],
-    "rating": 4.4,
-    "reviewCount": 9200,
-    "messes": ["mold"],
+    "ingredients": [
+      "Sodium hypochlorite",
+      "Water",
+      "Surfactants"
+    ],
+    "messes": [
+      "mold"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=RMR-86+Instant+Mold+Stain+Remover&tag=YOUR-AFFILIATE-ID"
   },
@@ -104,10 +134,14 @@
     "category": "Pet cleaner",
     "price": 11.99,
     "sizeOz": 32,
-    "ingredients": ["Water", "Enzyme blend", "Surfactants"],
-    "rating": 4.6,
-    "reviewCount": 14700,
-    "messes": ["pet"],
+    "ingredients": [
+      "Water",
+      "Enzyme blend",
+      "Surfactants"
+    ],
+    "messes": [
+      "pet"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Natures+Miracle+Stain+and+Odor+Remover&tag=YOUR-AFFILIATE-ID"
   },
@@ -118,10 +152,15 @@
     "category": "All-purpose cleaner",
     "price": 5.98,
     "sizeOz": 24,
-    "ingredients": ["Water", "Glycol ether", "Sodium citrate", "Surfactants"],
-    "rating": 4.7,
-    "reviewCount": 12900,
-    "messes": ["grease"],
+    "ingredients": [
+      "Water",
+      "Glycol ether",
+      "Sodium citrate",
+      "Surfactants"
+    ],
+    "messes": [
+      "grease"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Simple+Green+All+Purpose+Cleaner&tag=YOUR-AFFILIATE-ID"
   },
@@ -132,10 +171,14 @@
     "category": "Glass cleaner",
     "price": 4.28,
     "sizeOz": 16,
-    "ingredients": ["Water", "Isopropyl alcohol", "Ammonia"],
-    "rating": 4.6,
-    "reviewCount": 2400,
-    "messes": ["grease"],
+    "ingredients": [
+      "Water",
+      "Isopropyl alcohol",
+      "Ammonia"
+    ],
+    "messes": [
+      "grease"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Weiman+Glass+Cleaner&tag=YOUR-AFFILIATE-ID"
   },
@@ -146,10 +189,14 @@
     "category": "Toilet cleaner",
     "price": 4.29,
     "sizeOz": 24,
-    "ingredients": ["Water", "Hydrochloric acid", "Surfactants"],
-    "rating": 4.7,
-    "reviewCount": 7600,
-    "messes": ["mold"],
+    "ingredients": [
+      "Water",
+      "Hydrochloric acid",
+      "Surfactants"
+    ],
+    "messes": [
+      "mold"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Lysol+Toilet+Bowl+Cleaner&tag=YOUR-AFFILIATE-ID"
   },
@@ -160,10 +207,15 @@
     "category": "All-purpose cleaner",
     "price": 4.97,
     "sizeOz": 40,
-    "ingredients": ["Water", "Pine oil", "Surfactants"],
-    "rating": 4.7,
-    "reviewCount": 9800,
-    "messes": ["grease", "pet"],
+    "ingredients": [
+      "Water",
+      "Pine oil",
+      "Surfactants"
+    ],
+    "messes": [
+      "grease",
+      "pet"
+    ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Pine-Sol+Multi+Surface+Cleaner&tag=YOUR-AFFILIATE-ID"
   }

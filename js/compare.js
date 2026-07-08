@@ -12,6 +12,7 @@ async function loadComparePage() {
   if (!selectA || !selectB) return;
 
   let products = [];
+  let ratings = {};
 
   try {
     const response = await fetch('data/products-v2.json');
@@ -19,6 +20,12 @@ async function loadComparePage() {
   } catch (err) {
     resultBox.innerHTML = '<p style="color:#64748b">Could not load products right now.</p>';
     return;
+  }
+
+  try {
+    ratings = await fetchRatingsMap(products.map(function (p) { return p.id; }));
+  } catch (err) {
+    ratings = {};
   }
 
   const options = products.map(function (p) {
@@ -42,7 +49,7 @@ async function loadComparePage() {
           <tr><td>Price</td><td>$${p.price.toFixed(2)}</td></tr>
           <tr><td>Size</td><td>${p.sizeOz} oz</td></tr>
           <tr><td>Cost per oz</td><td>$${costPerUse}</td></tr>
-          <tr><td>Rating</td><td>${p.rating} (${p.reviewCount} reviews)</td></tr>
+          <tr><td>Rating</td><td>${ratingTextPlain(ratings[p.id])}</td></tr>
           <tr><td>Category</td><td>${p.category}</td></tr>
           <tr><td>Ingredients</td><td>${p.ingredients.join(', ')}</td></tr>
         </table>

@@ -11,6 +11,7 @@ async function loadProducts() {
   if (!grid) return;
 
   let products = [];
+  let ratings = {};
 
   try {
     const response = await fetch('data/products-v2.json');
@@ -18,6 +19,12 @@ async function loadProducts() {
   } catch (err) {
     grid.innerHTML = '<p style="color:#64748b">Could not load products right now.</p>';
     return;
+  }
+
+  try {
+    ratings = await fetchRatingsMap(products.map(function (p) { return p.id; }));
+  } catch (err) {
+    ratings = {};
   }
 
   function render(list) {
@@ -38,10 +45,7 @@ async function loadProducts() {
             <div class="product-name">${p.name}</div>
             <div class="product-meta">
               <span class="product-price">$${costPerUse} / oz</span>
-              <span class="product-rating">
-                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.4 7 0.7-5.3 4.7 1.6 6.9L12 17.3 5.8 20.7l1.6-6.9L2.1 9.1l7-0.7z"/></svg>
-                ${p.rating}
-              </span>
+              ${ratingBadgeHTML(ratings[p.id])}
             </div>
             <a href="product.html?id=${p.id}" class="section-link" style="display:block;margin-top:12px">See reviews →</a>
             <a href="${p.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:block;text-align:center;margin-top:10px">Buy — $${p.price.toFixed(2)}</a>
