@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product — CleanSlate</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#1e6fd9">
+        <path d="M12 2v6M8 5l4 3 4-3"/>
+        <path d="M4 13c0 5 3.6 9 8 9s8-4 8-9c0-3-2-5-2-5s-1 2-3 2c-2 0-2-3-5-3s-3 3-5 3c-2 0-1-2-1-2s0 2 0 5z"/>
+      </svg>
+      CleanSlate
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="fix-mess.html">Fix a mess</a></li>
+      <li><a href="compare.html">Compare</a></li>
+    </ul>
+    <a href="products.html" class="nav-cta">Browse products</a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<section class="section">
+  <div class="container">
+    <a href="products.html" class="section-link">← Back to all products</a>
+    <div id="product-detail" style="margin-top:24px">
+      <p style="color:#64748b">Loading product…</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--mist);padding-top:48px">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <h2>Reviews</h2>
+        <p>Real experiences from people who've used this product.</p>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
+      <div id="review-list"></div>
+
+      <form id="review-form" class="compare-col">
+        <h3 style="font-family:'Space Grotesk',sans-serif;margin-bottom:16px">Leave a review</h3>
+
+        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Your name</label>
+        <input type="text" id="reviewer-name" required style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px">
+
+        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Rating</label>
+        <select id="reviewer-rating" required style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px">
+          <option value="">Select a rating</option>
+          <option value="5">★★★★★ (5)</option>
+          <option value="4">★★★★☆ (4)</option>
+          <option value="3">★★★☆☆ (3)</option>
+          <option value="2">★★☆☆☆ (2)</option>
+          <option value="1">★☆☆☆☆ (1)</option>
+        </select>
+
+        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Your review</label>
+        <textarea id="reviewer-comment" required rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit"></textarea>
+
+        <button type="submit" class="nav-cta" style="border:none;cursor:pointer;width:100%">Submit review</button>
+        <p id="review-status" style="margin-top:12px;font-size:14px"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <span class="footer-note">© 2026 CleanSlate. Not affiliated with any brand mentioned.</span>
+    <ul class="footer-links">
+      <li><a href="products.html">Products</a></li>
+      <li><a href="fix-mess.html">Fix a mess</a></li>
+      <li><a href="compare.html">Compare</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/main.js"></script>
+<script src="js/supabase-config.js"></script>
+<script src="js/product-detail.js"></script>
+</body>
+</html>
