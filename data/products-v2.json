@@ -218,5 +218,2193 @@
     ],
     "image": "",
     "buyUrl": "https://www.amazon.com/s?k=Pine-Sol+Multi+Surface+Cleaner&tag=YOUR-AFFILIATE-ID"
-  }
+  },
+  {
+    "id": "clorox-tilex-mold-mildew",
+    "name": "Clorox Tilex Mold & Mildew Remover",
+    "brand": "Clorox",
+    "category": "Mold remover",
+    "price": 5.99,
+    "sizeOz": 32,
+    "ingredients": [
+      "Water",
+      "Sodium hypochlorite",
+      "Surfactants"
+    ],
+    "messes": [
+      "mold"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Clorox+Tilex+Mold+Mildew+Remover&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "concrobium-mold-control",
+    "name": "Concrobium Mold Control",
+    "brand": "Concrobium",
+    "category": "Mold remover",
+    "price": 13.99,
+    "sizeOz": 32,
+    "ingredients": [
+      "Water",
+      "Alkyl dimethyl benzyl ammonium chloride",
+      "Surfactants"
+    ],
+    "messes": [
+      "mold"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Concrobium+Mold+Control&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "mold-armada",
+    "name": "Mold Armor Rapid Clean Remediation",
+    "brand": "Mold Armor",
+    "category": "Mold remover",
+    "price": 9.98,
+    "sizeOz": 32,
+    "ingredients": [
+      "Sodium hypochlorite",
+      "Water",
+      "Surfactants"
+    ],
+    "messes": [
+      "mold"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Mold+Armor+Rapid+Clean&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "benefect-decon-30",
+    "name": "Benefect Decon 30 Cleaner",
+    "brand": "Benefect",
+    "category": "Mold cleaner",
+    "price": 14.99,
+    "sizeOz": 32,
+    "ingredients": [
+      "Thyme oil",
+      "Water",
+      "Surfactants"
+    ],
+    "messes": [
+      "mold"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Benefect+Decon+30&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "star-brite-mildew-stain-remover",
+    "name": "Star Brite Mold & Mildew Stain Remover",
+    "brand": "Star Brite",
+    "category": "Mold remover",
+    "price": 10.99,
+    "sizeOz": 32,
+    "ingredients": [
+      "Sodium hypochlorite",
+      "Water",
+      "Surfactants"
+    ],
+    "messes": [
+      "mold"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Star+Brite+Mold+Mildew+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "wine-away-red-wine",
+    "name": "Wine Away Red Wine Stain Remover",
+    "brand": "Wine Away",
+    "category": "Wine stain remover",
+    "price": 8.99,
+    "sizeOz": 12,
+    "ingredients": [
+      "Water",
+      "Surfactants",
+      "Citrus extract"
+    ],
+    "messes": [
+      "wine"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Wine+Away+Red+Wine+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "shout-advanced-gel",
+    "name": "Shout Advanced Ultra Gel Stain Remover",
+    "brand": "Shout",
+    "category": "Stain remover",
+    "price": 5.49,
+    "sizeOz": 22,
+    "ingredients": [
+      "Water",
+      "Surfactants",
+      "Enzymes"
+    ],
+    "messes": [
+      "wine",
+      "food",
+      "coffee"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Shout+Advanced+Ultra+Gel&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "resolve-carpet-cleaner",
+    "name": "Resolve High Traffic Carpet Cleaner",
+    "brand": "Resolve",
+    "category": "Carpet cleaner",
+    "price": 7.99,
+    "sizeOz": 32,
+    "ingredients": [
+      "Water",
+      "Surfactants",
+      "Cleaning agents"
+    ],
+    "messes": [
+      "wine",
+      "food",
+      "pet"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Resolve+High+Traffic+Carpet+Cleaner&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "carbona-stain-devils",
+    "name": "Carbona Stain Devils Food & Drink",
+    "brand": "Carbona",
+    "category": "Stain remover",
+    "price": 4.49,
+    "sizeOz": 1.7,
+    "ingredients": [
+      "Water",
+      "Cleaning agents"
+    ],
+    "messes": [
+      "wine",
+      "coffee",
+      "food"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Carbona+Stain+Devils+Food+Drink&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "nature-miracle-advanced",
+    "name": "Nature's Miracle Advanced Stain & Odor Remover",
+    "brand": "Nature's Miracle",
+    "category": "Pet cleaner",
+    "price": 12.99,
+    "sizeOz": 32,
+    "ingredients": [
+      "Water",
+      "Enzyme blend",
+      "Surfactants"
+    ],
+    "messes": [
+      "pet"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Natures+Miracle+Advanced+Stain+Odor+Remover&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "angry-orange-pet",
+    "name": "Angry Orange Pet Odor Eliminator",
+    "brand": "Angry Orange",
+    "category": "Pet odor remover",
+    "price": 14.99,
+    "sizeOz": 32,
+    "ingredients": [
+      "Water",
+      "Orange oil",
+      "Surfactants"
+    ],
+    "messes": [
+      "pet"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Angry+Orange+Pet+Odor+Eliminator&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "rocco-roxie-enzyme",
+    "name": "Rocco & Roxie Stain & Odor Eliminator",
+    "brand": "Rocco & Roxie",
+    "category": "Pet cleaner",
+    "price": 19.97,
+    "sizeOz": 32,
+    "ingredients": [
+      "Water",
+      "Natural enzymes",
+      "Surfactants"
+    ],
+    "messes": [
+      "pet"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Rocco+Roxie+Stain+Odor+Eliminator&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "bissell-pet-pro",
+    "name": "Bissell Pet Pro Oxy Spot Cleaner",
+    "brand": "Bissell",
+    "category": "Pet carpet cleaner",
+    "price": 10.99,
+    "sizeOz": 22,
+    "ingredients": [
+      "Water",
+      "Hydrogen peroxide",
+      "Surfactants"
+    ],
+    "messes": [
+      "pet",
+      "food"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=Bissell+Pet+Pro+Oxy+Spot+Cleaner&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "starbucks-coffee-stain",
+    "name": "Starbucks Coffee Stain Remover",
+    "brand": "Starbucks",
+    "category": "Coffee stain remover",
+    "price": 6.99,
+    "sizeOz": 12,
+    "ingredients": [
+      "Water",
+      "Cleaning agents"
+    ],
+    "messes": [
+      "coffee"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=coffee+stain+remover&tag=YOUR-AFFILIATE-ID"
+  },
+  {
+    "id": "oxiclean-white-revive",
+    "name": "OxiClean White Revive Powder",
+    "brand": "OxiClean",
+    "category": "Laundry booster",
+    "price": 12.99,
+    "sizeOz": 24,
+    "ingredients": [
+      "Sodium carbonate",
+      "Sodium percarbonate"
+    ],
+    "messes": [
+      "coffee",
+      "wine",
+      "food",
+      "laundry"
+    ],
+    "image": "",
+    "buyUrl": "https://www.amazon.com/s?k=OxiClean+White+Revive&tag=YOUR-AFFILIATE-ID"
+  },
+{
+  "id": "easy-off-kitchen-degreaser",
+  "name": "Easy-Off Kitchen Degreaser",
+  "brand": "Easy-Off",
+  "category": "Kitchen degreaser",
+  "price": 5.99,
+  "sizeOz": 24,
+  "ingredients": [
+    "Water",
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "grease",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Easy+Off+Kitchen+Degreaser&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "zep-heavy-duty-degreaser",
+  "name": "Zep Heavy Duty Citrus Degreaser",
+  "brand": "Zep",
+  "category": "Degreaser",
+  "price": 7.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Citrus solvents",
+    "Surfactants"
+  ],
+  "messes": [
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Zep+Heavy+Duty+Citrus+Degreaser&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "purple-power-degreaser",
+  "name": "Purple Power Heavy Duty Cleaner",
+  "brand": "Purple Power",
+  "category": "Degreaser",
+  "price": 8.49,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Purple+Power+Degreaser&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "simple-green-industrial",
+  "name": "Simple Green Industrial Cleaner",
+  "brand": "Simple Green",
+  "category": "Heavy duty cleaner",
+  "price": 9.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Glycol ether",
+    "Surfactants"
+  ],
+  "messes": [
+    "grease",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Simple+Green+Industrial+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "krud-kutter-kitchen",
+  "name": "Krud Kutter Kitchen Degreaser",
+  "brand": "Krud Kutter",
+  "category": "Kitchen degreaser",
+  "price": 6.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Surfactants",
+    "Glycol ether"
+  ],
+  "messes": [
+    "grease",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Krud+Kutter+Kitchen+Degreaser&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "dawn-powerwash",
+  "name": "Dawn Powerwash Dish Spray",
+  "brand": "Dawn",
+  "category": "Dish cleaner",
+  "price": 5.94,
+  "sizeOz": 16,
+  "ingredients": [
+    "Water",
+    "Alcohol ethoxysulfate",
+    "Surfactants"
+  ],
+  "messes": [
+    "grease",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Dawn+Powerwash+Dish+Spray&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "cascade-complete",
+  "name": "Cascade Complete Dishwasher Pods",
+  "brand": "Cascade",
+  "category": "Dishwasher detergent",
+  "price": 18.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Sodium carbonate",
+    "Enzymes",
+    "Surfactants"
+  ],
+  "messes": [
+    "food",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Cascade+Complete+Dishwasher+Pods&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "finish-dishwasher-tabs",
+  "name": "Finish Ultimate Dishwasher Tablets",
+  "brand": "Finish",
+  "category": "Dishwasher detergent",
+  "price": 15.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Enzymes",
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "food",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Finish+Ultimate+Dishwasher+Tablets&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "weiman-cooktop-cleaner",
+  "name": "Weiman Cooktop Cleaner",
+  "brand": "Weiman",
+  "category": "Stove cleaner",
+  "price": 6.99,
+  "sizeOz": 20,
+  "ingredients": [
+    "Water",
+    "Cleaning agents",
+    "Polishing minerals"
+  ],
+  "messes": [
+    "grease",
+    "food",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Weiman+Cooktop+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "cerama-bryte-cooktop",
+  "name": "Cerama Bryte Cooktop Cleaner",
+  "brand": "Cerama Bryte",
+  "category": "Stove cleaner",
+  "price": 8.49,
+  "sizeOz": 28,
+  "ingredients": [
+    "Cleaning agents",
+    "Polishing particles"
+  ],
+  "messes": [
+    "grease",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Cerama+Bryte+Cooktop+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "bar-keepers-friend-soft-cleanser",
+  "name": "Bar Keepers Friend Soft Cleanser",
+  "brand": "Bar Keepers Friend",
+  "category": "Cream cleanser",
+  "price": 6.49,
+  "sizeOz": 26,
+  "ingredients": [
+    "Oxalic acid",
+    "Surfactants",
+    "Minerals"
+  ],
+  "messes": [
+    "grease",
+    "kitchen",
+    "rust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Bar+Keepers+Friend+Soft+Cleanser&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "glisten-cooktop-cleaner",
+  "name": "Glisten Cooktop Cleaner",
+  "brand": "Glisten",
+  "category": "Kitchen cleaner",
+  "price": 7.49,
+  "sizeOz": 16,
+  "ingredients": [
+    "Citric acid",
+    "Surfactants"
+  ],
+  "messes": [
+    "grease",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Glisten+Cooktop+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "weiman-granite-cleaner",
+  "name": "Weiman Granite Cleaner",
+  "brand": "Weiman",
+  "category": "Stone cleaner",
+  "price": 6.99,
+  "sizeOz": 24,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "kitchen",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Weiman+Granite+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "method-kitchen-spray",
+  "name": "Method Kitchen Degreaser Spray",
+  "brand": "Method",
+  "category": "Kitchen cleaner",
+  "price": 5.49,
+  "sizeOz": 28,
+  "ingredients": [
+    "Water",
+    "Plant-based solvents",
+    "Surfactants"
+  ],
+  "messes": [
+    "grease",
+    "food",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Method+Kitchen+Degreaser+Spray&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "lysol-all-purpose",
+  "name": "Lysol All Purpose Cleaner",
+  "brand": "Lysol",
+  "category": "All-purpose cleaner",
+  "price": 4.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "grease",
+    "food",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Lysol+All+Purpose+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "fantastik-max-oven",
+  "name": "Fantastik Max Oven & Grill Cleaner",
+  "brand": "Fantastik",
+  "category": "Oven cleaner",
+  "price": 6.49,
+  "sizeOz": 24,
+  "ingredients": [
+    "Sodium hydroxide",
+    "Surfactants"
+  ],
+  "messes": [
+    "grease",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Fantastik+Oven+Grill+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "goo-gone-kitchen",
+  "name": "Goo Gone Kitchen Degreaser",
+  "brand": "Goo Gone",
+  "category": "Kitchen degreaser",
+  "price": 6.99,
+  "sizeOz": 28,
+  "ingredients": [
+    "Citrus oils",
+    "Surfactants"
+  ],
+  "messes": [
+    "grease",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Goo+Gone+Kitchen+Degreaser&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "kaboom-shower-cleaner",
+  "name": "Kaboom Foam-Tastic Bathroom Cleaner",
+  "brand": "Kaboom",
+  "category": "Bathroom cleaner",
+  "price": 5.99,
+  "sizeOz": 19,
+  "ingredients": [
+    "Water",
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "bathroom",
+    "soap"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Kaboom+Foam+Tastic+Bathroom+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "scrubbing-bubbles-mega-shower",
+  "name": "Scrubbing Bubbles Mega Shower Foamer",
+  "brand": "Scrubbing Bubbles",
+  "category": "Shower cleaner",
+  "price": 5.98,
+  "sizeOz": 20,
+  "ingredients": [
+    "Water",
+    "Surfactants",
+    "Citric acid"
+  ],
+  "messes": [
+    "soap",
+    "hardwater",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Scrubbing+Bubbles+Mega+Shower+Foamer&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "method-daily-shower",
+  "name": "Method Daily Shower Cleaner",
+  "brand": "Method",
+  "category": "Shower cleaner",
+  "price": 5.49,
+  "sizeOz": 28,
+  "ingredients": [
+    "Water",
+    "Plant-based surfactants"
+  ],
+  "messes": [
+    "soap",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Method+Daily+Shower+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "clr-bath-kitchen",
+  "name": "CLR Brilliant Bath Cleaner",
+  "brand": "CLR",
+  "category": "Bathroom cleaner",
+  "price": 5.99,
+  "sizeOz": 26,
+  "ingredients": [
+    "Lactic acid",
+    "Gluconic acid",
+    "Surfactants"
+  ],
+  "messes": [
+    "hardwater",
+    "soap",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=CLR+Brilliant+Bath+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "lime-away-bathroom",
+  "name": "Lime-A-Way Bathroom Cleaner",
+  "brand": "Lime-A-Way",
+  "category": "Limescale remover",
+  "price": 5.99,
+  "sizeOz": 28,
+  "ingredients": [
+    "Sulfamic acid",
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "hardwater",
+    "soap"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Lime+A+Way+Bathroom+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "bar-keepers-friend-more-spray",
+  "name": "Bar Keepers Friend More Spray + Foam",
+  "brand": "Bar Keepers Friend",
+  "category": "Bathroom cleaner",
+  "price": 5.99,
+  "sizeOz": 25.4,
+  "ingredients": [
+    "Oxalic acid",
+    "Surfactants"
+  ],
+  "messes": [
+    "soap",
+    "hardwater",
+    "rust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Bar+Keepers+Friend+More+Spray+Foam&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "soft-scrub-bathroom",
+  "name": "Soft Scrub Advanced Bathroom Cleaner",
+  "brand": "Soft Scrub",
+  "category": "Bathroom cleaner",
+  "price": 4.99,
+  "sizeOz": 25.4,
+  "ingredients": [
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "soap",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Soft+Scrub+Advanced+Bathroom+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "zep-mildew-stain-remover",
+  "name": "Zep Mold Stain & Mildew Stain Remover",
+  "brand": "Zep",
+  "category": "Bathroom mold cleaner",
+  "price": 6.48,
+  "sizeOz": 32,
+  "ingredients": [
+    "Sodium hypochlorite",
+    "Surfactants"
+  ],
+  "messes": [
+    "mold",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Zep+Mold+Stain+Mildew+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "astonish-mold-mildew",
+  "name": "Astonish Mold & Mildew Blaster",
+  "brand": "Astonish",
+  "category": "Mold cleaner",
+  "price": 8.99,
+  "sizeOz": 24,
+  "ingredients": [
+    "Sodium hypochlorite",
+    "Water"
+  ],
+  "messes": [
+    "mold",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Astonish+Mold+Mildew+Blaster&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "windex-shower-cleaner",
+  "name": "Windex Vinegar Glass & Shower Cleaner",
+  "brand": "Windex",
+  "category": "Shower glass cleaner",
+  "price": 5.49,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Vinegar",
+    "Surfactants"
+  ],
+  "messes": [
+    "hardwater",
+    "soap",
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Windex+Vinegar+Glass+Shower+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "mr-clean-bathroom",
+  "name": "Mr. Clean Multi Surface Bathroom Cleaner",
+  "brand": "Mr. Clean",
+  "category": "Bathroom cleaner",
+  "price": 4.97,
+  "sizeOz": 45,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "bathroom",
+    "soap"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Mr+Clean+Bathroom+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "lysol-bathroom-spray",
+  "name": "Lysol Bathroom Cleaner Spray",
+  "brand": "Lysol",
+  "category": "Bathroom cleaner",
+  "price": 5.49,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "bathroom",
+    "soap"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Lysol+Bathroom+Cleaner+Spray&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "dawn-powerwash-bath",
+  "name": "Dawn Powerwash Bathroom Spray",
+  "brand": "Dawn",
+  "category": "Foaming cleaner",
+  "price": 5.94,
+  "sizeOz": 16,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "soap",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Dawn+Powerwash+Bathroom+Spray&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "oxiclean-bathroom",
+  "name": "OxiClean Bathroom Cleaner",
+  "brand": "OxiClean",
+  "category": "Bathroom stain remover",
+  "price": 6.99,
+  "sizeOz": 24,
+  "ingredients": [
+    "Hydrogen peroxide",
+    "Surfactants"
+  ],
+  "messes": [
+    "soap",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=OxiClean+Bathroom+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "clr-calcium-lime-rust",
+  "name": "CLR Calcium Lime Rust Remover",
+  "brand": "CLR",
+  "category": "Limescale remover",
+  "price": 6.99,
+  "sizeOz": 28,
+  "ingredients": [
+    "Lactic acid",
+    "Gluconic acid",
+    "Water"
+  ],
+  "messes": [
+    "hardwater",
+    "rust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=CLR+Calcium+Lime+Rust+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "kaboom-hardwater",
+  "name": "Kaboom No Drip Foam Mold & Hard Water Cleaner",
+  "brand": "Kaboom",
+  "category": "Hard water cleaner",
+  "price": 6.49,
+  "sizeOz": 32,
+  "ingredients": [
+    "Citric acid",
+    "Surfactants"
+  ],
+  "messes": [
+    "hardwater",
+    "soap"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Kaboom+Hard+Water+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "biokleen-bathroom",
+  "name": "Biokleen Bathroom Cleaner",
+  "brand": "Biokleen",
+  "category": "Bathroom cleaner",
+  "price": 8.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Plant-based surfactants",
+    "Citric acid"
+  ],
+  "messes": [
+    "soap",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Biokleen+Bathroom+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "iron-out-rust-stain-remover",
+  "name": "Iron OUT Rust Stain Remover",
+  "brand": "Iron OUT",
+  "category": "Rust remover",
+  "price": 7.99,
+  "sizeOz": 24,
+  "ingredients": [
+    "Sodium hydrosulfite",
+    "Sodium sulfite",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "rust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Iron+OUT+Rust+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "whink-rust-remover",
+  "name": "Whink Rust Stain Remover",
+  "brand": "Whink",
+  "category": "Rust remover",
+  "price": 6.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Hydrofluoric acid",
+    "Water"
+  ],
+  "messes": [
+    "rust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Whink+Rust+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "evapo-rust",
+  "name": "Evapo-Rust Rust Remover",
+  "brand": "Evapo-Rust",
+  "category": "Rust remover",
+  "price": 14.99,
+  "sizeOz": 128,
+  "ingredients": [
+    "Water",
+    "Chelating agents"
+  ],
+  "messes": [
+    "rust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Evapo+Rust+Rust+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "clr-metal-clear",
+  "name": "CLR Metal Clear Rust Remover",
+  "brand": "CLR",
+  "category": "Rust remover",
+  "price": 9.99,
+  "sizeOz": 28,
+  "ingredients": [
+    "Lactic acid",
+    "Gluconic acid"
+  ],
+  "messes": [
+    "rust",
+    "hardwater"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=CLR+Metal+Clear&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "bar-keepers-friend-rust",
+  "name": "Bar Keepers Friend Cleanser",
+  "brand": "Bar Keepers Friend",
+  "category": "Rust remover",
+  "price": 4.99,
+  "sizeOz": 21,
+  "ingredients": [
+    "Oxalic acid",
+    "Feldspar",
+    "Surfactants"
+  ],
+  "messes": [
+    "rust",
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Bar+Keepers+Friend+Cleanser&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "windex-original",
+  "name": "Windex Original Glass Cleaner",
+  "brand": "Windex",
+  "category": "Glass cleaner",
+  "price": 4.79,
+  "sizeOz": 23,
+  "ingredients": [
+    "Water",
+    "Ammonia",
+    "Isopropyl alcohol"
+  ],
+  "messes": [
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Windex+Original+Glass+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "invisible-glass-premium",
+  "name": "Invisible Glass Premium Cleaner",
+  "brand": "Invisible Glass",
+  "category": "Glass cleaner",
+  "price": 5.99,
+  "sizeOz": 22,
+  "ingredients": [
+    "Water",
+    "Alcohol",
+    "Surfactants"
+  ],
+  "messes": [
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Invisible+Glass+Premium+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "sprayway-glass",
+  "name": "Sprayway Glass Cleaner",
+  "brand": "Sprayway",
+  "category": "Glass cleaner",
+  "price": 4.99,
+  "sizeOz": 19,
+  "ingredients": [
+    "Water",
+    "Alcohol",
+    "Foaming agents"
+  ],
+  "messes": [
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Sprayway+Glass+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "hope-glass-cleaner",
+  "name": "Hope's Perfect Glass Cleaner",
+  "brand": "Hope's",
+  "category": "Glass cleaner",
+  "price": 6.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Hopes+Perfect+Glass+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "method-glass-cleaner",
+  "name": "Method Glass Cleaner",
+  "brand": "Method",
+  "category": "Glass cleaner",
+  "price": 4.99,
+  "sizeOz": 28,
+  "ingredients": [
+    "Water",
+    "Plant-based solvents"
+  ],
+  "messes": [
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Method+Glass+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "stoner-invisible-glass",
+  "name": "Stoner Invisible Glass Reach Tool",
+  "brand": "Invisible Glass",
+  "category": "Glass cleaning tool",
+  "price": 14.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Microfiber material"
+  ],
+  "messes": [
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Invisible+Glass+Reach+Tool&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "swiffer-dusters",
+  "name": "Swiffer Dusters Starter Kit",
+  "brand": "Swiffer",
+  "category": "Duster",
+  "price": 9.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Synthetic fibers"
+  ],
+  "messes": [
+    "dust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Swiffer+Dusters+Starter+Kit&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "pledge-multisurface",
+  "name": "Pledge Multisurface Cleaner",
+  "brand": "Pledge",
+  "category": "Dusting spray",
+  "price": 5.49,
+  "sizeOz": 9.7,
+  "ingredients": [
+    "Water",
+    "Silicone",
+    "Surfactants"
+  ],
+  "messes": [
+    "dust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Pledge+Multisurface+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "endust-dusting-spray",
+  "name": "Endust Dusting Spray",
+  "brand": "Endust",
+  "category": "Dust remover",
+  "price": 5.99,
+  "sizeOz": 12.5,
+  "ingredients": [
+    "Mineral oil",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "dust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Endust+Dusting+Spray&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "microfiber-cleaning-cloths",
+  "name": "Amazon Basics Microfiber Cleaning Cloths",
+  "brand": "Amazon Basics",
+  "category": "Cleaning cloth",
+  "price": 12.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Microfiber polyester"
+  ],
+  "messes": [
+    "dust",
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Amazon+Basics+Microfiber+Cleaning+Cloths&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "vileda-microfiber-cloths",
+  "name": "Vileda Microfiber Cleaning Cloths",
+  "brand": "Vileda",
+  "category": "Cleaning cloth",
+  "price": 8.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Microfiber material"
+  ],
+  "messes": [
+    "dust",
+    "glass"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Vileda+Microfiber+Cloths&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "dawn-powerwash-spray",
+  "name": "Dawn Powerwash Spray",
+  "brand": "Dawn",
+  "category": "Multi-surface cleaner",
+  "price": 5.94,
+  "sizeOz": 16,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "dust",
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Dawn+Powerwash+Spray&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "drano-max-gel",
+  "name": "Drano Max Gel Clog Remover",
+  "brand": "Drano",
+  "category": "Drain cleaner",
+  "price": 8.49,
+  "sizeOz": 80,
+  "ingredients": [
+    "Sodium hydroxide",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "hair",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Drano+Max+Gel+Clog+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "liquid-plumr-hair-clog",
+  "name": "Liquid-Plumr Hair Clog Eliminator",
+  "brand": "Liquid-Plumr",
+  "category": "Drain cleaner",
+  "price": 6.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Sodium hydroxide",
+    "Surfactants"
+  ],
+  "messes": [
+    "hair"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Liquid+Plumr+Hair+Clog+Eliminator&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "green-gobbler-drain-pacs",
+  "name": "Green Gobbler Drain Opening Pacs",
+  "brand": "Green Gobbler",
+  "category": "Drain cleaner",
+  "price": 19.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Sodium hydroxide",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "hair"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Green+Gobbler+Drain+Opening+Pacs&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "clr-drain-clear",
+  "name": "CLR Drain Clear",
+  "brand": "CLR",
+  "category": "Drain cleaner",
+  "price": 7.99,
+  "sizeOz": 42,
+  "ingredients": [
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "hair",
+    "bathroom"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=CLR+Drain+Clear&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "bona-hardwood-cleaner",
+  "name": "Bona Hardwood Floor Cleaner",
+  "brand": "Bona",
+  "category": "Floor cleaner",
+  "price": 8.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "dust",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Bona+Hardwood+Floor+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "bona-premium-spray",
+  "name": "Bona Premium Spray Mop Cleaner",
+  "brand": "Bona",
+  "category": "Floor cleaner",
+  "price": 12.99,
+  "sizeOz": 34,
+  "ingredients": [
+    "Water",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "dust",
+    "food",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Bona+Premium+Spray+Mop&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "swiffer-wetjet-solution",
+  "name": "Swiffer WetJet Floor Cleaner Solution",
+  "brand": "Swiffer",
+  "category": "Floor cleaner",
+  "price": 6.99,
+  "sizeOz": 42.2,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "dust",
+    "food",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Swiffer+WetJet+Solution&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "murphys-oil-soap",
+  "name": "Murphy Oil Soap Wood Cleaner",
+  "brand": "Murphy",
+  "category": "Wood floor cleaner",
+  "price": 4.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Vegetable oil soap",
+    "Water"
+  ],
+  "messes": [
+    "dust",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Murphy+Oil+Soap+Wood+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "zep-hardwood-floor-cleaner",
+  "name": "Zep Hardwood & Laminate Floor Cleaner",
+  "brand": "Zep",
+  "category": "Floor cleaner",
+  "price": 7.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "dust",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Zep+Hardwood+Laminate+Floor+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "resolve-high-traffic",
+  "name": "Resolve High Traffic Carpet Cleaner",
+  "brand": "Resolve",
+  "category": "Carpet cleaner",
+  "price": 7.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "food",
+    "pet",
+    "dust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Resolve+High+Traffic+Carpet+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "tide-original-liquid",
+  "name": "Tide Original Liquid Laundry Detergent",
+  "brand": "Tide",
+  "category": "Laundry detergent",
+  "price": 12.99,
+  "sizeOz": 46,
+  "ingredients": [
+    "Surfactants",
+    "Enzymes",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "laundry",
+    "food",
+    "wine"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Tide+Original+Liquid+Laundry+Detergent&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "persil-proclean",
+  "name": "Persil ProClean Laundry Detergent",
+  "brand": "Persil",
+  "category": "Laundry detergent",
+  "price": 14.99,
+  "sizeOz": 82,
+  "ingredients": [
+    "Surfactants",
+    "Enzymes"
+  ],
+  "messes": [
+    "laundry",
+    "food",
+    "stains"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Persil+ProClean+Laundry+Detergent&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "arm-hammer-detergent",
+  "name": "Arm & Hammer Clean Burst Laundry Detergent",
+  "brand": "Arm & Hammer",
+  "category": "Laundry detergent",
+  "price": 9.99,
+  "sizeOz": 140,
+  "ingredients": [
+    "Sodium carbonate",
+    "Surfactants"
+  ],
+  "messes": [
+    "laundry",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Arm+Hammer+Clean+Burst+Laundry+Detergent&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "downy-unstopables",
+  "name": "Downy Unstopables In-Wash Scent Boosters",
+  "brand": "Downy",
+  "category": "Laundry booster",
+  "price": 12.99,
+  "sizeOz": 20.1,
+  "ingredients": [
+    "Fragrance compounds"
+  ],
+  "messes": [
+    "laundry",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Downy+Unstopables&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "oxiclean-versatile-powder",
+  "name": "OxiClean Versatile Stain Remover Powder",
+  "brand": "OxiClean",
+  "category": "Laundry stain remover",
+  "price": 9.97,
+  "sizeOz": 56.3,
+  "ingredients": [
+    "Sodium carbonate",
+    "Sodium percarbonate"
+  ],
+  "messes": [
+    "laundry",
+    "food",
+    "wine"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=OxiClean+Versatile+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "resolve-laundry-stain",
+  "name": "Resolve Laundry Stain Remover",
+  "brand": "Resolve",
+  "category": "Laundry stain remover",
+  "price": 6.49,
+  "sizeOz": 22,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "laundry",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Resolve+Laundry+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "shout-triple-action",
+  "name": "Shout Triple-Acting Stain Remover",
+  "brand": "Shout",
+  "category": "Laundry stain remover",
+  "price": 5.49,
+  "sizeOz": 22,
+  "ingredients": [
+    "Water",
+    "Surfactants",
+    "Enzymes"
+  ],
+  "messes": [
+    "laundry",
+    "coffee",
+    "food",
+    "wine"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Shout+Triple+Acting+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "clorox-color-safe-bleach",
+  "name": "Clorox 2 Color Safe Bleach",
+  "brand": "Clorox",
+  "category": "Laundry booster",
+  "price": 9.99,
+  "sizeOz": 66,
+  "ingredients": [
+    "Hydrogen peroxide",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "laundry",
+    "food",
+    "wine"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Clorox+2+Color+Safe+Bleach&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "gain-original-detergent",
+  "name": "Gain Original Liquid Laundry Detergent",
+  "brand": "Gain",
+  "category": "Laundry detergent",
+  "price": 12.99,
+  "sizeOz": 46,
+  "ingredients": [
+    "Surfactants",
+    "Enzymes",
+    "Fragrance"
+  ],
+  "messes": [
+    "laundry",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Gain+Original+Liquid+Laundry+Detergent&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "all-free-clear-detergent",
+  "name": "All Free Clear Laundry Detergent",
+  "brand": "All",
+  "category": "Laundry detergent",
+  "price": 11.99,
+  "sizeOz": 46.5,
+  "ingredients": [
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "laundry",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=All+Free+Clear+Laundry+Detergent&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "clorox-2-stain-remover",
+  "name": "Clorox 2 Stain Remover",
+  "brand": "Clorox",
+  "category": "Laundry stain remover",
+  "price": 8.99,
+  "sizeOz": 33,
+  "ingredients": [
+    "Hydrogen peroxide",
+    "Surfactants"
+  ],
+  "messes": [
+    "laundry",
+    "food",
+    "wine"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Clorox+2+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "oxiclean-dark-protect",
+  "name": "OxiClean Dark Protect",
+  "brand": "OxiClean",
+  "category": "Laundry booster",
+  "price": 9.99,
+  "sizeOz": 48,
+  "ingredients": [
+    "Cleaning agents",
+    "Surfactants"
+  ],
+  "messes": [
+    "laundry"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=OxiClean+Dark+Protect&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "tide-to-go-pen",
+  "name": "Tide To Go Instant Stain Remover Pen",
+  "brand": "Tide",
+  "category": "Portable stain remover",
+  "price": 7.99,
+  "sizeOz": 1,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "food",
+    "coffee",
+    "wine"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Tide+To+Go+Pen&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "downy-rinse",
+  "name": "Downy Rinse & Refresh",
+  "brand": "Downy",
+  "category": "Fabric refresher",
+  "price": 10.99,
+  "sizeOz": 25.4,
+  "ingredients": [
+    "Water",
+    "Odor neutralizers"
+  ],
+  "messes": [
+    "laundry",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Downy+Rinse+Refresh&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "febreze-fabric-refresher",
+  "name": "Febreze Fabric Refresher",
+  "brand": "Febreze",
+  "category": "Odor eliminator",
+  "price": 5.49,
+  "sizeOz": 27,
+  "ingredients": [
+    "Water",
+    "Odor eliminators",
+    "Fragrance"
+  ],
+  "messes": [
+    "pet",
+    "trash",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Febreze+Fabric+Refresher&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "febreze-air-effects",
+  "name": "Febreze Air Effects",
+  "brand": "Febreze",
+  "category": "Air freshener",
+  "price": 3.99,
+  "sizeOz": 8.8,
+  "ingredients": [
+    "Water",
+    "Odor eliminators"
+  ],
+  "messes": [
+    "trash",
+    "pet"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Febreze+Air+Effects&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "fresh-wave-odor-remover",
+  "name": "Fresh Wave Odor Removing Spray",
+  "brand": "Fresh Wave",
+  "category": "Odor remover",
+  "price": 12.99,
+  "sizeOz": 24,
+  "ingredients": [
+    "Plant extracts",
+    "Water"
+  ],
+  "messes": [
+    "trash",
+    "pet",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Fresh+Wave+Odor+Removing+Spray&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "pooph-pet-odor",
+  "name": "Pooph Pet Odor Eliminator",
+  "brand": "Pooph",
+  "category": "Pet odor remover",
+  "price": 24.97,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Odor neutralizing compounds"
+  ],
+  "messes": [
+    "pet",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Pooph+Pet+Odor+Eliminator&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "skouts-honor-stain",
+  "name": "Skout's Honor Professional Strength Stain & Odor Remover",
+  "brand": "Skout's Honor",
+  "category": "Pet cleaner",
+  "price": 16.99,
+  "sizeOz": 35,
+  "ingredients": [
+    "Water",
+    "Plant-based cleaners"
+  ],
+  "messes": [
+    "pet"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Skouts+Honor+Stain+Odor+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "bissell-woolite-pet",
+  "name": "Bissell Woolite Pet Stain Remover",
+  "brand": "Bissell",
+  "category": "Pet carpet cleaner",
+  "price": 8.99,
+  "sizeOz": 22,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "pet",
+    "food"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Bissell+Woolite+Pet+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "glade-odor-eliminator",
+  "name": "Glade Odor Eliminating Spray",
+  "brand": "Glade",
+  "category": "Air freshener",
+  "price": 3.49,
+  "sizeOz": 8,
+  "ingredients": [
+    "Water",
+    "Fragrance compounds"
+  ],
+  "messes": [
+    "trash",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Glade+Odor+Eliminating+Spray&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "glad-forceflex-bags",
+  "name": "Glad ForceFlexPlus Trash Bags",
+  "brand": "Glad",
+  "category": "Trash bags",
+  "price": 14.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Plastic"
+  ],
+  "messes": [
+    "trash"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Glad+ForceFlexPlus+Trash+Bags&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "hefty-strong-trash-bags",
+  "name": "Hefty Strong Trash Bags",
+  "brand": "Hefty",
+  "category": "Trash bags",
+  "price": 12.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Plastic"
+  ],
+  "messes": [
+    "trash"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Hefty+Strong+Trash+Bags&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "arm-hammer-fridge",
+  "name": "Arm & Hammer Fridge Fresh Odor Absorber",
+  "brand": "Arm & Hammer",
+  "category": "Odor absorber",
+  "price": 2.49,
+  "sizeOz": 14,
+  "ingredients": [
+    "Sodium bicarbonate"
+  ],
+  "messes": [
+    "trash",
+    "kitchen",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Arm+Hammer+Fridge+Fresh&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "coffee-away-stain-remover",
+  "name": "Coffee Away Stain Remover",
+  "brand": "Coffee Away",
+  "category": "Coffee stain remover",
+  "price": 9.99,
+  "sizeOz": 12,
+  "ingredients": [
+    "Cleaning agents",
+    "Surfactants"
+  ],
+  "messes": [
+    "coffee"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Coffee+Away+Stain+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "grandmas-secret-stain",
+  "name": "Grandma's Secret Spot Remover",
+  "brand": "Grandma's Secret",
+  "category": "Stain remover",
+  "price": 8.99,
+  "sizeOz": 16,
+  "ingredients": [
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "food",
+    "coffee",
+    "wine"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Grandmas+Secret+Spot+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "goo-gone-original",
+  "name": "Goo Gone Original Adhesive Remover",
+  "brand": "Goo Gone",
+  "category": "Adhesive remover",
+  "price": 6.99,
+  "sizeOz": 8,
+  "ingredients": [
+    "Citrus oils",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "sticky",
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Goo+Gone+Original+Adhesive+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "goof-off-heavy-duty",
+  "name": "Goof Off Heavy Duty Remover",
+  "brand": "Goof Off",
+  "category": "Adhesive remover",
+  "price": 7.99,
+  "sizeOz": 16,
+  "ingredients": [
+    "Solvents",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "sticky",
+    "paint"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Goof+Off+Heavy+Duty+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "weiman-stainless-steel",
+  "name": "Weiman Stainless Steel Cleaner",
+  "brand": "Weiman",
+  "category": "Stainless steel cleaner",
+  "price": 7.99,
+  "sizeOz": 22,
+  "ingredients": [
+    "Water",
+    "Mineral oils",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "grease",
+    "fingerprints",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Weiman+Stainless+Steel+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "therapy-stainless-steel",
+  "name": "Therapy Stainless Steel Cleaner",
+  "brand": "Therapy",
+  "category": "Stainless steel cleaner",
+  "price": 12.99,
+  "sizeOz": 16,
+  "ingredients": [
+    "Coconut oil",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "grease",
+    "fingerprints"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Therapy+Stainless+Steel+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "affresh-washing-machine",
+  "name": "Affresh Washing Machine Cleaner Tablets",
+  "brand": "Affresh",
+  "category": "Appliance cleaner",
+  "price": 11.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Cleaning agents"
+  ],
+  "messes": [
+    "odor",
+    "mold"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Affresh+Washing+Machine+Cleaner+Tablets&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "affresh-dishwasher-cleaner",
+  "name": "Affresh Dishwasher Cleaner Tablets",
+  "brand": "Affresh",
+  "category": "Appliance cleaner",
+  "price": 8.99,
+  "sizeOz": 0,
+  "ingredients": [
+    "Cleaning agents"
+  ],
+  "messes": [
+    "food",
+    "odor",
+    "kitchen"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Affresh+Dishwasher+Cleaner+Tablets&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "bar-keepers-friend-cookware",
+  "name": "Bar Keepers Friend Cookware Cleanser",
+  "brand": "Bar Keepers Friend",
+  "category": "Cookware cleaner",
+  "price": 6.49,
+  "sizeOz": 12,
+  "ingredients": [
+    "Oxalic acid",
+    "Surfactants"
+  ],
+  "messes": [
+    "food",
+    "burnt",
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Bar+Keepers+Friend+Cookware+Cleanser&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "carbon-off-oven-cleaner",
+  "name": "Carbon-Off Heavy Duty Oven Cleaner",
+  "brand": "Carbon-Off",
+  "category": "Oven cleaner",
+  "price": 12.99,
+  "sizeOz": 16,
+  "ingredients": [
+    "Cleaning solvents"
+  ],
+  "messes": [
+    "burnt",
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Carbon+Off+Oven+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "easy-off-fume-free",
+  "name": "Easy-Off Fume Free Oven Cleaner",
+  "brand": "Easy-Off",
+  "category": "Oven cleaner",
+  "price": 7.99,
+  "sizeOz": 24,
+  "ingredients": [
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "burnt",
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Easy+Off+Fume+Free+Oven+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "weiman-leather-cleaner",
+  "name": "Weiman Leather Cleaner",
+  "brand": "Weiman",
+  "category": "Leather cleaner",
+  "price": 9.99,
+  "sizeOz": 16,
+  "ingredients": [
+    "Cleaning agents",
+    "Conditioners"
+  ],
+  "messes": [
+    "dust",
+    "stains"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Weiman+Leather+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "armor-all-cleaner",
+  "name": "Armor All Multi-Purpose Cleaner",
+  "brand": "Armor All",
+  "category": "Automotive cleaner",
+  "price": 7.99,
+  "sizeOz": 16,
+  "ingredients": [
+    "Water",
+    "Surfactants"
+  ],
+  "messes": [
+    "grease",
+    "dust"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Armor+All+Multi+Purpose+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "mothers-vlr-cleaner",
+  "name": "Mothers VLR Cleaner",
+  "brand": "Mothers",
+  "category": "Automotive cleaner",
+  "price": 9.99,
+  "sizeOz": 24,
+  "ingredients": [
+    "Cleaning agents"
+  ],
+  "messes": [
+    "dust",
+    "stains"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Mothers+VLR+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "chemical-guys-interior",
+  "name": "Chemical Guys Total Interior Cleaner",
+  "brand": "Chemical Guys",
+  "category": "Automotive cleaner",
+  "price": 9.99,
+  "sizeOz": 16,
+  "ingredients": [
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "dust",
+    "grease"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Chemical+Guys+Total+Interior+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "wet-and-forget-shower",
+  "name": "Wet & Forget Shower Cleaner",
+  "brand": "Wet & Forget",
+  "category": "Shower cleaner",
+  "price": 17.99,
+  "sizeOz": 64,
+  "ingredients": [
+    "Surfactants",
+    "Cleaning agents"
+  ],
+  "messes": [
+    "mold",
+    "soap",
+    "hardwater"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Wet+Forget+Shower+Cleaner&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "mold-armour-remover",
+  "name": "Mold Armor Instant Mold & Mildew Stain Remover",
+  "brand": "Mold Armor",
+  "category": "Mold remover",
+  "price": 8.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Sodium hypochlorite",
+    "Surfactants"
+  ],
+  "messes": [
+    "mold"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Mold+Armor+Instant+Mold+Mildew+Remover&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "concrobium-mold-control",
+  "name": "Concrobium Mold Control",
+  "brand": "Concrobium",
+  "category": "Mold remover",
+  "price": 14.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Water",
+    "Alkaline salts"
+  ],
+  "messes": [
+    "mold"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Concrobium+Mold+Control&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "angry-orange-pet",
+  "name": "Angry Orange Pet Odor Eliminator",
+  "brand": "Angry Orange",
+  "category": "Pet odor remover",
+  "price": 14.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Orange oil",
+    "Water"
+  ],
+  "messes": [
+    "pet",
+    "odor"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Angry+Orange+Pet+Odor+Eliminator&tag=YOUR-AFFILIATE-ID"
+},
+{
+  "id": "nature-miracle-cat",
+  "name": "Nature's Miracle Cat Stain & Odor Remover",
+  "brand": "Nature's Miracle",
+  "category": "Pet cleaner",
+  "price": 11.99,
+  "sizeOz": 32,
+  "ingredients": [
+    "Enzymes",
+    "Surfactants"
+  ],
+  "messes": [
+    "pet"
+  ],
+  "image": "",
+  "buyUrl": "https://www.amazon.com/s?k=Natures+Miracle+Cat+Stain+Odor+Remover&tag=YOUR-AFFILIATE-ID"
+}
 ]
