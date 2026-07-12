@@ -1,4 +1,4 @@
-# CleanSlate (starter site)
+# TheCleaningVerdict (starter site)
 
 A plain HTML/CSS/JS starter for your cleaning product site. No build tools, no frameworks — just open `index.html` in a browser to preview it.
 
@@ -10,8 +10,6 @@ A plain HTML/CSS/JS starter for your cleaning product site. No build tools, no f
 - `compare.html` — product comparison page (placeholder for now)
 - `css/styles.css` — all the styling
 - `js/main.js` — mobile menu behavior
-
-"CleanSlate" is just a placeholder name — search-and-replace it once you land on a real one.
 
 ## Pushing this to your GitHub repo
 
