@@ -45,7 +45,7 @@ async function loadProductDetail() {
     return;
   }
 
-  document.title = product.name + ' — CleanSlate';
+  document.title = product.name + ' — TheCleaningVerdict';
 
   const costPerUse = (product.price / product.sizeOz).toFixed(2);
   container.innerHTML = `
