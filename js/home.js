@@ -26,8 +26,17 @@ async function loadHomepage() {
 
   let products = [];
   try {
-    const response = await fetch('data/products-v2.json');
-    products = await response.json();
+const { data, error } = await supabaseClient
+  .from("products")
+  .select("*");
+
+if (error) throw error;
+
+products = data.map(p => ({
+  ...p,
+  sizeOz: p.size_oz,
+  buyUrl: p.buy_url
+}));
   } catch (err) {
     return;
   }

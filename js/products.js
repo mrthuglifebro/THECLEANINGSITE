@@ -14,9 +14,13 @@ async function loadProducts() {
   let ratings = {};
 
   try {
-    const response = await fetch('data/products-v2.json');
-    products = await response.json();
-  } catch (err) {
+    const { data, error } = await supabaseClient.from('products').select('*');
+    if (error) throw error;
+products = data.map(p => ({
+  ...p,
+  sizeOz: p.size_oz,
+  buyUrl: p.buy_url
+}));  } catch (err) {
     grid.innerHTML = '<p style="color:#64748b">Could not load products right now.</p>';
     return;
   }
@@ -34,7 +38,7 @@ async function loadProducts() {
     }
 
     grid.innerHTML = list.map(function (p) {
-      const costPerUse = (p.price / p.sizeOz).toFixed(2);
+      const costPerUse = (p.price / p.size_oz).toFixed(2);
       return `
         <div class="product-card">
           <div class="product-thumb">
@@ -48,7 +52,7 @@ async function loadProducts() {
               ${ratingBadgeHTML(ratings[p.id])}
             </div>
             <a href="product.html?id=${p.id}" class="section-link" style="display:block;margin-top:12px">See reviews →</a>
-            <a href="${p.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:block;text-align:center;margin-top:10px">Buy — $${p.price.toFixed(2)}</a>
+            <a href="${p.buy_url}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:block;text-align:center;margin-top:10px">Buy for $${p.price.toFixed(2)}</a>
           </div>
         </div>
       `;

@@ -30,15 +30,27 @@ async function loadProductDetail() {
     return;
   }
 
-  let product = null;
-  try {
-    const response = await fetch('data/products-v2.json');
-    const products = await response.json();
-    product = products.find(function (p) { return p.id === productId; });
-  } catch (err) {
-    container.innerHTML = '<p>Could not load product data.</p>';
-    return;
-  }
+let product = null;
+
+try {
+  const { data, error } = await supabaseClient
+    .from("products")
+    .select("*")
+    .eq("id", productId)
+    .single();
+
+  if (error) throw error;
+
+  product = {
+    ...data,
+    sizeOz: data.size_oz,
+    buyUrl: data.buy_url
+  };
+} catch (err) {
+  console.error(err);
+  container.innerHTML = "<p>Could not load product data.</p>";
+  return;
+}
 
   if (!product) {
     container.innerHTML = '<p>Product not found.</p>';
