@@ -1,8 +1,13 @@
 function starDisplay(rating) {
-  const full = Math.round(rating);
   let out = '';
   for (let i = 1; i <= 5; i++) {
-    out += i <= full ? '★' : '☆';
+    if (rating >= i) {
+      out += '★';
+    } else if (rating >= i - 0.5) {
+      out += '⯨';
+    } else {
+      out += '☆';
+    }
   }
   return out;
 }
@@ -113,8 +118,8 @@ try {
     reviewForm.addEventListener('submit', async function (e) {
       e.preventDefault();
       const name = document.getElementById('reviewer-name').value.trim();
-      const rating = parseInt(document.getElementById('reviewer-rating').value, 10);
-      const comment = document.getElementById('reviewer-comment').value.trim();
+const rating = parseFloat(document.getElementById('reviewer-rating').value);      
+const comment = document.getElementById('reviewer-comment').value.trim();
 
       if (!name || !comment || !rating) {
         reviewStatus.textContent = 'Please fill out every field.';
