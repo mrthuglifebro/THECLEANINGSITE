@@ -61,17 +61,34 @@ products = data.map(p => ({
 
   render(products);
 
-  if (searchInput) {
-    searchInput.addEventListener('input', function () {
-      const q = searchInput.value.toLowerCase();
-      const filtered = products.filter(function (p) {
-        return p.name.toLowerCase().includes(q) ||
-               p.brand.toLowerCase().includes(q) ||
-               p.category.toLowerCase().includes(q);
-      });
-      render(filtered);
-    });
+const urlParams = new URLSearchParams(window.location.search);
+const initialQuery = urlParams.get('q') || '';
+
+if (searchInput) {
+  searchInput.value = initialQuery;
+}
+
+function applySearch(query) {
+  const q = query.toLowerCase();
+  if (!q) {
+    render(products);
+    return;
   }
+  const filtered = products.filter(function (p) {
+    return p.name.toLowerCase().includes(q) ||
+           p.brand.toLowerCase().includes(q) ||
+           p.category.toLowerCase().includes(q);
+  });
+  render(filtered);
+}
+
+applySearch(initialQuery);
+
+if (searchInput) {
+  searchInput.addEventListener('input', function () {
+    applySearch(searchInput.value);
+  });
+}
 }
 
 document.addEventListener('DOMContentLoaded', loadProducts);
