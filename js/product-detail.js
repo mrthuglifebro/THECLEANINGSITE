@@ -100,18 +100,23 @@ try {
     const avg = (data.reduce(function (sum, r) { return sum + r.rating; }, 0) / data.length).toFixed(1);
     const summary = `<p style="margin-bottom:20px"><strong>${avg} average</strong> from ${data.length} review${data.length === 1 ? '' : 's'}</p>`;
 
-    reviewList.innerHTML = summary + data.map(function (r) {
-      return `
-        <div class="compare-col" style="margin-bottom:16px">
-          <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-            <strong>${r.reviewer_name}</strong>
-            <span style="color:#f5a524">${starDisplay(r.rating)}</span>
-          </div>
-          <p style="color:var(--gray);font-size:13px;margin-bottom:8px">${timeAgo(r.created_at)}</p>
-          <p>${r.comment}</p>
-        </div>
-      `;
-    }).join('');
+reviewList.innerHTML = summary + data.map(function (r) {
+  const images = (r.image_urls || []).map(function (url) {
+    return `<img src="${url}" alt="Review photo" style="width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:8px;margin-top:8px">`;
+  }).join('');
+
+  return `
+    <div class="compare-col" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <strong>${r.reviewer_name}</strong>
+        <span style="color:#f5a524">${starDisplay(r.rating)}</span>
+      </div>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:8px">${timeAgo(r.created_at)}</p>
+      <p>${r.comment}</p>
+      ${images ? `<div style="display:flex;flex-wrap:wrap">${images}</div>` : ''}
+    </div>
+  `;
+}).join('');
   }
 
   if (reviewForm) {
@@ -121,18 +126,47 @@ try {
 const rating = parseFloat(document.getElementById('reviewer-rating').value);      
 const comment = document.getElementById('reviewer-comment').value.trim();
 
-      if (!name || !comment || !rating) {
-        reviewStatus.textContent = 'Please fill out every field.';
-        reviewStatus.style.color = '#b91c1c';
-        return;
-      }
+if (!name || !comment || !rating) {
+  reviewStatus.textContent = 'Please fill out every field.';
+  reviewStatus.style.color = '#b91c1c';
+  return;
+}
 
-      reviewStatus.textContent = 'Submitting…';
-      reviewStatus.style.color = 'var(--gray)';
+reviewStatus.textContent = 'Uploading photos…';
+reviewStatus.style.color = 'var(--gray)';
 
-      const { error } = await supabaseClient
-        .from('reviews')
-        .insert([{ product_id: productId, reviewer_name: name, rating: rating, comment: comment }]);
+const fileInput = document.getElementById('reviewer-images');
+const files = fileInput.files;
+const imageUrls = [];
+
+for (let i = 0; i < files.length; i++) {
+  const file = files[i];
+  const filePath = `${productId}/${Date.now()}-${file.name}`;
+
+  const { error: uploadError } = await supabaseClient
+    .storage
+    .from('review-images')
+    .upload(filePath, file);
+
+  if (uploadError) {
+    reviewStatus.textContent = 'Something went wrong uploading a photo. Please try again.';
+    reviewStatus.style.color = '#b91c1c';
+    return;
+  }
+
+  const { data: urlData } = supabaseClient
+    .storage
+    .from('review-images')
+    .getPublicUrl(filePath);
+
+  imageUrls.push(urlData.publicUrl);
+}
+
+reviewStatus.textContent = 'Submitting…';
+
+const { error } = await supabaseClient
+  .from('reviews')
+  .insert([{ product_id: productId, reviewer_name: name, rating: rating, comment: comment, image_urls: imageUrls }]);
 
       if (error) {
         reviewStatus.textContent = 'Something went wrong submitting your review.';
@@ -143,6 +177,7 @@ const comment = document.getElementById('reviewer-comment').value.trim();
       reviewStatus.textContent = 'Review submitted, thank you!';
       reviewStatus.style.color = 'var(--foam)';
       reviewForm.reset();
+fileInput.value = '';
       loadReviews();
     });
   }
