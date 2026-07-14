@@ -69,16 +69,28 @@ if (searchInput) {
 }
 
 function applySearch(query) {
-  const q = query.toLowerCase();
+  const q = query.toLowerCase().trim();
   if (!q) {
     render(products);
     return;
   }
+
+  const words = q.split(/\s+/);
+
   const filtered = products.filter(function (p) {
-    return p.name.toLowerCase().includes(q) ||
-           p.brand.toLowerCase().includes(q) ||
-           p.category.toLowerCase().includes(q);
+    const haystack = [
+      p.name,
+      p.brand,
+      p.category,
+      (p.ingredients || []).join(' '),
+      (p.messes || []).join(' ')
+    ].join(' ').toLowerCase();
+
+    return words.every(function (word) {
+      return haystack.includes(word);
+    });
   });
+
   render(filtered);
 }
 
