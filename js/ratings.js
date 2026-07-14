@@ -1,5 +1,5 @@
 // Shared helper for showing real ratings pulled from the Supabase "reviews"
-// table. No page should ever show a hardcoded rating/reviewCount again —
+// table. No page should ever show a hardcoded rating/reviewCount again |
 // everything routes through here so there's exactly one source of truth.
 
 // Fetches real average + count for a batch of product ids in one query.

@@ -62,7 +62,7 @@ try {
     return;
   }
 
-  document.title = product.name + ' — TheCleaningVerdict';
+  document.title = product.name + ' | TheCleaningVerdict';
 
   const costPerUse = (product.price / product.sizeOz).toFixed(2);
   container.innerHTML = `
@@ -75,7 +75,7 @@ try {
       <tr><td>Category</td><td>${product.category}</td></tr>
       <tr><td>Ingredients</td><td>${product.ingredients.join(', ')}</td></tr>
     </table>
-    <a href="${product.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:inline-block">Buy — $${product.price.toFixed(2)}</a>
+    <a href="${product.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:inline-block">Buy | $${product.price.toFixed(2)}</a>
   `;
 
   async function loadReviews() {
@@ -93,7 +93,7 @@ try {
     }
 
     if (data.length === 0) {
-      reviewList.innerHTML = '<p style="color:#64748b">No reviews yet — be the first to leave one.</p>';
+      reviewList.innerHTML = '<p style="color:#64748b">No reviews yet | be the first to leave one.</p>';
       return;
     }
 

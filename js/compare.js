@@ -62,7 +62,7 @@ products = data.map(p => ({
           <tr><td>Category</td><td>${p.category}</td></tr>
           <tr><td>Ingredients</td><td>${p.ingredients.join(', ')}</td></tr>
         </table>
-        <a href="${p.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:block;text-align:center;margin-top:16px">Buy — $${p.price.toFixed(2)}</a>
+        <a href="${p.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:block;text-align:center;margin-top:16px">Buy | $${p.price.toFixed(2)}</a>
       </div>
     `;
   }
