@@ -1,6 +1,6 @@
 function productThumb(p) {
   if (p.image) {
-    return `<img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:160px;object-fit:cover;border-radius:8px;margin-bottom:16px">`;
+    return `<img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:160px;object-fit:contain;background:#ffffff;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;padding:12px">`;
   }
   return '';
 }
