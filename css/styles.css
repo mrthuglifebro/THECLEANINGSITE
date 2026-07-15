@@ -432,6 +432,7 @@ img { max-width: 100%; display: block; }
 @media (max-width: 640px) {
   .nav-links { display: none; }
   .nav-toggle { display: block; }
+  .nav-cta { display: none; }
   .product-grid { grid-template-columns: 1fr; }
   .mess-grid { grid-template-columns: 1fr 1fr; }
   .section-head { flex-direction: column; align-items: flex-start; }
