@@ -84,7 +84,7 @@ products = data.map(p => ({
               <span class="product-price">$${costPerUse} / oz</span>
               ${ratingBadgeHTML(ratings[p.id])}
             </div>
-            <a href="product.html?id=${p.id}" class="section-link" style="display:block;margin-top:12px">See reviews →</a>
+            <a href="product.html?id=${p.id}" class="section-link" style="display:block;margin-top:12px">See Product Details →</a>
           </div>
         </div>
       `;
