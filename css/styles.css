@@ -515,3 +515,13 @@ img { max-width: 100%; display: block; }
   object-fit: contain;
   padding: 16px;
 }
+
+.mobile-only-link {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  .mobile-only-link {
+    display: list-item;
+  }
+}
