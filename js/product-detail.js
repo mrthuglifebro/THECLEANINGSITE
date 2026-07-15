@@ -147,8 +147,8 @@ let allReviews = [];
 
     const cards = filtered.map(function (r) {
       const images = (r.image_urls || []).map(function (url) {
-        return `<img src="${url}" alt="Review photo" style="width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:8px;margin-top:8px">`;
-      }).join('');
+  return `<img src="${url}" alt="Review photo" class="review-thumb" data-full="${url}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:8px;margin-top:8px;cursor:zoom-in">`;
+}).join('');
 
       const isLiked = likedSet.has(r.id);
       const likeCount = r.like_count || 0;
@@ -171,6 +171,16 @@ let allReviews = [];
 
     reviewList.innerHTML = summary + cards;
     attachLikeHandlers();
+    attachLikeHandlers();
+
+reviewList.querySelectorAll('.review-thumb').forEach(function (img) {
+  img.addEventListener('click', function () {
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    lightboxImg.src = img.dataset.full;
+    lightbox.style.display = 'flex';
+  });
+});
   }
 
   async function loadReviews() {
@@ -268,3 +278,12 @@ fileInput.value = '';
 }
 
 document.addEventListener('DOMContentLoaded', loadProductDetail);
+
+document.addEventListener('DOMContentLoaded', function () {
+  const lightbox = document.getElementById('image-lightbox');
+  if (lightbox) {
+    lightbox.addEventListener('click', function () {
+      lightbox.style.display = 'none';
+    });
+  }
+});
