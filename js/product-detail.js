@@ -93,31 +93,35 @@ let allReviews = [];
   }
 
   function attachLikeHandlers() {
-    reviewList.querySelectorAll('.like-btn').forEach(function (btn) {
-      btn.addEventListener('click', async function () {
-        const reviewId = btn.dataset.reviewId;
-        const likedSet = getLikedSet();
+  reviewList.querySelectorAll('.like-btn').forEach(function (btn) {
+    btn.addEventListener('click', async function () {
+      const reviewId = btn.dataset.reviewId;
+      const likedSet = getLikedSet();
 
-        if (likedSet.has(reviewId)) {
-          return;
-        }
+      if (likedSet.has(reviewId)) {
+        return;
+      }
 
-        btn.disabled = true;
+      btn.disabled = true;
 
-        const { error } = await supabaseClient
-          .from('review_likes')
-          .insert([{ review_id: reviewId }]);
+      const { error } = await supabaseClient
+        .from('review_likes')
+        .insert([{ review_id: reviewId }]);
 
-        if (!error) {
-          likedSet.add(reviewId);
-          saveLikedSet(likedSet);
-          renderFiltered();
-        } else {
-          btn.disabled = false;
-        }
-      });
+      if (!error) {
+        likedSet.add(reviewId);
+        saveLikedSet(likedSet);
+
+        const review = allReviews.find(function (r) { return r.id === reviewId; });
+        if (review) review.like_count = (review.like_count || 0) + 1;
+
+        renderFiltered();
+      } else {
+        btn.disabled = false;
+      }
     });
-  }
+  });
+}
 
   function renderFiltered() {
     const filterSelect = document.getElementById('review-filter');
@@ -158,9 +162,9 @@ let allReviews = [];
           <p style="color:var(--gray);font-size:13px;margin-bottom:8px">${timeAgo(r.created_at)}</p>
           <p>${r.comment}</p>
           ${images ? `<div style="display:flex;flex-wrap:wrap">${images}</div>` : ''}
-          <button class="like-btn" data-review-id="${r.id}" style="margin-top:12px;background:none;border:1px solid var(--gray-light);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:${isLiked ? 'var(--sky)' : 'var(--gray)'}">
-            ${isLiked ? '👍 Liked' : '👍 Helpful'} (${likeCount})
-          </button>
+          <button class="like-btn" data-review-id="${r.id}" data-liked="${isLiked}" style="margin-top:12px;background:${isLiked ? 'var(--mist)' : 'none'};border:1px solid ${isLiked ? 'var(--sky)' : 'var(--gray-light)'};border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:${isLiked ? 'var(--sky)' : 'var(--gray)'};font-weight:${isLiked ? '600' : '400'}">
+  Helpful (${likeCount})
+</button>
         </div>
       `;
     }).join('');
