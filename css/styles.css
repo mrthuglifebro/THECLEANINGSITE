@@ -296,7 +296,8 @@ img { max-width: 100%; display: block; }
 
 .product-thumb {
   aspect-ratio: 4 / 3;
-  background: var(--mist);
+  background: #ffffff;
+  border-bottom: 1px solid var(--gray-light);
   display: flex;
   align-items: center;
   justify-content: center;
