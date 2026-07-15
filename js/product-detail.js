@@ -78,12 +78,103 @@ try {
     <a href="${product.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:inline-block">Buy | $${product.price.toFixed(2)}</a>
   `;
 
+let allReviews = [];
+
+  function getLikedSet() {
+    try {
+      return new Set(JSON.parse(localStorage.getItem('likedReviews') || '[]'));
+    } catch (err) {
+      return new Set();
+    }
+  }
+
+  function saveLikedSet(set) {
+    localStorage.setItem('likedReviews', JSON.stringify(Array.from(set)));
+  }
+
+  function attachLikeHandlers() {
+    reviewList.querySelectorAll('.like-btn').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        const reviewId = btn.dataset.reviewId;
+        const likedSet = getLikedSet();
+
+        if (likedSet.has(reviewId)) {
+          return;
+        }
+
+        btn.disabled = true;
+
+        const { error } = await supabaseClient
+          .from('review_likes')
+          .insert([{ review_id: reviewId }]);
+
+        if (!error) {
+          likedSet.add(reviewId);
+          saveLikedSet(likedSet);
+          renderFiltered();
+        } else {
+          btn.disabled = false;
+        }
+      });
+    });
+  }
+
+  function renderFiltered() {
+    const filterSelect = document.getElementById('review-filter');
+    const minRating = filterSelect ? parseFloat(filterSelect.value) : 0;
+    const filtered = minRating > 0
+      ? allReviews.filter(function (r) { return r.rating >= minRating; })
+      : allReviews;
+
+    if (allReviews.length === 0) {
+      reviewList.innerHTML = '<p style="color:#64748b">No reviews yet, be the first to leave one.</p>';
+      return;
+    }
+
+    const avg = (allReviews.reduce(function (sum, r) { return sum + r.rating; }, 0) / allReviews.length).toFixed(1);
+    const summary = `<p style="margin-bottom:20px"><strong>${avg} average</strong> from ${allReviews.length} review${allReviews.length === 1 ? '' : 's'}</p>`;
+
+    if (filtered.length === 0) {
+      reviewList.innerHTML = summary + '<p style="color:#64748b">No reviews match this filter.</p>';
+      return;
+    }
+
+    const likedSet = getLikedSet();
+
+    const cards = filtered.map(function (r) {
+      const images = (r.image_urls || []).map(function (url) {
+        return `<img src="${url}" alt="Review photo" style="width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:8px;margin-top:8px">`;
+      }).join('');
+
+      const isLiked = likedSet.has(r.id);
+      const likeCount = r.like_count || 0;
+
+      return `
+        <div class="compare-col" style="margin-bottom:16px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+            <strong>${r.reviewer_name}</strong>
+            <span style="color:#f5a524">${starDisplay(r.rating)}</span>
+          </div>
+          <p style="color:var(--gray);font-size:13px;margin-bottom:8px">${timeAgo(r.created_at)}</p>
+          <p>${r.comment}</p>
+          ${images ? `<div style="display:flex;flex-wrap:wrap">${images}</div>` : ''}
+          <button class="like-btn" data-review-id="${r.id}" style="margin-top:12px;background:none;border:1px solid var(--gray-light);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:${isLiked ? 'var(--sky)' : 'var(--gray)'}">
+            ${isLiked ? '👍 Liked' : '👍 Helpful'} (${likeCount})
+          </button>
+        </div>
+      `;
+    }).join('');
+
+    reviewList.innerHTML = summary + cards;
+    attachLikeHandlers();
+  }
+
   async function loadReviews() {
-    reviewList.innerHTML = '<p style="color:#64748b">Loading reviews…</p>';
+    reviewList.innerHTML = '<p style="color:#64748b">Loading reviews...</p>';
 
     const { data, error } = await supabaseClient
       .from('reviews')
-      .select('*')
+      .select('*, review_likes(count)')
       .eq('product_id', productId)
       .order('created_at', { ascending: false });
 
@@ -92,31 +183,18 @@ try {
       return;
     }
 
-    if (data.length === 0) {
-      reviewList.innerHTML = '<p style="color:#64748b">No reviews yet | be the first to leave one.</p>';
-      return;
-    }
+    allReviews = data.map(function (r) {
+      return Object.assign({}, r, {
+        like_count: (r.review_likes && r.review_likes[0] && r.review_likes[0].count) || 0
+      });
+    });
 
-    const avg = (data.reduce(function (sum, r) { return sum + r.rating; }, 0) / data.length).toFixed(1);
-    const summary = `<p style="margin-bottom:20px"><strong>${avg} average</strong> from ${data.length} review${data.length === 1 ? '' : 's'}</p>`;
+    renderFiltered();
+  }
 
-reviewList.innerHTML = summary + data.map(function (r) {
-  const images = (r.image_urls || []).map(function (url) {
-    return `<img src="${url}" alt="Review photo" style="width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:8px;margin-top:8px">`;
-  }).join('');
-
-  return `
-    <div class="compare-col" style="margin-bottom:16px">
-      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-        <strong>${r.reviewer_name}</strong>
-        <span style="color:#f5a524">${starDisplay(r.rating)}</span>
-      </div>
-      <p style="color:var(--gray);font-size:13px;margin-bottom:8px">${timeAgo(r.created_at)}</p>
-      <p>${r.comment}</p>
-      ${images ? `<div style="display:flex;flex-wrap:wrap">${images}</div>` : ''}
-    </div>
-  `;
-}).join('');
+  const reviewFilterSelect = document.getElementById('review-filter');
+  if (reviewFilterSelect) {
+    reviewFilterSelect.addEventListener('change', renderFiltered);
   }
 
   if (reviewForm) {
