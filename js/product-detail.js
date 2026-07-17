@@ -136,7 +136,7 @@ let allReviews = [];
     }
 
     const avg = (allReviews.reduce(function (sum, r) { return sum + r.rating; }, 0) / allReviews.length).toFixed(1);
-    const summary = `<p style="margin-bottom:20px"><strong>${avg} average</strong> from ${allReviews.length} review${allReviews.length === 1 ? '' : 's'}</p>`;
+    const summary = `<p style="margin-bottom:20px"><strong>${avg} Verdict Score</strong> from ${allReviews.length} review${allReviews.length === 1 ? '' : 's'}</p>`;
 
     if (filtered.length === 0) {
       reviewList.innerHTML = summary + '<p style="color:#64748b">No reviews match this filter.</p>';
