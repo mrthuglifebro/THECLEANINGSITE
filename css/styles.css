@@ -535,3 +535,23 @@ img { max-width: 100%; display: block; }
     font-size: 26px !important;
   }
 }
+
+.compare-win {
+  background: var(--mist);
+  font-weight: 600;
+}
+
+.verdict-banner {
+  background: var(--deep);
+  color: white;
+  padding: 20px 24px;
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.verdict-banner.no-verdict {
+  background: var(--mist);
+  color: var(--gray);
+  font-family: var(--font-body);
+}
