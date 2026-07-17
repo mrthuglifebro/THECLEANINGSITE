@@ -58,7 +58,7 @@ products = data.map(p => ({
           <tr><td>Price</td><td>$${p.price.toFixed(2)}</td></tr>
           <tr><td>Size</td><td>${p.sizeOz} oz</td></tr>
           <tr><td>Cost per oz</td><td>$${costPerUse}</td></tr>
-          <tr><td>Verdict Score</td><td>${ratingText}</td></tr>
+          <tr><td>Verdict Score</td><td>${ratingTextPlain(ratings[p.id])}</td></tr>
           <tr><td>Category</td><td>${p.category}</td></tr>
           <tr><td>Ingredients</td><td>${p.ingredients.join(', ')}</td></tr>
         </table>
