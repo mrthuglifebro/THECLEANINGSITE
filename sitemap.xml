@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://thecleaningverdict.com/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://thecleaningverdict.com/products.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thecleaningverdict.com/fix-mess.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thecleaningverdict.com/compare.html</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://thecleaningverdict.com/suggest.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://thecleaningverdict.com/privacy.html</loc>
+    <priority>0.3</priority>
+  </url>
+</urlset>
