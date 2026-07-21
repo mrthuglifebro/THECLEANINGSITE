@@ -92,13 +92,18 @@ let allReviews = [];
     localStorage.setItem('likedReviews', JSON.stringify(Array.from(set)));
   }
 
-  function attachLikeHandlers() {
+function attachLikeHandlers() {
   reviewList.querySelectorAll('.like-btn').forEach(function (btn) {
+    if (btn.dataset.listenerAttached === 'true') {
+      return;
+    }
+    btn.dataset.listenerAttached = 'true';
+
     btn.addEventListener('click', async function () {
       const reviewId = btn.dataset.reviewId;
       const likedSet = getLikedSet();
 
-      if (likedSet.has(reviewId)) {
+      if (likedSet.has(reviewId) || btn.disabled) {
         return;
       }
 
