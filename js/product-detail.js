@@ -228,12 +228,34 @@ if (!name || !comment || !rating) {
   reviewStatus.style.color = '#b91c1c';
   return;
 }
+const blockedWords = ['porn', 'xxx', 'onlyfans', 'nude', 'sex', 'nsfw'];
+const combinedText = (name + ' ' + comment).toLowerCase();
+if (blockedWords.some(function (word) { return combinedText.includes(word); })) {
+  reviewStatus.textContent = 'Your review contains content that is not allowed.';
+  reviewStatus.style.color = '#b91c1c';
+  return;
+}
 
 reviewStatus.textContent = 'Uploading photos…';
 reviewStatus.style.color = 'var(--gray)';
 
 const fileInput = document.getElementById('reviewer-images');
 const files = fileInput.files;
+const allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+const maxSizeMB = 5;
+
+for (let i = 0; i < files.length; i++) {
+  if (!allowedTypes.includes(files[i].type)) {
+    reviewStatus.textContent = 'Only JPG, PNG, and WebP images are allowed.';
+    reviewStatus.style.color = '#b91c1c';
+    return;
+  }
+  if (files[i].size > maxSizeMB * 1024 * 1024) {
+    reviewStatus.textContent = 'Each photo must be under 5MB.';
+    reviewStatus.style.color = '#b91c1c';
+    return;
+  }
+}
 const imageUrls = [];
 
 for (let i = 0; i < files.length; i++) {
@@ -271,8 +293,8 @@ const { error } = await supabaseClient
         return;
       }
 
-      reviewStatus.textContent = 'Review submitted, thank you!';
-      reviewStatus.style.color = 'var(--foam)';
+      reviewStatus.textContent = 'Review submitted, thank you! It will appear once approved.';
+reviewStatus.style.color = 'var(--foam)';
       reviewForm.reset();
 fileInput.value = '';
       loadReviews();
