@@ -174,7 +174,7 @@ function attachLikeHandlers() {
       `;
     }).join('');
 
-    const maxVisible = 5;
+    const maxVisible = 2;
 const visibleCards = filtered.slice(0, maxVisible);
 const remainingCount = filtered.length - maxVisible;
 
