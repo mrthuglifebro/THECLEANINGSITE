@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reviews | The Cleaning Verdict</title>
+<title>About | The Cleaning Verdict</title>
+<meta name="description" content="Learn about The Cleaning Verdict, a real cleaning product review site built to help you find what actually works.">
 <link rel="stylesheet" href="css/styles.css">
 <link rel="icon" type="image/png" href="logo.png">
 </head>
@@ -28,23 +29,33 @@
 </nav>
 
 <section class="section">
-  <div class="container">
-    <a id="back-link" href="products.html" class="section-link">← Back to product</a>
-    <h2 id="reviews-heading" style="font-family:'Space Grotesk',sans-serif;margin:16px 0 8px">All reviews</h2>
+  <div class="container" style="max-width:760px">
 
-    <div style="margin-bottom:16px">
-      <label style="font-size:13px;color:var(--gray);margin-right:8px">Filter by rating</label>
-      <select id="review-filter" style="padding:8px 12px;border:1px solid var(--gray-light);border-radius:8px">
-        <option value="0">All ratings</option>
-        <option value="5">5 stars</option>
-        <option value="4">4 stars & up</option>
-        <option value="3">3 stars & up</option>
-        <option value="2">2 stars & up</option>
-        <option value="1">1 star & up</option>
-      </select>
+    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:36px;margin-bottom:8px">About The Cleaning Verdict</h1>
+    <p style="color:var(--gray);margin-bottom:40px;font-size:16px">Built by someone who actually cares about cleaning.</p>
+
+    <div style="line-height:1.9;font-size:16px">
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:22px;margin:0 0 12px">Why this site exists</h2>
+      <p style="margin-bottom:24px">I've always been genuinely passionate about cleaning, the kind of passion most people don't understand until their kitchen is spotless at midnight. After years of testing products, wasting money on gimmicks, and discovering a handful of things that actually work, I built The Cleaning Verdict so nobody else has to go through the same trial and error.</p>
+
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:22px;margin:0 0 12px">What makes this different</h2>
+      <p style="margin-bottom:24px">Most cleaning content online is either sponsored, vague, or written by someone who's never actually dealt with the mess they're talking about. The Cleaning Verdict is different: every product here is categorized honestly, Verdict Scores come from real user reviews (not made-up numbers), and our compare feature tells you which product actually wins, not just puts two boxes side by side.</p>
+
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:22px;margin:0 0 12px">How it works</h2>
+      <p style="margin-bottom:24px">Search by product name or brand, filter by the specific mess you're dealing with, compare products side by side, and read real reviews from people who've actually used them. If you think a product deserves to be added, you can suggest it directly and we'll take a look.</p>
+
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-size:22px;margin:0 0 12px">Follow along</h2>
+      <p style="margin-bottom:24px">We also post cleaning content, product reactions, and honest reviews on social media. Come find us and say hi.</p>
+
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <a href="https://instagram.com/YOURUSERNAME" target="_blank" rel="noopener" class="nav-cta" style="display:inline-block">Instagram</a>
+        <a href="https://tiktok.com/@YOURUSERNAME" target="_blank" rel="noopener" class="nav-cta" style="display:inline-block">TikTok</a>
+        <a href="https://youtube.com/@YOURUSERNAME" target="_blank" rel="noopener" class="nav-cta" style="display:inline-block">YouTube</a>
+        <a href="https://facebook.com/YOURUSERNAME" target="_blank" rel="noopener" class="nav-cta" style="display:inline-block">Facebook</a>
+        <a href="https://threads.net/@YOURUSERNAME" target="_blank" rel="noopener" class="nav-cta" style="display:inline-block">Threads</a>
+      </div>
     </div>
 
-    <div id="review-list"></div>
   </div>
 </section>
 
@@ -56,7 +67,7 @@
         <li><a href="fix-mess.html">Fix a mess</a></li>
         <li><a href="compare.html">Compare</a></li>
         <li><a href="suggest.html">Suggest a product</a></li>
-        <li><a href="about.html">About</a></li>
+        <li><a href="about.html" aria-current="page">About</a></li>
         <li><a href="privacy.html">Privacy</a></li>
       </ul>
       <div class="footer-socials">
@@ -81,14 +92,6 @@
   </div>
 </footer>
 
-<div id="image-lightbox" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;cursor:zoom-out">
-  <img id="lightbox-img" src="" alt="Enlarged review photo" style="width:min(600px, 90vw);border-radius:8px">
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script src="js/main.js"></script>
-<script src="js/supabase-config.js"></script>
-<script src="js/ratings.js"></script>
-<script src="js/reviews-page.js"></script>
 </body>
 </html>

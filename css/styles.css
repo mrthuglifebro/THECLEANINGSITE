@@ -955,3 +955,25 @@ body {
     max-width: 100%;
   }
 }
+
+.footer-socials {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.footer-socials a {
+  color: var(--gray);
+  transition: color 0.15s ease;
+  display: flex;
+  align-items: center;
+}
+
+.footer-socials a:hover {
+  color: var(--sky);
+}
+
+.footer-socials svg {
+  width: 20px;
+  height: 20px;
+}
