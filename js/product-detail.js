@@ -174,7 +174,39 @@ function attachLikeHandlers() {
       `;
     }).join('');
 
-    reviewList.innerHTML = summary + cards;
+    const maxVisible = 5;
+const visibleCards = filtered.slice(0, maxVisible);
+const remainingCount = filtered.length - maxVisible;
+
+const seeMoreLink = remainingCount > 0
+  ? `<a href="reviews.html?id=${productId}" class="section-link" style="display:block;text-align:center;margin-top:16px">See all ${filtered.length} reviews →</a>`
+  : '';
+
+reviewList.innerHTML = summary + visibleCards.map(function (r) {
+  const images = (r.image_urls || []).map(function (url) {
+    return `<img src="${url}" alt="Review photo" style="width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:8px;margin-top:8px">`;
+  }).join('');
+
+  const isLiked = getLikedSet().has(r.id);
+  const likeCount = r.like_count || 0;
+
+  return `
+    <div class="compare-col" style="margin-bottom:16px">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <strong>${r.reviewer_name}</strong>
+        <span style="color:#f5a524">${starDisplay(r.rating)}</span>
+      </div>
+      <p style="color:var(--gray);font-size:13px;margin-bottom:8px">${timeAgo(r.created_at)}</p>
+      <p>${r.comment}</p>
+      ${images ? `<div style="display:flex;flex-wrap:wrap">${images}</div>` : ''}
+      <button class="like-btn" data-review-id="${r.id}" data-liked="${isLiked}" style="margin-top:12px;background:${isLiked ? 'var(--mist)' : 'none'};border:1px solid ${isLiked ? 'var(--sky)' : 'var(--gray-light)'};border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:${isLiked ? 'var(--sky)' : 'var(--gray)'};font-weight:${isLiked ? '600' : '400'}">
+        Helpful (${likeCount})
+      </button>
+    </div>
+  `;
+}).join('') + seeMoreLink;
+
+attachLikeHandlers();
     attachLikeHandlers();
     attachLikeHandlers();
 
