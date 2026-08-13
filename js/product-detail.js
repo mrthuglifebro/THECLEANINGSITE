@@ -27,6 +27,9 @@ async function loadProductDetail() {
   const productId = params.get('id');
   const container = document.getElementById('product-detail');
   const reviewList = document.getElementById('review-list');
+  // Check auth state
+  const { data: sessionData } = await supabaseClient.auth.getSession();
+  const currentUser = sessionData.session ? sessionData.session.user : null;
   const reviewForm = document.getElementById('review-form');
   const reviewStatus = document.getElementById('review-status');
 
@@ -106,6 +109,11 @@ function attachLikeHandlers() {
       if (likedSet.has(reviewId) || btn.disabled) {
         return;
       }
+      if (!currentUser) {
+  localStorage.setItem('loginRedirect', window.location.href);
+  window.location.href = 'login.html';
+  return;
+}
 
       btn.disabled = true;
 
@@ -406,6 +414,11 @@ function renderFiltered() {
 
   if (nextBtn) {
     nextBtn.addEventListener('click', async function () {
+      if (!currentUser) {
+  localStorage.setItem('loginRedirect', window.location.href);
+  window.location.href = 'login.html';
+  return;
+}
       if (currentStep === 1) {
         const name = document.getElementById('reviewer-name').value.trim();
         const rating = parseFloat(document.getElementById('reviewer-rating').value);
@@ -475,9 +488,10 @@ function renderFiltered() {
 
       reviewStatus.textContent = 'Submitting your verdict...';
 
-      const { error } = await supabaseClient.from('reviews').insert([{
-        product_id: productId,
-        reviewer_name: name,
+const { error } = await supabaseClient.from('reviews').insert([{
+  product_id: productId,
+  user_id: currentUser.id,
+  reviewer_name: name,
         rating: rating,
         comment: comment,
         best_for: bestFor || null,
