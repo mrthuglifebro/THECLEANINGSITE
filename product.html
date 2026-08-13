@@ -61,34 +61,102 @@
   <div id="review-list"></div>
 </div>
 
-      <form id="review-form" class="compare-col">
-        <h3 style="font-family:'Space Grotesk',sans-serif;margin-bottom:16px">Leave a review</h3>
+      <div id="review-wizard" class="compare-col">
+  <h3 style="font-family:'Space Grotesk',sans-serif;margin-bottom:4px">Leave a Verdict</h3>
+  <p style="color:var(--gray);font-size:13px;margin-bottom:20px">Step <span id="wizard-step-num">1</span> of 5</p>
 
-        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Your name</label>
-        <input type="text" id="reviewer-name" required style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px">
+  <div class="wizard-progress" style="display:flex;gap:6px;margin-bottom:24px">
+    <div class="wizard-dot active" style="height:4px;flex:1;border-radius:4px;background:var(--sky)"></div>
+    <div class="wizard-dot" style="height:4px;flex:1;border-radius:4px;background:var(--gray-light)"></div>
+    <div class="wizard-dot" style="height:4px;flex:1;border-radius:4px;background:var(--gray-light)"></div>
+    <div class="wizard-dot" style="height:4px;flex:1;border-radius:4px;background:var(--gray-light)"></div>
+    <div class="wizard-dot" style="height:4px;flex:1;border-radius:4px;background:var(--gray-light)"></div>
+  </div>
 
-        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Rating</label>
-<select id="reviewer-rating" required style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px">
-  <option value="">Select a rating</option>
-  <option value="5">★★★★★ (5)</option>
-  <option value="4.5">★★★★☆ (4.5)</option>
-  <option value="4">★★★★☆ (4)</option>
-  <option value="3.5">★★★☆☆ (3.5)</option>
-  <option value="3">★★★☆☆ (3)</option>
-  <option value="2.5">★★★☆☆ (2.5)</option>
-  <option value="2">★★☆☆☆ (2)</option>
-  <option value="1.5">★★☆☆☆ (1.5)</option>
-  <option value="1">★☆☆☆☆ (1)</option>
-  <option value="0.5">★☆☆☆☆ (0.5)</option>
-</select>
+  <!-- Step 1: Basic info -->
+  <div class="wizard-step" id="step-1">
+    <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Your name</label>
+    <input type="text" id="reviewer-name" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit">
 
-        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Your review</label>
-        <textarea id="reviewer-comment" required rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit"></textarea>
-<label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Photos (optional)</label>
-<input type="file" id="reviewer-images" accept="image/*" multiple style="width:100%;margin-bottom:16px">
-        <button type="submit" class="nav-cta" style="border:none;cursor:pointer;width:100%">Submit review</button>
-        <p id="review-status" style="margin-top:12px;font-size:14px"></p>
-      </form>
+    <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Verdict Score</label>
+    <select id="reviewer-rating" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit">
+      <option value="">Select a score</option>
+      <option value="5">5.0 — Perfect</option>
+      <option value="4.5">4.5 — Excellent</option>
+      <option value="4">4.0 — Great</option>
+      <option value="3.5">3.5 — Good</option>
+      <option value="3">3.0 — Decent</option>
+      <option value="2.5">2.5 — Below average</option>
+      <option value="2">2.0 — Poor</option>
+      <option value="1.5">1.5 — Bad</option>
+      <option value="1">1.0 — Terrible</option>
+      <option value="0.5">0.5 — Avoid</option>
+    </select>
+
+    <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:8px">Which mess did you use this on?</label>
+    <div id="mess-picker" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px"></div>
+  </div>
+
+  <!-- Step 2: Did it work -->
+  <div class="wizard-step" id="step-2" style="display:none">
+    <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:20px">Did it work on the first try?</p>
+    <div style="display:flex;gap:12px">
+      <button type="button" class="yes-no-btn" data-field="worked_first_try" data-value="true" style="flex:1;padding:16px;border:1px solid var(--gray-light);border-radius:10px;background:none;cursor:pointer;font-size:15px;font-family:inherit">Yes</button>
+      <button type="button" class="yes-no-btn" data-field="worked_first_try" data-value="false" style="flex:1;padding:16px;border:1px solid var(--gray-light);border-radius:10px;background:none;cursor:pointer;font-size:15px;font-family:inherit">No</button>
+    </div>
+  </div>
+
+  <!-- Step 3: Would you buy again -->
+  <div class="wizard-step" id="step-3" style="display:none">
+    <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:20px">Would you buy this again?</p>
+    <div style="display:flex;gap:12px">
+      <button type="button" class="yes-no-btn" data-field="would_buy_again" data-value="true" style="flex:1;padding:16px;border:1px solid var(--gray-light);border-radius:10px;background:none;cursor:pointer;font-size:15px;font-family:inherit">Yes</button>
+      <button type="button" class="yes-no-btn" data-field="would_buy_again" data-value="false" style="flex:1;padding:16px;border:1px solid var(--gray-light);border-radius:10px;background:none;cursor:pointer;font-size:15px;font-family:inherit">No</button>
+    </div>
+  </div>
+
+  <!-- Step 4: Written verdict -->
+  <div class="wizard-step" id="step-4" style="display:none">
+    <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">What is this product best for?</label>
+    <input type="text" id="reviewer-best-for" placeholder="e.g. baked-on stovetop grease" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit">
+
+    <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">What do you wish you knew before buying?</label>
+    <input type="text" id="reviewer-wish-knew" placeholder="e.g. shake well before spraying" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit">
+
+    <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Your full review</label>
+    <textarea id="reviewer-comment" rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit"></textarea>
+  </div>
+
+  <!-- Step 5: Before/after photos -->
+  <div class="wizard-step" id="step-5" style="display:none">
+    <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:8px">Add before and after photos</p>
+    <p style="color:var(--gray);font-size:13px;margin-bottom:20px">Optional but highly recommended, this is what makes your verdict stand out.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+      <div>
+        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:8px">Before photo</label>
+        <div id="before-preview" style="aspect-ratio:1;background:var(--mist);border:2px dashed var(--gray-light);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:8px" onclick="document.getElementById('before-upload').click()">
+          <span style="color:var(--gray);font-size:13px">Tap to add</span>
+        </div>
+        <input type="file" id="before-upload" accept="image/*" style="display:none">
+      </div>
+      <div>
+        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:8px">After photo</label>
+        <div id="after-preview" style="aspect-ratio:1;background:var(--mist);border:2px dashed var(--gray-light);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:8px" onclick="document.getElementById('after-upload').click()">
+          <span style="color:var(--gray);font-size:13px">Tap to add</span>
+        </div>
+        <input type="file" id="after-upload" accept="image/*" style="display:none">
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+    <button type="button" id="wizard-back" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:14px;display:none">← Back</button>
+    <button type="button" id="wizard-next" class="nav-cta" style="border:none;cursor:pointer;margin-left:auto">Next →</button>
+  </div>
+
+  <p id="review-status" style="margin-top:12px;font-size:14px"></p>
+</div>
     </div>
   </div>
 </section>
