@@ -43,6 +43,12 @@ async function updateNavAuth() {
 
 // Handle magic link redirect (runs on login.html after user clicks email link)
 async function handleAuthRedirect() {
+  if (!window.location.pathname.includes('login.html')) return;
+  
+  const hashParams = new URLSearchParams(window.location.hash.substring(1));
+  const accessToken = hashParams.get('access_token');
+  if (!accessToken) return;
+
   const { data, error } = await supabaseClient.auth.getSession();
   if (data.session) {
     const redirectTo = localStorage.getItem('loginRedirect') || 'index.html';
