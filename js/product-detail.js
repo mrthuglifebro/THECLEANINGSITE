@@ -256,7 +256,12 @@ function renderFiltered() {
 
           ${beforeAfter}
           ${oldPhotos ? `<div style="display:flex;flex-wrap:wrap">${oldPhotos}</div>` : ''}
-
+${currentUser && r.user_id === currentUser.id ? `
+  <div style="display:flex;gap:8px;margin-top:12px">
+    <button class="edit-review-btn" data-review-id="${r.id}" data-comment="${encodeURIComponent(r.comment)}" style="background:none;border:1px solid var(--gray-light);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:var(--gray)">Edit</button>
+    <button class="delete-review-btn" data-review-id="${r.id}" style="background:none;border:1px solid #fecaca;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:#b91c1c">Delete</button>
+  </div>
+` : ''}
           <button class="like-btn" data-review-id="${r.id}" style="margin-top:14px;background:${isLiked ? 'var(--mist)' : 'none'};border:1px solid ${isLiked ? 'var(--sky)' : 'var(--gray-light)'};border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:${isLiked ? 'var(--sky)' : 'var(--gray)'};font-weight:${isLiked ? '600' : '400'}">
             Helpful (${likeCount})
           </button>
@@ -270,6 +275,89 @@ function renderFiltered() {
 
     reviewList.innerHTML = communityVerdict + cards + seeMoreLink;
     attachLikeHandlers();
+    // Edit handlers
+    reviewList.querySelectorAll('.edit-review-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const reviewId = btn.dataset.reviewId;
+        const currentComment = decodeURIComponent(btn.dataset.comment);
+
+        const card = btn.closest('div[style*="border:1px solid"]');
+        const commentEl = card.querySelector('p[style*="line-height"]') || card.querySelectorAll('p')[2];
+
+        const editBox = document.createElement('div');
+        editBox.style.cssText = 'margin-top:12px';
+        editBox.innerHTML = `
+          <textarea id="edit-textarea-${reviewId}" rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;font-family:inherit;margin-bottom:8px">${currentComment}</textarea>
+          <div style="display:flex;gap:8px">
+            <button id="save-edit-${reviewId}" class="nav-cta" style="border:none;cursor:pointer;padding:8px 16px;font-size:13px">Save</button>
+            <button id="cancel-edit-${reviewId}" style="background:none;border:1px solid var(--gray-light);border-radius:8px;padding:8px 16px;cursor:pointer;font-size:13px;color:var(--gray)">Cancel</button>
+          </div>
+          <p id="edit-status-${reviewId}" style="font-size:13px;margin-top:8px"></p>
+        `;
+
+        btn.parentElement.replaceWith(editBox);
+
+        document.getElementById(`cancel-edit-${reviewId}`).addEventListener('click', function () {
+          renderFiltered();
+        });
+
+        document.getElementById(`save-edit-${reviewId}`).addEventListener('click', async function () {
+          const newComment = document.getElementById(`edit-textarea-${reviewId}`).value.trim();
+          const statusEl = document.getElementById(`edit-status-${reviewId}`);
+
+          if (!newComment) {
+            statusEl.textContent = 'Review cannot be empty.';
+            statusEl.style.color = '#b91c1c';
+            return;
+          }
+
+          statusEl.textContent = 'Saving...';
+          statusEl.style.color = 'var(--gray)';
+
+          const { error } = await supabaseClient
+            .from('reviews')
+            .update({ comment: newComment })
+            .eq('id', reviewId);
+
+          if (error) {
+            statusEl.textContent = 'Something went wrong. Please try again.';
+            statusEl.style.color = '#b91c1c';
+            return;
+          }
+
+          const review = allReviews.find(function (r) { return r.id === reviewId; });
+          if (review) review.comment = newComment;
+          renderFiltered();
+        });
+      });
+    });
+
+    // Delete handlers
+    reviewList.querySelectorAll('.delete-review-btn').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        if (!confirm('Are you sure you want to delete this review? This cannot be undone.')) return;
+
+        btn.disabled = true;
+        btn.textContent = 'Deleting...';
+
+        const reviewId = btn.dataset.reviewId;
+
+        const { error } = await supabaseClient
+          .from('reviews')
+          .delete()
+          .eq('id', reviewId);
+
+        if (error) {
+          btn.disabled = false;
+          btn.textContent = 'Delete';
+          alert('Something went wrong. Please try again.');
+          return;
+        }
+
+        allReviews = allReviews.filter(function (r) { return r.id !== reviewId; });
+        renderFiltered();
+      });
+    });
 
     reviewList.querySelectorAll('.review-thumb').forEach(function (img) {
       img.addEventListener('click', function () {
