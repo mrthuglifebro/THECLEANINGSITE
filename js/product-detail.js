@@ -341,8 +341,7 @@ function renderFiltered() {
   const backBtn = document.getElementById('wizard-back');
   const nextBtn = document.getElementById('wizard-next');
   const dots = document.querySelectorAll('.wizard-dot');
-  const reviewStatus = document.getElementById('review-status');
-
+  
   function showStep(n) {
     for (let i = 1; i <= totalSteps; i++) {
       const el = document.getElementById('step-' + i);
