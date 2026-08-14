@@ -157,27 +157,16 @@
     <textarea id="reviewer-comment" rows="4" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit"></textarea>
   </div>
 
-  <!-- Step 5: Before/after photos -->
+  <!-- Step 5: Photos -->
   <div class="wizard-step" id="step-5" style="display:none">
-    <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:8px">Add before and after photos</p>
+    <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:8px">Add photos</p>
     <p style="color:var(--gray);font-size:13px;margin-bottom:20px">Optional but highly recommended, this is what makes your verdict stand out.</p>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
-      <div>
-        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:8px">Before photo</label>
-        <div id="before-preview" style="aspect-ratio:1;background:var(--mist);border:2px dashed var(--gray-light);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:8px" onclick="document.getElementById('before-upload').click()">
-          <span style="color:var(--gray);font-size:13px">Tap to add</span>
-        </div>
-        <input type="file" id="before-upload" accept="image/*" style="display:none">
-      </div>
-      <div>
-        <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:8px">After photo</label>
-        <div id="after-preview" style="aspect-ratio:1;background:var(--mist);border:2px dashed var(--gray-light);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;margin-bottom:8px" onclick="document.getElementById('after-upload').click()">
-          <span style="color:var(--gray);font-size:13px">Tap to add</span>
-        </div>
-        <input type="file" id="after-upload" accept="image/*" style="display:none">
-      </div>
+    <div id="photo-drop" style="background:var(--mist);border:2px dashed var(--gray-light);border-radius:10px;padding:24px;text-align:center;cursor:pointer;margin-bottom:12px" onclick="document.getElementById('photo-upload').click()">
+      <span style="color:var(--gray);font-size:13px">Tap to add photos</span>
     </div>
+    <input type="file" id="photo-upload" accept="image/*" multiple style="display:none">
+    <div id="photo-preview-grid" style="display:flex;flex-wrap:wrap;gap:8px"></div>
   </div>
 
   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">

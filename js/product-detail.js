@@ -203,26 +203,19 @@ function renderFiltered() {
       const isLiked = likedSet.has(r.id);
       const likeCount = r.like_count || 0;
 
-      const beforeAfter = (r.before_image_url || r.after_image_url) ? `
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
-          ${r.before_image_url ? `
-            <div>
-              <p style="font-size:11px;color:var(--gray);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em">Before</p>
-              <img src="${r.before_image_url}" alt="Before" class="review-thumb" data-full="${r.before_image_url}" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;cursor:zoom-in">
-            </div>
-          ` : '<div></div>'}
-          ${r.after_image_url ? `
-            <div>
-              <p style="font-size:11px;color:var(--gray);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.05em">After</p>
-              <img src="${r.after_image_url}" alt="After" class="review-thumb" data-full="${r.after_image_url}" style="width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;cursor:zoom-in">
-            </div>
-          ` : '<div></div>'}
+      const allPhotos = [
+        ...(r.before_image_url ? [r.before_image_url] : []),
+        ...(r.after_image_url ? [r.after_image_url] : []),
+        ...(r.image_urls || [])
+      ];
+
+      const photoGrid = allPhotos.length > 0 ? `
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+          ${allPhotos.map(function (url) {
+            return `<img src="${url}" alt="Review photo" class="review-thumb" data-full="${url}" style="width:100px;height:100px;object-fit:cover;border-radius:8px;cursor:zoom-in">`;
+          }).join('')}
         </div>
       ` : '';
-
-      const oldPhotos = (r.image_urls || []).map(function (url) {
-        return `<img src="${url}" alt="Review photo" class="review-thumb" data-full="${url}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:8px;margin-top:8px;cursor:zoom-in">`;
-      }).join('');
 
       const tags = [
         r.mess_used_on ? `Used for: <strong>${r.mess_used_on}</strong>` : null,
@@ -254,8 +247,7 @@ function renderFiltered() {
 
           ${r.wish_knew ? `<p style="font-size:13px;color:var(--gray);margin-top:8px;padding-top:8px;border-top:1px solid var(--gray-light)">Wish I knew: <em>${r.wish_knew}</em></p>` : ''}
 
-          ${beforeAfter}
-          ${oldPhotos ? `<div style="display:flex;flex-wrap:wrap">${oldPhotos}</div>` : ''}
+          ${photoGrid}
 ${currentUser && r.user_id === currentUser.id ? `
   <div style="display:flex;gap:8px;margin-top:12px">
     <button class="edit-review-btn" data-review-id="${r.id}" data-comment="${encodeURIComponent(r.comment)}" style="background:none;border:1px solid var(--gray-light);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;color:var(--gray)">Edit</button>
@@ -472,24 +464,27 @@ ${currentUser && r.user_id === currentUser.id ? `
     });
   });
 
-  // Before/after preview
-  function setupImagePreview(inputId, previewId) {
-    const input = document.getElementById(inputId);
-    const preview = document.getElementById(previewId);
-    if (!input || !preview) return;
+  // Photo preview
+  function setupPhotoPreview() {
+    const input = document.getElementById('photo-upload');
+    const grid = document.getElementById('photo-preview-grid');
+    if (!input || !grid) return;
     input.addEventListener('change', function () {
-      const file = input.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        preview.innerHTML = `<img src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;border-radius:8px">`;
-      };
-      reader.readAsDataURL(file);
+      grid.innerHTML = '';
+      Array.from(input.files).forEach(function (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const thumb = document.createElement('img');
+          thumb.src = e.target.result;
+          thumb.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:8px';
+          grid.appendChild(thumb);
+        };
+        reader.readAsDataURL(file);
+      });
     });
   }
 
-  setupImagePreview('before-upload', 'before-preview');
-  setupImagePreview('after-upload', 'after-preview');
+  setupPhotoPreview();
 
   if (backBtn) {
     backBtn.addEventListener('click', function () {
@@ -560,19 +555,22 @@ ${currentUser && r.user_id === currentUser.id ? `
       const bestFor = document.getElementById('reviewer-best-for').value.trim();
       const wishKnew = document.getElementById('reviewer-wish-knew').value.trim();
 
-      async function uploadImage(inputId, folder) {
-        const input = document.getElementById(inputId);
-        if (!input || !input.files[0]) return null;
-        const file = input.files[0];
-        const filePath = `${folder}/${productId}/${Date.now()}-${file.name}`;
-        const { error } = await supabaseClient.storage.from('review-images').upload(filePath, file);
-        if (error) return null;
-        const { data } = supabaseClient.storage.from('review-images').getPublicUrl(filePath);
-        return data.publicUrl;
+      async function uploadPhotos() {
+        const input = document.getElementById('photo-upload');
+        if (!input || !input.files.length) return [];
+        const urls = [];
+        for (let i = 0; i < input.files.length; i++) {
+          const file = input.files[i];
+          const filePath = `photos/${productId}/${Date.now()}-${file.name}`;
+          const { error } = await supabaseClient.storage.from('review-images').upload(filePath, file);
+          if (error) continue;
+          const { data } = supabaseClient.storage.from('review-images').getPublicUrl(filePath);
+          urls.push(data.publicUrl);
+        }
+        return urls;
       }
 
-      const beforeUrl = await uploadImage('before-upload', 'before');
-      const afterUrl = await uploadImage('after-upload', 'after');
+      const photoUrls = await uploadPhotos();
 
       reviewStatus.textContent = 'Submitting your verdict...';
 
@@ -587,9 +585,9 @@ const { error } = await supabaseClient.from('reviews').insert([{
         mess_used_on: selectedMess || null,
         worked_first_try: answers.worked_first_try,
         would_buy_again: answers.would_buy_again,
-        before_image_url: beforeUrl,
-        after_image_url: afterUrl,
-        image_urls: [],
+        before_image_url: null,
+        after_image_url: null,
+        image_urls: photoUrls,
         status: 'pending'
       }]);
 
@@ -619,8 +617,8 @@ const { error } = await supabaseClient.from('reviews').insert([{
         b.style.borderColor = 'var(--gray-light)';
         b.style.color = 'var(--ink)';
       });
-      document.getElementById('before-preview').innerHTML = '<span style="color:var(--gray);font-size:13px">Tap to add</span>';
-      document.getElementById('after-preview').innerHTML = '<span style="color:var(--gray);font-size:13px">Tap to add</span>';
+      document.getElementById('photo-preview-grid').innerHTML = '';
+      document.getElementById('photo-upload').value = '';
       nextBtn.disabled = false;
 
       loadReviews();
