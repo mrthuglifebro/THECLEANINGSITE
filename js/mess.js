@@ -2,7 +2,20 @@ const MESS_LABELS = {
   mold: 'Mold & mildew',
   wine: 'Wine & stains',
   grease: 'Grease & grime',
-  pet: 'Pet messes'
+  pet: 'Pet messes',
+  coffee: 'Coffee & tea',
+  soap: 'Soap scum',
+  hardwater: 'Hard water',
+  rust: 'Rust',
+  dust: 'Dust',
+  hair: 'Hair',
+  food: 'Food spills',
+  trash: 'Trash & odors',
+  glass: 'Glass & mirrors',
+  bathroom: 'Bathroom',
+  kitchen: 'Kitchen',
+  laundry: 'Laundry',
+  automotive: 'Automotive'
 };
 
 function productThumb(p) {
@@ -93,4 +106,17 @@ products = data.map(p => ({
   }
 }
 
+function setupMessToggle() {
+  const toggleBtn = document.getElementById('mess-toggle-btn');
+  const extraGrid = document.getElementById('mess-grid-extra');
+  if (!toggleBtn || !extraGrid) return;
+
+  toggleBtn.addEventListener('click', function () {
+    const isHidden = extraGrid.style.display === 'none';
+    extraGrid.style.display = isHidden ? 'grid' : 'none';
+    toggleBtn.textContent = isHidden ? 'View fewer messes ↑' : 'View more messes ↓';
+  });
+}
+
 document.addEventListener('DOMContentLoaded', loadMessPage);
+document.addEventListener('DOMContentLoaded', setupMessToggle);
