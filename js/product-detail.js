@@ -632,10 +632,17 @@ const { error } = await supabaseClient.from('reviews').insert([{
   const shareBtn = document.getElementById('share-btn');
   const shareDropdown = document.getElementById('share-dropdown');
 
-  if (shareBtn) {
+if (shareBtn) {
     shareBtn.addEventListener('click', function (e) {
       e.stopPropagation();
-      shareDropdown.classList.toggle('open');
+      if (navigator.share) {
+        navigator.share({
+          title: productTitle,
+          url: productUrl
+        }).catch(function () {});
+      } else {
+        shareDropdown.classList.toggle('open');
+      }
     });
 
     document.addEventListener('click', function () {
