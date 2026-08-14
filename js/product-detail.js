@@ -635,10 +635,13 @@ const { error } = await supabaseClient.from('reviews').insert([{
 if (shareBtn) {
     shareBtn.addEventListener('click', function (e) {
       e.stopPropagation();
-      if (navigator.share) {
+if (navigator.share) {
+        const shareTitle = product ? `${product.name} on The Cleaning Verdict` : 'The Cleaning Verdict';
+        const shareUrl = window.location.href;
         navigator.share({
-          title: productTitle,
-          url: productUrl
+          title: shareTitle,
+          text: product ? `Check out ${product.name} on The Cleaning Verdict` : 'Check out The Cleaning Verdict',
+          url: shareUrl
         }).catch(function () {});
       } else {
         shareDropdown.classList.toggle('open');
