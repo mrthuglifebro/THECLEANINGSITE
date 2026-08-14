@@ -628,6 +628,68 @@ const { error } = await supabaseClient.from('reviews').insert([{
   }
 
   showStep(1);
+  // Share button
+  const shareBtn = document.getElementById('share-btn');
+  const shareDropdown = document.getElementById('share-dropdown');
+
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      shareDropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', function () {
+      shareDropdown.classList.remove('open');
+    });
+  }
+
+  const productUrl = window.location.href;
+  const productTitle = product ? `${product.name} on The Cleaning Verdict` : 'The Cleaning Verdict';
+
+  const copyLink = document.getElementById('copy-link');
+  if (copyLink) {
+    copyLink.addEventListener('click', function () {
+      navigator.clipboard.writeText(productUrl).then(function () {
+        copyLink.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;flex-shrink:0;color:var(--foam)"><polyline points="20 6 9 17 4 12"/></svg>
+          Copied!
+        `;
+        copyLink.style.color = 'var(--foam)';
+        setTimeout(function () {
+          copyLink.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;flex-shrink:0;color:var(--gray)"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Copy link
+          `;
+          copyLink.style.color = 'var(--ink)';
+        }, 2000);
+      });
+      shareDropdown.classList.remove('open');
+    });
+  }
+
+  const shareTwitter = document.getElementById('share-twitter');
+  if (shareTwitter) {
+    shareTwitter.addEventListener('click', function () {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(productTitle)}&url=${encodeURIComponent(productUrl)}`, '_blank');
+      shareDropdown.classList.remove('open');
+    });
+  }
+
+  const shareFacebook = document.getElementById('share-facebook');
+  if (shareFacebook) {
+    shareFacebook.addEventListener('click', function () {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(productUrl)}`, '_blank');
+      shareDropdown.classList.remove('open');
+    });
+  }
+
+  const shareWhatsapp = document.getElementById('share-whatsapp');
+  if (shareWhatsapp) {
+    shareWhatsapp.addEventListener('click', function () {
+      window.open(`https://wa.me/?text=${encodeURIComponent(productTitle + ' ' + productUrl)}`, '_blank');
+      shareDropdown.classList.remove('open');
+    });
+  }
   loadReviews();
 }
 
