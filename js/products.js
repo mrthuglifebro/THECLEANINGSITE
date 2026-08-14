@@ -90,11 +90,17 @@ function levenshtein(a, b) {
 
 function wordMatches(queryWord, haystackTokens) {
   for (const token of haystackTokens) {
-    if (token.includes(queryWord) || queryWord.includes(token)) {
+    if (token === queryWord) {
+      return true;
+    }
+    // Only allow partial/substring matches when both sides are long enough
+    // to be meaningful, otherwise tiny words (e.g. "to", "in") inside a
+    // longer query word (e.g. "automotive") cause false positive matches.
+    if (Math.min(token.length, queryWord.length) >= 4 && (token.includes(queryWord) || queryWord.includes(token))) {
       return true;
     }
     const maxDistance = queryWord.length <= 4 ? 1 : 2;
-    if (levenshtein(queryWord, token) <= maxDistance) {
+    if (token.length >= 3 && levenshtein(queryWord, token) <= maxDistance) {
       return true;
     }
   }
