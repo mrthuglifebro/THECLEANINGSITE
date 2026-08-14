@@ -1028,3 +1028,25 @@ body {
   flex-shrink: 0;
   color: var(--gray);
 }
+
+@media (max-width: 640px) {
+  .footer .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .footer-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 24px;
+  }
+
+  .footer-socials {
+    gap: 20px;
+  }
+
+  .footer-note {
+    font-size: 12px;
+  }
+}
