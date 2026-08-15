@@ -397,10 +397,23 @@ ${currentUser && r.user_id === currentUser.id ? `
 
 // Populate mess picker
   const messPicker = document.getElementById('mess-picker');
-  const messOptions = ['mold', 'wine', 'grease', 'pet', 'coffee', 'soap', 'hardwater', 'rust', 'dust', 'hair', 'food', 'trash', 'glass', 'bathroom', 'kitchen', 'laundry'];
+  const messOptions = ['mold', 'wine', 'grease', 'pet', 'coffee', 'soap', 'hardwater', 'rust', 'dust', 'hair', 'food', 'trash', 'glass', 'bathroom', 'kitchen', 'laundry', 'automotive'];
   let selectedMess = null;
+  let otherMessText = '';
+
+  const otherMessWrap = document.createElement('div');
+  otherMessWrap.style.cssText = 'display:none;margin-top:10px;width:100%';
+  otherMessWrap.innerHTML = `<input type="text" id="other-mess-input" placeholder="What mess was it?" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;font-family:inherit">`;
 
   if (messPicker) {
+    function clearActiveStyles() {
+      messPicker.querySelectorAll('button').forEach(function (b) {
+        b.style.background = 'none';
+        b.style.borderColor = 'var(--gray-light)';
+        b.style.color = 'var(--ink)';
+      });
+    }
+
     messOptions.forEach(function (mess) {
       const btn = document.createElement('button');
       btn.type = 'button';
@@ -408,16 +421,36 @@ ${currentUser && r.user_id === currentUser.id ? `
       btn.style.cssText = 'padding:6px 12px;border:1px solid var(--gray-light);border-radius:20px;background:none;cursor:pointer;font-size:13px;font-family:inherit';
       btn.addEventListener('click', function () {
         selectedMess = mess;
-        messPicker.querySelectorAll('button').forEach(function (b) {
-          b.style.background = 'none';
-          b.style.borderColor = 'var(--gray-light)';
-          b.style.color = 'var(--ink)';
-        });
+        clearActiveStyles();
         btn.style.background = 'var(--mist)';
         btn.style.borderColor = 'var(--sky)';
         btn.style.color = 'var(--sky)';
+        otherMessWrap.style.display = 'none';
       });
       messPicker.appendChild(btn);
+    });
+
+    const otherBtn = document.createElement('button');
+    otherBtn.type = 'button';
+    otherBtn.textContent = 'Other';
+    otherBtn.style.cssText = 'padding:6px 12px;border:1px solid var(--gray-light);border-radius:20px;background:none;cursor:pointer;font-size:13px;font-family:inherit';
+    otherBtn.addEventListener('click', function () {
+      selectedMess = 'other';
+      clearActiveStyles();
+      otherBtn.style.background = 'var(--mist)';
+      otherBtn.style.borderColor = 'var(--sky)';
+      otherBtn.style.color = 'var(--sky)';
+      otherMessWrap.style.display = 'block';
+      const input = document.getElementById('other-mess-input');
+      if (input) input.focus();
+    });
+    messPicker.appendChild(otherBtn);
+    messPicker.parentElement.insertBefore(otherMessWrap, messPicker.nextSibling);
+
+    otherMessWrap.addEventListener('input', function (e) {
+      if (e.target.id === 'other-mess-input') {
+        otherMessText = e.target.value.trim();
+      }
     });
   }
 
@@ -558,6 +591,15 @@ ${currentUser && r.user_id === currentUser.id ? `
           reviewStatus.style.color = '#b91c1c';
           return;
         }
+        if (selectedMess === 'other') {
+          const otherInput = document.getElementById('other-mess-input');
+          otherMessText = otherInput ? otherInput.value.trim() : '';
+          if (!otherMessText) {
+            reviewStatus.textContent = 'Please specify what mess you used this on.';
+            reviewStatus.style.color = '#b91c1c';
+            return;
+          }
+        }
         reviewStatus.textContent = '';
       }
 
@@ -625,7 +667,7 @@ const { error } = await supabaseClient.from('reviews').insert([{
         comment: comment,
         best_for: bestFor || null,
         wish_knew: wishKnew || null,
-        mess_used_on: selectedMess || null,
+        mess_used_on: (selectedMess === 'other' ? otherMessText : selectedMess) || null,
         worked_first_try: answers.worked_first_try,
         would_buy_again: answers.would_buy_again,
         before_image_url: null,
@@ -653,6 +695,10 @@ const { error } = await supabaseClient.from('reviews').insert([{
       document.getElementById('reviewer-best-for').value = '';
       document.getElementById('reviewer-wish-knew').value = '';
       selectedMess = null;
+      otherMessText = '';
+      otherMessWrap.style.display = 'none';
+      const otherInputReset = document.getElementById('other-mess-input');
+      if (otherInputReset) otherInputReset.value = '';
       answers.worked_first_try = null;
       answers.would_buy_again = null;
       if (messPicker) messPicker.querySelectorAll('button').forEach(function (b) {
