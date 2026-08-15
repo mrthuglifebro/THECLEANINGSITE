@@ -75,7 +75,7 @@ products = data.map(p => ({
     productGrid.innerHTML = top.map(function (p) {
       const costPerUse = (p.price / p.sizeOz).toFixed(2);
       return `
-        <div class="product-card">
+        <div class="product-card" data-href="product.html?id=${p.id}" style="cursor:pointer">
           <div class="product-thumb">${homeProductThumb(p)}</div>
           <div class="product-body">
             <div class="product-brand">${p.brand}</div>
@@ -89,6 +89,7 @@ products = data.map(p => ({
         </div>
       `;
     }).join('');
+    if (window.attachCardNav) window.attachCardNav(productGrid);
   }
 }
 

@@ -50,3 +50,21 @@ function initScrollReveal() {
 
 window.initScrollReveal = initScrollReveal;
 document.addEventListener('DOMContentLoaded', initScrollReveal);
+
+// Makes product cards clickable anywhere, while leaving inner links/buttons
+// (Buy button, See Product Details) working normally without double-navigation.
+function attachCardNav(container) {
+  if (!container) return;
+  container.querySelectorAll('[data-href]').forEach(function (card) {
+    if (card.dataset.navAttached === 'true') return;
+    card.dataset.navAttached = 'true';
+
+    card.addEventListener('click', function (e) {
+      // Ignore clicks that landed on a link, button, or anything inside one
+      if (e.target.closest('a, button')) return;
+      window.location.href = card.dataset.href;
+    });
+  });
+}
+
+window.attachCardNav = attachCardNav;

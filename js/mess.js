@@ -34,7 +34,7 @@ function renderProductCards(list, ratings) {
     const costPerUse = (p.price / p.sizeOz).toFixed(2);
     const delay = Math.min(index, 8) * 0.03;
     return `
-      <div class="product-card reveal" style="transition-delay:${delay}s">
+      <div class="product-card reveal" data-href="product.html?id=${p.id}" style="transition-delay:${delay}s;cursor:pointer">
         <div class="product-thumb">
           ${productThumb(p)}
         </div>
@@ -95,6 +95,7 @@ products = data.map(p => ({
     });
     grid.innerHTML = renderProductCards(filtered, ratings);
     if (window.initScrollReveal) window.initScrollReveal();
+    if (window.attachCardNav) window.attachCardNav(grid);
   }
 
   buttons.forEach(function (btn) {
