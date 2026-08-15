@@ -391,15 +391,7 @@ img { max-width: 100%; display: block; }
   margin: 0 auto -2px;
   border-radius: 5px 5px 0 0;
 }
-.bottle-trigger {
-  position: absolute;
-  top: -20px; left: -20px;
-  width: 34px; height: 30px;
-  border: 9px solid var(--ink);
-  border-right: none; border-bottom: none;
-  border-radius: 16px 0 0 0;
-  transform: rotate(-8deg);
-}
+
 .bottle-nozzle {
   position: absolute;
   top: -14px; left: -30px;
