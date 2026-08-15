@@ -481,23 +481,49 @@ ${currentUser && r.user_id === currentUser.id ? `
     });
   });
 
-  // Photo preview
+  // Photo preview (with per-photo remove button)
+  let selectedPhotoFiles = [];
+
+  function syncPhotoInput() {
+    const input = document.getElementById('photo-upload');
+    if (!input) return;
+    const dt = new DataTransfer();
+    selectedPhotoFiles.forEach(function (file) { dt.items.add(file); });
+    input.files = dt.files;
+  }
+
+  function renderPhotoPreview() {
+    const grid = document.getElementById('photo-preview-grid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    selectedPhotoFiles.forEach(function (file, index) {
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        const wrap = document.createElement('div');
+        wrap.style.cssText = 'position:relative;width:80px;height:80px';
+        wrap.innerHTML = `
+          <img src="${e.target.result}" style="width:80px;height:80px;object-fit:cover;border-radius:8px">
+          <button type="button" class="remove-photo-btn" data-index="${index}" style="position:absolute;top:-6px;right:-6px;width:20px;height:20px;border-radius:50%;background:var(--ink);color:white;border:2px solid white;cursor:pointer;font-size:12px;line-height:1;display:flex;align-items:center;justify-content:center;padding:0">✕</button>
+        `;
+        grid.appendChild(wrap);
+
+        wrap.querySelector('.remove-photo-btn').addEventListener('click', function () {
+          selectedPhotoFiles.splice(index, 1);
+          syncPhotoInput();
+          renderPhotoPreview();
+        });
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
   function setupPhotoPreview() {
     const input = document.getElementById('photo-upload');
-    const grid = document.getElementById('photo-preview-grid');
-    if (!input || !grid) return;
+    if (!input) return;
     input.addEventListener('change', function () {
-      grid.innerHTML = '';
-      Array.from(input.files).forEach(function (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const thumb = document.createElement('img');
-          thumb.src = e.target.result;
-          thumb.style.cssText = 'width:80px;height:80px;object-fit:cover;border-radius:8px';
-          grid.appendChild(thumb);
-        };
-        reader.readAsDataURL(file);
-      });
+      selectedPhotoFiles = selectedPhotoFiles.concat(Array.from(input.files));
+      syncPhotoInput();
+      renderPhotoPreview();
     });
   }
 
@@ -636,6 +662,7 @@ const { error } = await supabaseClient.from('reviews').insert([{
       });
       document.getElementById('photo-preview-grid').innerHTML = '';
       document.getElementById('photo-upload').value = '';
+      selectedPhotoFiles = [];
       nextBtn.disabled = false;
 
       loadReviews();
