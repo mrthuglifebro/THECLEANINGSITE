@@ -689,7 +689,7 @@ img { max-width: 100%; display: block; }
 .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .reveal.is-visible {

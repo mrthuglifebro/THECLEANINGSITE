@@ -32,7 +32,7 @@ function renderProductCards(list, ratings) {
 
   return list.map(function (p, index) {
     const costPerUse = (p.price / p.sizeOz).toFixed(2);
-    const delay = Math.min(index, 8) * 0.06;
+    const delay = Math.min(index, 8) * 0.03;
     return `
       <div class="product-card reveal" style="transition-delay:${delay}s">
         <div class="product-thumb">
