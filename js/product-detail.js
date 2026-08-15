@@ -124,11 +124,12 @@ function attachLikeHandlers() {
       if (!error) {
         likedSet.add(reviewId);
         saveLikedSet(likedSet);
+        btn.classList.add('like-pulse');
 
         const review = allReviews.find(function (r) { return r.id === reviewId; });
         if (review) review.like_count = (review.like_count || 0) + 1;
 
-        renderFiltered();
+        setTimeout(renderFiltered, 260);
       } else {
         btn.disabled = false;
       }
@@ -199,9 +200,10 @@ function renderFiltered() {
     const visibleReviews = filtered.slice(0, maxVisible);
     const remainingCount = filtered.length - maxVisible;
 
-    const cards = visibleReviews.map(function (r) {
+    const cards = visibleReviews.map(function (r, index) {
       const isLiked = likedSet.has(r.id);
       const likeCount = r.like_count || 0;
+      const delay = index * 0.08;
 
       const allPhotos = [
         ...(r.before_image_url ? [r.before_image_url] : []),
@@ -224,7 +226,7 @@ function renderFiltered() {
       ].filter(Boolean);
 
       return `
-        <div style="border:1px solid var(--gray-light);border-radius:14px;padding:20px;margin-bottom:16px;background:white">
+        <div class="reveal" style="transition-delay:${delay}s;border:1px solid var(--gray-light);border-radius:14px;padding:20px;margin-bottom:16px;background:white">
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px">
             <div>
               <strong style="font-size:16px">${r.reviewer_name}</strong>
@@ -266,6 +268,7 @@ ${currentUser && r.user_id === currentUser.id ? `
       : '';
 
     reviewList.innerHTML = communityVerdict + cards + seeMoreLink;
+    if (window.initScrollReveal) window.initScrollReveal();
     attachLikeHandlers();
     // Edit handlers
     reviewList.querySelectorAll('.edit-review-btn').forEach(function (btn) {
@@ -358,6 +361,7 @@ ${currentUser && r.user_id === currentUser.id ? `
         if (lightbox && lightboxImg) {
           lightboxImg.src = img.dataset.full;
           lightbox.style.display = 'flex';
+          requestAnimationFrame(function () { lightbox.classList.add('open'); });
         }
       });
     });
@@ -433,7 +437,20 @@ ${currentUser && r.user_id === currentUser.id ? `
   function showStep(n) {
     for (let i = 1; i <= totalSteps; i++) {
       const el = document.getElementById('step-' + i);
-      if (el) el.style.display = i === n ? 'block' : 'none';
+      if (!el) continue;
+      if (i === n) {
+        el.style.display = 'block';
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(14px)';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            el.style.opacity = '1';
+            el.style.transform = 'translateX(0)';
+          });
+        });
+      } else {
+        el.style.display = 'none';
+      }
     }
     if (stepNumEl) stepNumEl.textContent = n;
     dots.forEach(function (dot, idx) {
@@ -707,7 +724,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const lightbox = document.getElementById('image-lightbox');
   if (lightbox) {
     lightbox.addEventListener('click', function () {
-      lightbox.style.display = 'none';
+      lightbox.classList.remove('open');
+      setTimeout(function () { lightbox.style.display = 'none'; }, 250);
     });
   }
 });

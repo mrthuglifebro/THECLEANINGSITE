@@ -123,9 +123,29 @@ img { max-width: 100%; display: block; }
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  flex-direction: column;
+  gap: 16px;
   font-weight: 500;
   font-size: 15px;
+  position: absolute;
+  top: 72px;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gray-light);
+  box-shadow: 0 12px 24px rgba(15, 61, 115, 0.08);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s;
+  z-index: 99;
+}
+
+.nav-links.nav-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .nav-links a {
@@ -156,7 +176,9 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-toggle {
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
   cursor: pointer;
@@ -169,6 +191,19 @@ img { max-width: 100%; display: block; }
   height: 2px;
   background: var(--ink);
   margin: 5px 0;
+  transition: transform 0.28s ease, opacity 0.2s ease;
+}
+
+.nav-toggle.nav-toggle-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.nav-toggle.nav-toggle-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.nav-toggle-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ---------- Hero ---------- */
@@ -621,10 +656,6 @@ img { max-width: 100%; display: block; }
 }
 
 @media (max-width: 640px) {
-  .nav-links { display: none; }
-  .nav-toggle { display: block; }
-  .nav .nav-cta { display: none; }
-
   .product-grid { grid-template-columns: 1fr; }
   .mess-grid { grid-template-columns: 1fr 1fr; }
   .reviews-grid { grid-template-columns: 1fr !important; }
@@ -650,7 +681,81 @@ img { max-width: 100%; display: block; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---------- Scroll reveal (used across product/review/compare cards) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Tactile press feedback ---------- */
+.btn:active,
+.nav-cta:active,
+.mess-filter-btn:active,
+.mess-card:active,
+.product-card:active,
+.like-btn:active,
+.search-bar button:active {
+  transform: scale(0.97);
+}
+
+/* ---------- Wizard step transitions ---------- */
+.wizard-step {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.wizard-dot {
+  transition: background 0.3s ease;
+}
+
+/* ---------- Like button pulse ---------- */
+@keyframes likePulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.like-btn.like-pulse {
+  animation: likePulse 0.35s ease;
+}
+
+/* ---------- Image lightbox fade ---------- */
+#image-lightbox {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+#image-lightbox.open {
+  opacity: 1;
+}
+
+#image-lightbox img {
+  transform: scale(0.94);
+  transition: transform 0.25s ease;
+}
+
+#image-lightbox.open img {
+  transform: scale(1);
+}
+
+/* ---------- Mess extra grid reveal ---------- */
+.mess-grid-extra {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.mess-grid-extra.mess-grid-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ---------- Mess filter buttons ---------- */
@@ -985,7 +1090,7 @@ body {
 }
 
 .share-dropdown {
-  display: none;
+  display: block;
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
@@ -996,10 +1101,16 @@ body {
   min-width: 200px;
   box-shadow: 0 8px 24px rgba(15,61,115,0.12);
   z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px) scale(0.98);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 }
 
 .share-dropdown.open {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
 }
 
 .share-option {

@@ -30,10 +30,11 @@ function renderProductCards(list, ratings) {
     return '<p style="color:#64748b">No products found for this mess yet.</p>';
   }
 
-  return list.map(function (p) {
+  return list.map(function (p, index) {
     const costPerUse = (p.price / p.sizeOz).toFixed(2);
+    const delay = Math.min(index, 8) * 0.06;
     return `
-      <div class="product-card">
+      <div class="product-card reveal" style="transition-delay:${delay}s">
         <div class="product-thumb">
           ${productThumb(p)}
         </div>
@@ -93,6 +94,7 @@ products = data.map(p => ({
       return p.messes.includes(messKey);
     });
     grid.innerHTML = renderProductCards(filtered, ratings);
+    if (window.initScrollReveal) window.initScrollReveal();
   }
 
   buttons.forEach(function (btn) {
@@ -112,9 +114,20 @@ function setupMessToggle() {
   if (!toggleBtn || !extraGrid) return;
 
   toggleBtn.addEventListener('click', function () {
-    const isHidden = extraGrid.style.display === 'none';
-    extraGrid.style.display = isHidden ? 'grid' : 'none';
-    toggleBtn.textContent = isHidden ? 'View fewer messes ↑' : 'View more messes ↓';
+    const isHidden = !extraGrid.classList.contains('mess-grid-visible');
+    if (isHidden) {
+      extraGrid.style.display = 'grid';
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          extraGrid.classList.add('mess-grid-visible');
+        });
+      });
+      toggleBtn.textContent = 'View fewer messes ↑';
+    } else {
+      extraGrid.classList.remove('mess-grid-visible');
+      setTimeout(function () { extraGrid.style.display = 'none'; }, 350);
+      toggleBtn.textContent = 'View more messes ↓';
+    }
   });
 }
 

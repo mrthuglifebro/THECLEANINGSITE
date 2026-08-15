@@ -37,10 +37,11 @@ products = data.map(p => ({
       return;
     }
 
-    grid.innerHTML = list.map(function (p) {
+    grid.innerHTML = list.map(function (p, index) {
       const costPerUse = (p.price / p.size_oz).toFixed(2);
+      const delay = Math.min(index, 8) * 0.06;
       return `
-        <div class="product-card">
+        <div class="product-card reveal" style="transition-delay:${delay}s">
           <div class="product-thumb">
             ${productThumb(p)}
           </div>
@@ -57,6 +58,8 @@ products = data.map(p => ({
         </div>
       `;
     }).join('');
+
+    if (window.initScrollReveal) window.initScrollReveal();
   }
 
   render(products);

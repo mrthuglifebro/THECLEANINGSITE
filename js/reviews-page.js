@@ -104,16 +104,17 @@ async function loadAllReviews() {
 
     const likedSet = getLikedSet();
 
-    const cards = filtered.map(function (r) {
+    const cards = filtered.map(function (r, index) {
       const images = (r.image_urls || []).map(function (url) {
         return `<img src="${url}" alt="Review photo" class="review-thumb" data-full="${url}" style="width:80px;height:80px;object-fit:cover;border-radius:8px;margin-right:8px;margin-top:8px;cursor:zoom-in">`;
       }).join('');
 
       const isLiked = likedSet.has(r.id);
       const likeCount = r.like_count || 0;
+      const delay = Math.min(index, 10) * 0.06;
 
       return `
-        <div class="compare-col" style="margin-bottom:16px">
+        <div class="compare-col reveal" style="margin-bottom:16px;transition-delay:${delay}s">
           <div style="display:flex;justify-content:space-between;margin-bottom:8px">
             <strong>${r.reviewer_name}</strong>
             <span style="color:#f5a524">${starDisplay(r.rating)}</span>
@@ -129,6 +130,7 @@ async function loadAllReviews() {
     }).join('');
 
     reviewList.innerHTML = summary + cards;
+    if (window.initScrollReveal) window.initScrollReveal();
 
     reviewList.querySelectorAll('.like-btn').forEach(function (btn) {
       if (btn.dataset.listenerAttached === 'true') return;
@@ -147,9 +149,10 @@ async function loadAllReviews() {
         if (!error) {
           likedSet.add(reviewId);
           saveLikedSet(likedSet);
+          btn.classList.add('like-pulse');
           const review = allReviews.find(function (r) { return r.id === reviewId; });
           if (review) review.like_count = (review.like_count || 0) + 1;
-          renderAll();
+          setTimeout(renderAll, 260);
         } else {
           btn.disabled = false;
         }
@@ -163,6 +166,7 @@ async function loadAllReviews() {
         if (lightbox && lightboxImg) {
           lightboxImg.src = img.dataset.full;
           lightbox.style.display = 'flex';
+          requestAnimationFrame(function () { lightbox.classList.add('open'); });
         }
       });
     });
@@ -181,7 +185,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const lightbox = document.getElementById('image-lightbox');
   if (lightbox) {
     lightbox.addEventListener('click', function () {
-      lightbox.style.display = 'none';
+      lightbox.classList.remove('open');
+      setTimeout(function () { lightbox.style.display = 'none'; }, 250);
     });
   }
 });

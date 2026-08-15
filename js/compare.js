@@ -69,7 +69,7 @@ async function loadComparePage() {
     }
     const costPerUse = p.sizeOz > 0 ? (p.price / p.sizeOz).toFixed(2) : null;
     return `
-      <div class="compare-col">
+      <div class="compare-col" style="opacity:0;animation:fadeIn 0.45s ease forwards">
         ${productThumb(p)}
         <div class="product-brand">${p.brand}</div>
         <div class="product-name" style="font-size:20px;margin-bottom:16px">${p.name}${isWinner ? ' 🏆' : ''}</div>
