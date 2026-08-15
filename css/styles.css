@@ -196,7 +196,7 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-toggle.nav-toggle-open span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+  transform: translateY(12px) rotate(45deg);
 }
 
 .nav-toggle.nav-toggle-open span:nth-child(2) {
@@ -204,7 +204,7 @@ img { max-width: 100%; display: block; }
 }
 
 .nav-toggle.nav-toggle-open span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
+  transform: translateY(-12px) rotate(-45deg);
 }
 
 /* ---------- Hero ---------- */
@@ -1091,7 +1091,6 @@ body {
 }
 
 .share-dropdown {
-  display: block;
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
