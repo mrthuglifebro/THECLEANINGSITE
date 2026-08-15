@@ -35,6 +35,7 @@ async function loadProductDetail() {
 
   if (!productId) {
     container.innerHTML = '<p>No product selected.</p>';
+    container.style.opacity = '1';
     return;
   }
 
@@ -57,15 +58,21 @@ try {
 } catch (err) {
   console.error(err);
   container.innerHTML = "<p>Could not load product data.</p>";
+  container.style.opacity = '1';
   return;
 }
 
   if (!product) {
     container.innerHTML = '<p>Product not found.</p>';
+    container.style.opacity = '1';
     return;
   }
 
   document.title = product.name + ' | TheCleaningVerdict';
+
+  // Fade the skeleton out, swap in real content, fade it back in
+  container.style.opacity = '0';
+  await new Promise(function (r) { setTimeout(r, 200); });
 
   const costPerUse = (product.price / product.sizeOz).toFixed(2);
   container.innerHTML = `
@@ -80,6 +87,11 @@ try {
     </table>
     <a href="${product.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:inline-block">Buy | $${product.price.toFixed(2)}</a>
   `;
+
+  // Fade the real content in
+  requestAnimationFrame(function () {
+    container.style.opacity = '1';
+  });
 
 let allReviews = [];
 

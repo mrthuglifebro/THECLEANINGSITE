@@ -62,9 +62,17 @@ function attachCardNav(container) {
     card.addEventListener('click', function (e) {
       // Ignore clicks that landed on a link, button, or anything inside one
       if (e.target.closest('a, button')) return;
-      window.location.href = card.dataset.href;
+      const href = card.dataset.href;
+      document.body.style.transition = 'opacity 0.18s ease';
+      document.body.style.opacity = '0';
+      setTimeout(function () { window.location.href = href; }, 160);
     });
   });
 }
 
 window.attachCardNav = attachCardNav;
+
+// Guard against a stuck-invisible page when returning via back/forward cache
+window.addEventListener('pageshow', function () {
+  document.body.style.opacity = '1';
+});
