@@ -92,23 +92,60 @@ function levenshtein(a, b) {
   return matrix[b.length][a.length];
 }
 
-function wordMatches(queryWord, haystackTokens) {
-  for (const token of haystackTokens) {
-    if (token === queryWord) {
-      return true;
+// Tight typo tolerance: only allow fuzzy matches that are plausibly typos,
+// not coincidental near-words. Short words allow 0-1 edits; only longer
+// words allow 2, and the edit distance must stay a small fraction of the
+// word length so "steam" never matches "steel"/"stain".
+function isTypoMatch(queryWord, token) {
+  if (token.length < 4 || queryWord.length < 4) return false;
+  const dist = levenshtein(queryWord, token);
+  if (dist === 0) return true;
+  const maxLen = Math.max(queryWord.length, token.length);
+  let allowed;
+  if (maxLen <= 4) allowed = 0;
+  else if (maxLen <= 6) allowed = 1;
+  else allowed = 2;
+  return dist > 0 && dist <= allowed;
+}
+
+// Score a single query word against one product. Returns the best score
+// found across the product's weighted fields (0 = no match).
+function scoreWordAgainstProduct(word, p) {
+  const fields = [
+    { text: (p.name || '').toLowerCase(), weight: 10 },
+    { text: (p.category || '').toLowerCase(), weight: 8 },
+    { text: (p.brand || '').toLowerCase(), weight: 6 },
+    { text: (p.messes || []).join(' ').toLowerCase(), weight: 5 },
+    { text: (p.ingredients || []).join(' ').toLowerCase(), weight: 2 }
+  ];
+
+  let best = 0;
+
+  for (const field of fields) {
+    if (!field.text) continue;
+    const tokens = field.text.split(/\s+/);
+    let fieldScore = 0;
+
+    for (const token of tokens) {
+      if (token === word) {
+        // Exact whole-word match: strongest signal
+        fieldScore = Math.max(fieldScore, field.weight * 3);
+      } else if (word.length >= 3 && token.startsWith(word)) {
+        // Prefix match (e.g. "steam" matches "steamer"): strong
+        fieldScore = Math.max(fieldScore, field.weight * 2);
+      } else if (word.length >= 4 && token.includes(word)) {
+        // Substring match, only for meaningful query lengths
+        fieldScore = Math.max(fieldScore, field.weight * 1.5);
+      } else if (isTypoMatch(word, token)) {
+        // Genuine typo tolerance: weakest positive signal
+        fieldScore = Math.max(fieldScore, field.weight * 1);
+      }
     }
-    // Only allow partial/substring matches when both sides are long enough
-    // to be meaningful, otherwise tiny words (e.g. "to", "in") inside a
-    // longer query word (e.g. "automotive") cause false positive matches.
-    if (Math.min(token.length, queryWord.length) >= 4 && (token.includes(queryWord) || queryWord.includes(token))) {
-      return true;
-    }
-    const maxDistance = queryWord.length <= 4 ? 1 : 2;
-    if (token.length >= 3 && levenshtein(queryWord, token) <= maxDistance) {
-      return true;
-    }
+
+    best = Math.max(best, fieldScore);
   }
-  return false;
+
+  return best;
 }
 
 function applySearch(query) {
@@ -118,30 +155,29 @@ function applySearch(query) {
     return;
   }
 
-  const words = q.split(/\s+/);
+  const words = q.split(/\s+/).filter(Boolean);
 
   const scored = products.map(function (p) {
-    const haystackString = [
-      p.name,
-      p.brand,
-      p.category,
-      (p.ingredients || []).join(' '),
-      (p.messes || []).join(' ')
-    ].join(' ').toLowerCase();
+    let total = 0;
+    let matchedWords = 0;
 
-    const haystackTokens = haystackString.split(/\s+/);
+    words.forEach(function (word) {
+      const s = scoreWordAgainstProduct(word, p);
+      if (s > 0) {
+        total += s;
+        matchedWords += 1;
+      }
+    });
 
-    const matchCount = words.filter(function (word) {
-      return wordMatches(word, haystackTokens);
-    }).length;
-
-    return { product: p, matchCount };
+    return { product: p, total: total, matchedWords: matchedWords };
   });
 
-  const threshold = Math.max(1, Math.ceil(words.length / 2));
+  // Require every query word to match something (AND search), so
+  // "steam cleaner" only returns products matching both words. This
+  // is the key filter that removes coincidental single-word matches.
   const filtered = scored
-    .filter(function (s) { return s.matchCount >= threshold; })
-    .sort(function (a, b) { return b.matchCount - a.matchCount; })
+    .filter(function (s) { return s.matchedWords === words.length && s.total > 0; })
+    .sort(function (a, b) { return b.total - a.total; })
     .map(function (s) { return s.product; });
 
   render(filtered);
