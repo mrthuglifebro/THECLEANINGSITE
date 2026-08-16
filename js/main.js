@@ -45,7 +45,13 @@ function initScrollReveal() {
     });
   }, { threshold: 0.1 });
 
-  els.forEach(function (el) { observer.observe(el); });
+  // Let the hidden (opacity:0) state paint first, then observe, so the
+  // transition actually plays instead of snapping straight to visible.
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      els.forEach(function (el) { observer.observe(el); });
+    });
+  });
 }
 
 window.initScrollReveal = initScrollReveal;
