@@ -73,7 +73,10 @@ products = data.map(p => ({
     }).slice(0, 3);
 
     productGrid.innerHTML = top.map(function (p) {
-      const costPerUse = (p.price / p.sizeOz).toFixed(2);
+      const hasSize = p.sizeOz && p.sizeOz > 0;
+      const priceLabel = hasSize
+        ? `$${(p.price / p.sizeOz).toFixed(2)} / oz`
+        : `$${p.price.toFixed(2)}`;
       return `
         <div class="product-card" data-href="product.html?id=${p.id}" style="cursor:pointer">
           <div class="product-thumb">${homeProductThumb(p)}</div>
@@ -81,7 +84,7 @@ products = data.map(p => ({
             <div class="product-brand">${p.brand}</div>
             <div class="product-name">${p.name}</div>
             <div class="product-meta">
-              <span class="product-price">$${costPerUse} / oz</span>
+              <span class="product-price">${priceLabel}</span>
               ${ratingBadgeHTML(ratings[p.id])}
             </div>
             <a href="product.html?id=${p.id}" class="section-link" style="display:block;margin-top:12px">See Product Details →</a>
