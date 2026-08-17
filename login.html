@@ -33,13 +33,17 @@
   <div class="container" style="max-width:440px">
     <div class="compare-col" style="margin-top:40px">
       <h1 style="font-family:'Space Grotesk',sans-serif;font-size:28px;margin-bottom:8px">Sign in</h1>
-      <p style="color:var(--gray);margin-bottom:24px">Enter your email and we'll send you a sign in link. No password needed.</p>
+      <p style="color:var(--gray);margin-bottom:24px">Sign in to leave a verdict. Enter your email and we'll send you a sign in link, no password needed.</p>
 
       <div id="login-form">
         <label style="display:block;font-size:13px;color:var(--gray);margin-bottom:4px">Email address</label>
         <input type="email" id="login-email" placeholder="you@example.com" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;margin-bottom:16px;font-family:inherit;font-size:15px">
         <button id="login-btn" class="nav-cta" style="width:100%;border:none;cursor:pointer;padding:12px;font-size:15px">Send sign in link</button>
         <p id="login-status" style="margin-top:12px;font-size:14px"></p>
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-top:16px;padding:12px;background:var(--mist);border-radius:8px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5" style="width:18px;height:18px;flex-shrink:0;margin-top:1px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          <p style="color:var(--gray);font-size:12.5px;line-height:1.5;margin:0">We only use your email to verify you're a real person, so reviews stay trustworthy. No spam, no newsletters, no sharing.</p>
+        </div>
       </div>
 
       <div id="login-success" style="display:none;text-align:center;padding:24px 0">

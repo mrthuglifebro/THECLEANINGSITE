@@ -134,11 +134,6 @@ function attachLikeHandlers() {
       if (likedSet.has(reviewId) || btn.disabled) {
         return;
       }
-      if (!currentUser) {
-  localStorage.setItem('loginRedirect', window.location.href);
-  window.location.href = 'login.html';
-  return;
-}
 
       btn.disabled = true;
 
