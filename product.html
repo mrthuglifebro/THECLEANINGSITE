@@ -88,6 +88,11 @@
       </div>
     </div>
 
+    <div id="video-reviews-section" style="display:none;margin-bottom:40px">
+      <h3 style="font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:16px">Video reviews</h3>
+      <div id="video-reviews-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px"></div>
+    </div>
+
     <div class="reviews-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start">
       <div>
   <div style="margin-bottom:16px">
@@ -172,14 +177,35 @@
 
   <!-- Step 5: Photos -->
   <div class="wizard-step" id="step-5" style="display:none">
-    <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:8px">Add photos</p>
-    <p style="color:var(--gray);font-size:13px;margin-bottom:20px">Optional but highly recommended, this is what makes your verdict stand out.</p>
+    <p style="font-family:'Space Grotesk',sans-serif;font-size:18px;margin-bottom:8px">Add media</p>
+    <p style="color:var(--gray);font-size:13px;margin-bottom:16px">Optional but highly recommended, this is what makes your verdict stand out.</p>
 
-    <div id="photo-drop" style="background:var(--mist);border:2px dashed var(--gray-light);border-radius:10px;padding:24px;text-align:center;cursor:pointer;margin-bottom:12px" onclick="document.getElementById('photo-upload').click()">
-      <span style="color:var(--gray);font-size:13px">Tap to add photos</span>
+    <div class="media-tabs" style="display:flex;gap:8px;margin-bottom:18px">
+      <button type="button" id="tab-photos" class="media-tab media-tab-active" style="flex:1;padding:10px;border:1px solid var(--sky);background:var(--mist);color:var(--sky);border-radius:10px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:600">Photos</button>
+      <button type="button" id="tab-video" class="media-tab" style="flex:1;padding:10px;border:1px solid var(--gray-light);background:none;color:var(--ink);border-radius:10px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:400">Video</button>
     </div>
-    <input type="file" id="photo-upload" accept="image/*" multiple style="display:none">
-    <div id="photo-preview-grid" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+
+    <!-- Photos panel -->
+    <div id="panel-photos">
+      <div id="photo-drop" style="background:var(--mist);border:2px dashed var(--gray-light);border-radius:10px;padding:24px;text-align:center;cursor:pointer;margin-bottom:12px" onclick="document.getElementById('photo-upload').click()">
+        <span style="color:var(--gray);font-size:13px">Tap to add photos</span>
+      </div>
+      <input type="file" id="photo-upload" accept="image/*" multiple style="display:none">
+      <div id="photo-preview-grid" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+    </div>
+
+    <!-- Video panel -->
+    <div id="panel-video" style="display:none">
+      <div id="video-drop" style="background:var(--mist);border:2px dashed var(--gray-light);border-radius:10px;padding:24px;text-align:center;cursor:pointer;margin-bottom:12px" onclick="document.getElementById('video-upload').click()">
+        <span style="color:var(--gray);font-size:13px">Tap to upload a video of you using it</span>
+      </div>
+      <input type="file" id="video-upload" accept="video/*" style="display:none">
+      <div id="video-preview" style="margin-bottom:16px"></div>
+
+      <p style="text-align:center;color:var(--gray);font-size:12px;margin-bottom:12px">or paste a link</p>
+      <input type="text" id="video-link" placeholder="YouTube or TikTok link" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;font-family:inherit">
+      <p style="color:var(--gray);font-size:12px;margin-top:10px">Videos are reviewed before appearing on the site.</p>
+    </div>
   </div>
 
   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">

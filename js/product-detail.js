@@ -415,6 +415,85 @@ ${currentUser && r.user_id === currentUser.id ? `
     renderFiltered();
   }
 
+  // Convert a YouTube/TikTok link to an embeddable thumbnail approach.
+  // For simplicity we show a play button over a poster; clicking opens the link.
+  function youtubeId(url) {
+    const m = url.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([\w-]{11})/);
+    return m ? m[1] : null;
+  }
+
+  async function loadVideoReviews() {
+    const section = document.getElementById('video-reviews-section');
+    const grid = document.getElementById('video-reviews-grid');
+    if (!section || !grid) return;
+
+    const { data, error } = await supabaseClient
+      .from('video_reviews')
+      .select('*')
+      .eq('product_id', productId)
+      .eq('status', 'approved')
+      .order('created_at', { ascending: false });
+
+    if (error || !data || data.length === 0) {
+      section.style.display = 'none';
+      return;
+    }
+
+    section.style.display = 'block';
+
+    grid.innerHTML = data.map(function (v) {
+      const ytId = v.external_url ? youtubeId(v.external_url) : null;
+      let media;
+
+      if (v.video_url) {
+        // Supabase-hosted file: use a real <video> with poster frame
+        media = `<video src="${v.video_url}" controls preload="metadata" style="width:100%;aspect-ratio:1;object-fit:cover;background:#000;display:block"></video>`;
+      } else if (ytId) {
+        // YouTube: thumbnail + play button linking out
+        media = `
+          <a href="${v.external_url}" target="_blank" rel="noopener" style="display:block;position:relative">
+            <img src="https://img.youtube.com/vi/${ytId}/hqdefault.jpg" alt="Video review" style="width:100%;aspect-ratio:1;object-fit:cover;display:block">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+              <span style="width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,0.55);display:flex;align-items:center;justify-content:center">
+                <svg viewBox="0 0 24 24" fill="#fff" style="width:22px;height:22px;margin-left:3px"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </span>
+          </a>`;
+      } else if (v.external_url) {
+        // Other link (e.g. TikTok): generic play-button card linking out
+        media = `
+          <a href="${v.external_url}" target="_blank" rel="noopener" style="display:block;position:relative;aspect-ratio:1;background:linear-gradient(135deg,var(--sky),var(--deep))">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
+              <span style="width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center">
+                <svg viewBox="0 0 24 24" fill="#fff" style="width:22px;height:22px;margin-left:3px"><path d="M8 5v14l11-7z"/></svg>
+              </span>
+            </span>
+          </a>`;
+      } else {
+        media = '';
+      }
+
+      const scoreChip = v.rating != null
+        ? `<span style="background:var(--foam);color:#fff;border-radius:8px;padding:3px 8px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px">${v.rating}</span>`
+        : '';
+
+      return `
+        <div class="reveal" style="border:1px solid var(--gray-light);border-radius:14px;overflow:hidden;background:#fff">
+          <div style="position:relative">${media}</div>
+          <div style="padding:14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px">
+              <strong style="font-size:14px">${v.reviewer_name}</strong>
+              ${scoreChip}
+            </div>
+            <p style="color:var(--gray);font-size:12px">${timeAgo(v.created_at)}</p>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    if (window.initScrollReveal) window.initScrollReveal();
+  }
+
   const reviewFilterSelect = document.getElementById('review-filter');
   if (reviewFilterSelect) {
     reviewFilterSelect.addEventListener('change', renderFiltered);
@@ -587,6 +666,52 @@ ${currentUser && r.user_id === currentUser.id ? `
 
   setupPhotoPreview();
 
+  // Media tab switching (Photos / Video)
+  let selectedVideoFile = null;
+  const tabPhotos = document.getElementById('tab-photos');
+  const tabVideo = document.getElementById('tab-video');
+  const panelPhotos = document.getElementById('panel-photos');
+  const panelVideo = document.getElementById('panel-video');
+
+  function setActiveTab(which) {
+    const activeStyle = { border: '1px solid var(--sky)', background: 'var(--mist)', color: 'var(--sky)', fontWeight: '600' };
+    const idleStyle = { border: '1px solid var(--gray-light)', background: 'none', color: 'var(--ink)', fontWeight: '400' };
+    if (tabPhotos && tabVideo && panelPhotos && panelVideo) {
+      const photos = which === 'photos';
+      Object.assign(tabPhotos.style, photos ? activeStyle : idleStyle);
+      Object.assign(tabVideo.style, photos ? idleStyle : activeStyle);
+      panelPhotos.style.display = photos ? 'block' : 'none';
+      panelVideo.style.display = photos ? 'none' : 'block';
+    }
+  }
+
+  if (tabPhotos) tabPhotos.addEventListener('click', function () { setActiveTab('photos'); });
+  if (tabVideo) tabVideo.addEventListener('click', function () { setActiveTab('video'); });
+
+  // Video file preview
+  const videoInput = document.getElementById('video-upload');
+  if (videoInput) {
+    videoInput.addEventListener('change', function () {
+      const file = videoInput.files[0];
+      const preview = document.getElementById('video-preview');
+      if (!file || !preview) return;
+      selectedVideoFile = file;
+      const url = URL.createObjectURL(file);
+      preview.innerHTML = `
+        <div style="position:relative">
+          <video src="${url}" controls style="width:100%;border-radius:10px;max-height:220px;background:#000"></video>
+          <button type="button" id="remove-video-btn" style="position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;border:2px solid #fff;cursor:pointer;font-size:13px;line-height:1">✕</button>
+        </div>
+      `;
+      const removeBtn = document.getElementById('remove-video-btn');
+      if (removeBtn) removeBtn.addEventListener('click', function () {
+        selectedVideoFile = null;
+        videoInput.value = '';
+        preview.innerHTML = '';
+      });
+    });
+  }
+
   if (backBtn) {
     backBtn.addEventListener('click', function () {
       if (currentStep > 1) {
@@ -682,9 +807,25 @@ ${currentUser && r.user_id === currentUser.id ? `
 
       const photoUrls = await uploadPhotos();
 
+      // Upload video file if one was selected
+      async function uploadVideo() {
+        if (!selectedVideoFile) return null;
+        reviewStatus.textContent = 'Uploading video...';
+        const ext = selectedVideoFile.name.split('.').pop();
+        const filePath = `videos/${productId}/${Date.now()}.${ext}`;
+        const { error: upErr } = await supabaseClient.storage.from('review-images').upload(filePath, selectedVideoFile);
+        if (upErr) return null;
+        const { data } = supabaseClient.storage.from('review-images').getPublicUrl(filePath);
+        return data.publicUrl;
+      }
+
+      const videoFileUrl = await uploadVideo();
+      const videoLinkEl = document.getElementById('video-link');
+      const videoLink = videoLinkEl ? videoLinkEl.value.trim() : '';
+
       reviewStatus.textContent = 'Submitting your verdict...';
 
-const { error } = await supabaseClient.from('reviews').insert([{
+const { data: insertedReview, error } = await supabaseClient.from('reviews').insert([{
   product_id: productId,
   user_id: currentUser.id,
   reviewer_name: name,
@@ -699,13 +840,27 @@ const { error } = await supabaseClient.from('reviews').insert([{
         after_image_url: null,
         image_urls: photoUrls,
         status: 'pending'
-      }]);
+      }]).select();
 
       if (error) {
         reviewStatus.textContent = 'Something went wrong. Please try again.';
         reviewStatus.style.color = '#b91c1c';
         nextBtn.disabled = false;
         return;
+      }
+
+      // If a video was provided, insert a linked video_reviews row
+      if ((videoFileUrl || videoLink) && insertedReview && insertedReview[0]) {
+        await supabaseClient.from('video_reviews').insert([{
+          review_id: insertedReview[0].id,
+          product_id: productId,
+          user_id: currentUser.id,
+          reviewer_name: name,
+          video_url: videoFileUrl,
+          external_url: videoLink || null,
+          rating: rating,
+          status: 'pending'
+        }]);
       }
 
       reviewStatus.textContent = 'Your verdict has been submitted and is awaiting approval.';
@@ -734,9 +889,18 @@ const { error } = await supabaseClient.from('reviews').insert([{
       document.getElementById('photo-preview-grid').innerHTML = '';
       document.getElementById('photo-upload').value = '';
       selectedPhotoFiles = [];
+      selectedVideoFile = null;
+      const vPreview = document.getElementById('video-preview');
+      const vInput = document.getElementById('video-upload');
+      const vLink = document.getElementById('video-link');
+      if (vPreview) vPreview.innerHTML = '';
+      if (vInput) vInput.value = '';
+      if (vLink) vLink.value = '';
+      setActiveTab('photos');
       nextBtn.disabled = false;
 
       loadReviews();
+      loadVideoReviews();
     });
   }
 
@@ -814,6 +978,7 @@ if (navigator.share) {
     });
   }
   loadReviews();
+  loadVideoReviews();
 }
 
 document.addEventListener('DOMContentLoaded', loadProductDetail);
