@@ -602,7 +602,7 @@ img { max-width: 100%; display: block; }
 
 .product-thumb {
   aspect-ratio: 4 / 3;
-  background: linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
+  background: radial-gradient(ellipse 80% 80% at 50% 45%, #ffffff 0%, #ffffff 70%, var(--mist) 100%);
   border-bottom: 1px solid var(--gray-light);
   display: flex;
   align-items: center;
@@ -1111,14 +1111,7 @@ img { max-width: 100%; display: block; }
 
 .product-thumb::before {
   content: "";
-  position: absolute;
-  width: 140%;
-  height: 140%;
-  background: radial-gradient(circle, rgba(14,155,136,0.08), transparent 70%);
-  top: -20%;
-  left: -20%;
-  filter: blur(40px);
-  pointer-events: none;
+  display: none;
 }
 
 .cta-band::before {

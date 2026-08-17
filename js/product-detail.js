@@ -83,7 +83,7 @@ try {
 
   container.innerHTML = `
     <div class="product-detail-layout" style="display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start">
-      <div class="product-detail-image" style="background:var(--mist);border-radius:16px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:24px">
+      <div class="product-detail-image" style="background:radial-gradient(ellipse 80% 80% at 50% 45%, #ffffff 0%, #ffffff 72%, var(--mist) 100%);border-radius:16px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:24px">
         ${thumb}
       </div>
       <div>
