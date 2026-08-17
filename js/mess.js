@@ -105,7 +105,32 @@ products = data.map(p => ({
   });
 
   if (buttons.length > 0) {
-    showMess(buttons[0].dataset.mess);
+    // Honor a ?mess= URL parameter (e.g. from the homepage cards),
+    // otherwise default to the first mess.
+    const params = new URLSearchParams(window.location.search);
+    const requestedMess = params.get('mess');
+    const validMess = requestedMess && Array.prototype.some.call(buttons, function (b) {
+      return b.dataset.mess === requestedMess;
+    });
+    showMess(validMess ? requestedMess : buttons[0].dataset.mess);
+
+    // If the requested mess lives in the hidden "more messes" grid, reveal it
+    if (validMess) {
+      const activeBtn = Array.prototype.find.call(buttons, function (b) {
+        return b.dataset.mess === requestedMess;
+      });
+      const extraGrid = document.getElementById('mess-grid-extra');
+      if (extraGrid && activeBtn && extraGrid.contains(activeBtn)) {
+        extraGrid.style.display = 'grid';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            extraGrid.classList.add('mess-grid-visible');
+          });
+        });
+        const toggleBtn = document.getElementById('mess-toggle-btn');
+        if (toggleBtn) toggleBtn.textContent = 'View fewer messes ↑';
+      }
+    }
   }
 }
 

@@ -46,7 +46,7 @@ products = data.map(p => ({
     messGrid.innerHTML = messKeys.map(function (key) {
       const count = products.filter(function (p) { return p.messes.includes(key); }).length;
       return `
-        <a href="fix-mess.html" class="mess-card">
+        <a href="fix-mess.html?mess=${key}" class="mess-card">
           ${HOME_MESS_ICONS[key]}
           <h3>${HOME_MESS_LABELS[key]}</h3>
           <span>${count} product${count === 1 ? '' : 's'} tested</span>
