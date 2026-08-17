@@ -832,14 +832,17 @@ img { max-width: 100%; display: block; }
 
   .product-detail-layout,
   .detail-skeleton {
-    grid-template-columns: 1fr !important;
-    gap: 20px !important;
+    display: block !important;
   }
   .product-detail-image {
-    max-width: 220px;
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto 20px;
   }
-  .detail-skeleton > .skeleton-bar {
-    max-width: 220px;
+  .detail-skeleton > .skeleton-bar:first-child {
+    width: 100%;
+    max-width: 260px;
+    margin: 0 auto 20px;
   }
 
   .section-head {
