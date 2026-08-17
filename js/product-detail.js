@@ -422,14 +422,22 @@ ${currentUser && r.user_id === currentUser.id ? `
     const grid = document.getElementById('video-reviews-grid');
     if (!section || !grid) return;
 
-    const { data, error } = await supabaseClient
-      .from('video_reviews')
-      .select('*')
-      .eq('product_id', productId)
-      .eq('status', 'approved')
-      .order('created_at', { ascending: false });
+    let data = null;
+    try {
+      const res = await supabaseClient
+        .from('video_reviews')
+        .select('*')
+        .eq('product_id', productId)
+        .eq('status', 'approved')
+        .order('created_at', { ascending: false });
+      if (res.error) { section.style.display = 'none'; return; }
+      data = res.data;
+    } catch (e) {
+      section.style.display = 'none';
+      return;
+    }
 
-    if (error || !data || data.length === 0) {
+    if (!data || data.length === 0) {
       section.style.display = 'none';
       return;
     }
@@ -820,10 +828,13 @@ ${currentUser && r.user_id === currentUser.id ? `
 
       reviewStatus.textContent = 'Submitting your verdict...';
 
-const { data: insertedReview, error } = await supabaseClient.from('reviews').insert([{
-  product_id: productId,
-  user_id: currentUser.id,
-  reviewer_name: name,
+      // Insert the review. We try to get the new row's id back for video
+      // linking, but a denied read-back (pending rows aren't publicly
+      // selectable) must NOT fail the submission.
+      const reviewPayload = {
+        product_id: productId,
+        user_id: currentUser.id,
+        reviewer_name: name,
         rating: rating,
         comment: comment,
         best_for: bestFor || null,
@@ -835,7 +846,21 @@ const { data: insertedReview, error } = await supabaseClient.from('reviews').ins
         after_image_url: null,
         image_urls: photoUrls,
         status: 'pending'
-      }]).select();
+      };
+
+      let insertedReview = null;
+      let error = null;
+
+      // First attempt: insert + read back the id (works if a SELECT policy allows it)
+      const withSelect = await supabaseClient.from('reviews').insert([reviewPayload]).select();
+      if (withSelect.error) {
+        // Read-back was denied (or another issue). Retry as a plain insert
+        // so the review still saves even without getting the id back.
+        const plain = await supabaseClient.from('reviews').insert([reviewPayload]);
+        error = plain.error;
+      } else {
+        insertedReview = withSelect.data;
+      }
 
       if (error) {
         reviewStatus.textContent = 'Something went wrong. Please try again.';
@@ -844,18 +869,24 @@ const { data: insertedReview, error } = await supabaseClient.from('reviews').ins
         return;
       }
 
-      // If a video was provided, insert a linked video_reviews row
+      // If a video was provided AND we got the review id back, link it.
+      // Wrapped so a missing/blocked video_reviews table can never break submit.
       if ((videoFileUrl || videoLink) && insertedReview && insertedReview[0]) {
-        await supabaseClient.from('video_reviews').insert([{
-          review_id: insertedReview[0].id,
-          product_id: productId,
-          user_id: currentUser.id,
-          reviewer_name: name,
-          video_url: videoFileUrl,
-          external_url: videoLink || null,
-          rating: rating,
-          status: 'pending'
-        }]);
+        try {
+          await supabaseClient.from('video_reviews').insert([{
+            review_id: insertedReview[0].id,
+            product_id: productId,
+            user_id: currentUser.id,
+            reviewer_name: name,
+            video_url: videoFileUrl,
+            external_url: videoLink || null,
+            rating: rating,
+            status: 'pending'
+          }]);
+        } catch (vErr) {
+          // Video linking failed, but the review itself succeeded. Ignore.
+          console.warn('Video review insert skipped:', vErr);
+        }
       }
 
       reviewStatus.textContent = 'Your verdict has been submitted and is awaiting approval.';
