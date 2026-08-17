@@ -74,18 +74,31 @@ try {
   container.style.opacity = '0';
   await new Promise(function (r) { setTimeout(r, 200); });
 
-  const costPerUse = (product.price / product.sizeOz).toFixed(2);
+  const hasSize = product.sizeOz && product.sizeOz > 0;
+  const costPerUse = hasSize ? (product.price / product.sizeOz).toFixed(2) : null;
+
+  const thumb = product.image
+    ? `<img src="${product.image}" alt="${product.name}" style="width:100%;height:100%;object-fit:contain">`
+    : `<svg viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="1.5" style="width:72px;height:72px"><path d="M9 2h6v3l2 2v13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V7l2-2V2z"/><path d="M7 11h10"/></svg>`;
+
   container.innerHTML = `
-    <div class="product-brand">${product.brand}</div>
-    <h1 style="font-family:'Space Grotesk',sans-serif;font-size:32px;margin-bottom:16px">${product.name}</h1>
-    <table class="compare-table" style="max-width:480px;margin-bottom:24px">
-      <tr><td>Price</td><td>$${product.price.toFixed(2)}</td></tr>
-      <tr><td>Size</td><td>${product.sizeOz} oz</td></tr>
-      <tr><td>Cost per oz</td><td>$${costPerUse}</td></tr>
-      <tr><td>Category</td><td>${product.category}</td></tr>
-      <tr><td>Ingredients</td><td>${product.ingredients.join(', ')}</td></tr>
-    </table>
-    <a href="${product.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:inline-block">Buy | $${product.price.toFixed(2)}</a>
+    <div class="product-detail-layout" style="display:grid;grid-template-columns:280px 1fr;gap:32px;align-items:start">
+      <div class="product-detail-image" style="background:var(--mist);border-radius:16px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:24px">
+        ${thumb}
+      </div>
+      <div>
+        <div class="product-brand">${product.brand}</div>
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:32px;margin-bottom:16px">${product.name}</h1>
+        <table class="compare-table" style="max-width:480px;margin-bottom:24px">
+          <tr><td>Price</td><td>$${product.price.toFixed(2)}</td></tr>
+          ${hasSize ? `<tr><td>Size</td><td>${product.sizeOz} oz</td></tr>` : ''}
+          ${hasSize ? `<tr><td>Cost per oz</td><td>$${costPerUse}</td></tr>` : ''}
+          <tr><td>Category</td><td>${product.category}</td></tr>
+          ${product.ingredients && product.ingredients.length ? `<tr><td>Ingredients</td><td>${product.ingredients.join(', ')}</td></tr>` : ''}
+        </table>
+        <a href="${product.buyUrl}" target="_blank" rel="noopener sponsored" class="nav-cta" style="display:inline-block">Buy | $${product.price.toFixed(2)}</a>
+      </div>
+    </div>
   `;
 
   // Fade the real content in

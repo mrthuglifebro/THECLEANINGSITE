@@ -830,6 +830,18 @@ img { max-width: 100%; display: block; }
   .mess-grid { grid-template-columns: 1fr 1fr; }
   .reviews-grid { grid-template-columns: 1fr !important; }
 
+  .product-detail-layout,
+  .detail-skeleton {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .product-detail-image {
+    max-width: 220px;
+  }
+  .detail-skeleton > .skeleton-bar {
+    max-width: 220px;
+  }
+
   .section-head {
     flex-direction: column;
     align-items: flex-start;
