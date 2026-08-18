@@ -817,7 +817,10 @@ ${currentUser && r.user_id === currentUser.id ? `
         const ext = selectedVideoFile.name.split('.').pop();
         const filePath = `videos/${productId}/${Date.now()}.${ext}`;
         const { error: upErr } = await supabaseClient.storage.from('review-images').upload(filePath, selectedVideoFile);
-        if (upErr) return null;
+        if (upErr) {
+          console.warn('Video upload failed:', upErr);
+          return null;
+        }
         const { data } = supabaseClient.storage.from('review-images').getPublicUrl(filePath);
         return data.publicUrl;
       }
@@ -869,23 +872,23 @@ ${currentUser && r.user_id === currentUser.id ? `
         return;
       }
 
-      // If a video was provided AND we got the review id back, link it.
-      // Wrapped so a missing/blocked video_reviews table can never break submit.
-      if ((videoFileUrl || videoLink) && insertedReview && insertedReview[0]) {
-        try {
-          await supabaseClient.from('video_reviews').insert([{
-            review_id: insertedReview[0].id,
-            product_id: productId,
-            user_id: currentUser.id,
-            reviewer_name: name,
-            video_url: videoFileUrl,
-            external_url: videoLink || null,
-            rating: rating,
-            status: 'pending'
-          }]);
-        } catch (vErr) {
-          // Video linking failed, but the review itself succeeded. Ignore.
-          console.warn('Video review insert skipped:', vErr);
+      // Save the video if one was provided. The review_id link is optional,
+      // it's only available when the review read-back succeeded, but the video
+      // should still save (tied to the product + reviewer) even without it.
+      if (videoFileUrl || videoLink) {
+        const reviewId = (insertedReview && insertedReview[0]) ? insertedReview[0].id : null;
+        const { error: videoErr } = await supabaseClient.from('video_reviews').insert([{
+          review_id: reviewId,
+          product_id: productId,
+          user_id: currentUser.id,
+          reviewer_name: name,
+          video_url: videoFileUrl,
+          external_url: videoLink || null,
+          rating: rating,
+          status: 'pending'
+        }]);
+        if (videoErr) {
+          console.warn('Video review insert failed:', videoErr);
         }
       }
 
