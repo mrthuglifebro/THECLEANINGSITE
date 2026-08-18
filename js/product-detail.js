@@ -693,11 +693,21 @@ ${currentUser && r.user_id === currentUser.id ? `
 
   // Video file preview
   const videoInput = document.getElementById('video-upload');
+  const MAX_VIDEO_MB = 50;
   if (videoInput) {
     videoInput.addEventListener('change', function () {
       const file = videoInput.files[0];
       const preview = document.getElementById('video-preview');
       if (!file || !preview) return;
+
+      const sizeMB = file.size / (1024 * 1024);
+      if (sizeMB > MAX_VIDEO_MB) {
+        selectedVideoFile = null;
+        videoInput.value = '';
+        preview.innerHTML = `<p style="color:#b91c1c;font-size:13px">That video is ${sizeMB.toFixed(0)}MB, please keep it under ${MAX_VIDEO_MB}MB (try trimming it or lowering the quality), or paste a YouTube/TikTok link instead.</p>`;
+        return;
+      }
+
       selectedVideoFile = file;
       const url = URL.createObjectURL(file);
       preview.innerHTML = `
@@ -812,22 +822,48 @@ ${currentUser && r.user_id === currentUser.id ? `
 
       // Upload video file if one was selected
       async function uploadVideo() {
-        if (!selectedVideoFile) return null;
+        if (!selectedVideoFile) return { url: null, failed: false };
+
+        // Guard against files too large for a standard Supabase upload
+        // (free tier caps around 50MB). Catch this before even trying,
+        // since a too-large upload can throw rather than return a clean error.
+        const MAX_BYTES = 50 * 1024 * 1024;
+        if (selectedVideoFile.size > MAX_BYTES) {
+          return { url: null, failed: true, reason: 'too_large' };
+        }
+
         reviewStatus.textContent = 'Uploading video...';
         const ext = selectedVideoFile.name.split('.').pop();
         const filePath = `videos/${productId}/${Date.now()}.${ext}`;
-        const { error: upErr } = await supabaseClient.storage.from('review-images').upload(filePath, selectedVideoFile);
-        if (upErr) {
-          console.warn('Video upload failed:', upErr);
-          return null;
+
+        try {
+          const { error: upErr } = await supabaseClient.storage.from('review-images').upload(filePath, selectedVideoFile);
+          if (upErr) {
+            console.warn('Video upload failed:', upErr);
+            return { url: null, failed: true, reason: 'upload_error' };
+          }
+          const { data } = supabaseClient.storage.from('review-images').getPublicUrl(filePath);
+          return { url: data.publicUrl, failed: false };
+        } catch (err) {
+          console.warn('Video upload threw an error:', err);
+          return { url: null, failed: true, reason: 'network' };
         }
-        const { data } = supabaseClient.storage.from('review-images').getPublicUrl(filePath);
-        return data.publicUrl;
       }
 
-      const videoFileUrl = await uploadVideo();
+      const videoUpload = await uploadVideo();
       const videoLinkEl = document.getElementById('video-link');
       const videoLink = videoLinkEl ? videoLinkEl.value.trim() : '';
+
+      if (videoUpload.failed) {
+        const reasonText = videoUpload.reason === 'too_large'
+          ? 'Your video was too large to upload, so it was skipped.'
+          : 'Your video could not be uploaded, so it was skipped.';
+        reviewStatus.textContent = reasonText + ' Your review will still be submitted.';
+        reviewStatus.style.color = '#b91c1c';
+        await new Promise(function (r) { setTimeout(r, 1400); });
+      }
+
+      const videoFileUrl = videoUpload.url;
 
       reviewStatus.textContent = 'Submitting your verdict...';
 
