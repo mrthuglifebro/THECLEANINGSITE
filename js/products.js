@@ -64,6 +64,16 @@ products = data.map(p => ({
 
     if (window.initScrollReveal) window.initScrollReveal();
     if (window.attachCardNav) window.attachCardNav(grid);
+
+    // Restore the scroll position the user was at before opening a product
+    const savedScroll = sessionStorage.getItem('productsScroll');
+    if (savedScroll !== null) {
+      // Wait for images/layout to settle so the position is accurate
+      requestAnimationFrame(function () {
+        window.scrollTo(0, parseInt(savedScroll, 10));
+        sessionStorage.removeItem('productsScroll');
+      });
+    }
   }
 
   render(products);
@@ -196,3 +206,18 @@ if (searchInput) {
 }
 
 document.addEventListener('DOMContentLoaded', loadProducts);
+
+// Let our manual scroll restoration be authoritative on the products page
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
+// Save scroll position before navigating into a product, so returning
+// via "Back to all products" lands the user where they left off.
+document.addEventListener('click', function (e) {
+  const card = e.target.closest('[data-href]');
+  const link = e.target.closest('a[href^="product.html"]');
+  if (card || link) {
+    sessionStorage.setItem('productsScroll', String(window.scrollY));
+  }
+});
