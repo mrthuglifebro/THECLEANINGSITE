@@ -79,7 +79,10 @@ products = data.map(p => ({
   render(products);
 
 const urlParams = new URLSearchParams(window.location.search);
-const initialQuery = urlParams.get('q') || '';
+// Priority: explicit ?q= in URL (e.g. from homepage) > remembered search
+// (when returning from a product) > empty.
+const savedQuery = sessionStorage.getItem('productsSearch');
+const initialQuery = urlParams.get('q') || savedQuery || '';
 
 if (searchInput) {
   searchInput.value = initialQuery;
@@ -198,6 +201,11 @@ function applySearch(query) {
 
 applySearch(initialQuery);
 
+// The remembered search has now been applied; clear it so a later fresh
+// visit (via nav) doesn't resurrect an old search. Scroll is cleared
+// separately once it's been restored.
+sessionStorage.removeItem('productsSearch');
+
 if (searchInput) {
   searchInput.addEventListener('input', function () {
     applySearch(searchInput.value);
@@ -212,12 +220,15 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
-// Save scroll position before navigating into a product, so returning
-// via "Back to all products" lands the user where they left off.
+// Save scroll position + current search before navigating into a product,
+// so returning via "Back to all products" lands the user where they left off
+// with their search intact.
 document.addEventListener('click', function (e) {
   const card = e.target.closest('[data-href]');
   const link = e.target.closest('a[href^="product.html"]');
   if (card || link) {
     sessionStorage.setItem('productsScroll', String(window.scrollY));
+    const box = document.getElementById('product-search');
+    if (box) sessionStorage.setItem('productsSearch', box.value);
   }
 });
