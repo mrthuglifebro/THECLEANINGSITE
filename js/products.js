@@ -20,7 +20,11 @@ products = data.map(p => ({
   ...p,
   sizeOz: p.size_oz,
   buyUrl: p.buy_url
-}));  } catch (err) {
+}));
+  products.sort(function (a, b) {
+    return (a.name || '').localeCompare(b.name || '', undefined, { sensitivity: 'base' });
+  });
+  } catch (err) {
     grid.innerHTML = '<p style="color:#64748b">Could not load products right now.</p>';
     return;
   }
