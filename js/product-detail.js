@@ -854,13 +854,11 @@ ${currentUser && r.user_id === currentUser.id ? `
       const videoLinkEl = document.getElementById('video-link');
       const videoLink = videoLinkEl ? videoLinkEl.value.trim() : '';
 
+      let videoWarning = null;
       if (videoUpload.failed) {
-        const reasonText = videoUpload.reason === 'too_large'
-          ? 'Your video was too large to upload, so it was skipped.'
-          : 'Your video could not be uploaded, so it was skipped.';
-        reviewStatus.textContent = reasonText + ' Your review will still be submitted.';
-        reviewStatus.style.color = '#b91c1c';
-        await new Promise(function (r) { setTimeout(r, 1400); });
+        videoWarning = videoUpload.reason === 'too_large'
+          ? 'Your video was too large to upload (max 50MB), so it was left off.'
+          : 'Your video could not be uploaded, so it was left off.';
       }
 
       const videoFileUrl = videoUpload.url;
@@ -925,11 +923,19 @@ ${currentUser && r.user_id === currentUser.id ? `
         }]);
         if (videoErr) {
           console.warn('Video review insert failed:', videoErr);
+          videoWarning = 'Your review was submitted, but the video could not be saved. Please try adding it again.';
         }
       }
 
-      reviewStatus.textContent = 'Your verdict has been submitted and is awaiting approval.';
-      reviewStatus.style.color = 'var(--foam)';
+      // This is the final message shown, so any video warning survives here
+      // instead of being silently overwritten by a "success" message.
+      if (videoWarning) {
+        reviewStatus.textContent = 'Your verdict has been submitted and is awaiting approval. ' + videoWarning;
+        reviewStatus.style.color = '#b91c1c';
+      } else {
+        reviewStatus.textContent = 'Your verdict has been submitted and is awaiting approval.';
+        reviewStatus.style.color = 'var(--foam)';
+      }
 
       // Reset wizard
       currentStep = 1;
