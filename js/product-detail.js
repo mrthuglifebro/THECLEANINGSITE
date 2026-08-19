@@ -505,51 +505,60 @@ ${currentUser && r.user_id === currentUser.id ? `
 // Populate mess picker
   const messPicker = document.getElementById('mess-picker');
   const messOptions = ['mold', 'wine', 'grease', 'pet', 'coffee', 'soap', 'hardwater', 'rust', 'dust', 'hair', 'food', 'trash', 'glass', 'bathroom', 'kitchen', 'laundry', 'automotive'];
-  let selectedMess = null;
+  const selectedMesses = new Set();
   let otherMessText = '';
 
   const otherMessWrap = document.createElement('div');
   otherMessWrap.style.cssText = 'display:none;margin-top:10px;width:100%';
   otherMessWrap.innerHTML = `<input type="text" id="other-mess-input" placeholder="What mess was it?" style="width:100%;padding:10px 12px;border:1px solid var(--gray-light);border-radius:8px;font-family:inherit">`;
 
-  if (messPicker) {
-    function clearActiveStyles() {
-      messPicker.querySelectorAll('button').forEach(function (b) {
-        b.style.background = 'none';
-        b.style.borderColor = 'var(--gray-light)';
-        b.style.color = 'var(--ink)';
-      });
-    }
+  function styleMessButton(btn, active) {
+    btn.style.background = active ? 'var(--mist)' : 'none';
+    btn.style.borderColor = active ? 'var(--sky)' : 'var(--gray-light)';
+    btn.style.color = active ? 'var(--sky)' : 'var(--ink)';
+    btn.style.fontWeight = active ? '600' : '400';
+  }
 
+  if (messPicker) {
     messOptions.forEach(function (mess) {
       const btn = document.createElement('button');
       btn.type = 'button';
+      btn.dataset.mess = mess;
+      btn.setAttribute('aria-pressed', 'false');
       btn.textContent = mess.charAt(0).toUpperCase() + mess.slice(1);
-      btn.style.cssText = 'padding:6px 12px;border:1px solid var(--gray-light);border-radius:20px;background:none;cursor:pointer;font-size:13px;font-family:inherit';
+      btn.style.cssText = 'padding:8px 14px;border:1px solid var(--gray-light);border-radius:20px;background:none;cursor:pointer;font-size:13px;font-family:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent';
       btn.addEventListener('click', function () {
-        selectedMess = mess;
-        clearActiveStyles();
-        btn.style.background = 'var(--mist)';
-        btn.style.borderColor = 'var(--sky)';
-        btn.style.color = 'var(--sky)';
-        otherMessWrap.style.display = 'none';
+        const isActive = selectedMesses.has(mess);
+        if (isActive) {
+          selectedMesses.delete(mess);
+        } else {
+          selectedMesses.add(mess);
+        }
+        btn.setAttribute('aria-pressed', String(!isActive));
+        styleMessButton(btn, !isActive);
       });
       messPicker.appendChild(btn);
     });
 
     const otherBtn = document.createElement('button');
     otherBtn.type = 'button';
+    otherBtn.dataset.mess = 'other';
+    otherBtn.setAttribute('aria-pressed', 'false');
     otherBtn.textContent = 'Other';
-    otherBtn.style.cssText = 'padding:6px 12px;border:1px solid var(--gray-light);border-radius:20px;background:none;cursor:pointer;font-size:13px;font-family:inherit';
+    otherBtn.style.cssText = 'padding:8px 14px;border:1px solid var(--gray-light);border-radius:20px;background:none;cursor:pointer;font-size:13px;font-family:inherit;touch-action:manipulation;-webkit-tap-highlight-color:transparent';
     otherBtn.addEventListener('click', function () {
-      selectedMess = 'other';
-      clearActiveStyles();
-      otherBtn.style.background = 'var(--mist)';
-      otherBtn.style.borderColor = 'var(--sky)';
-      otherBtn.style.color = 'var(--sky)';
-      otherMessWrap.style.display = 'block';
-      const input = document.getElementById('other-mess-input');
-      if (input) input.focus();
+      const isActive = selectedMesses.has('other');
+      if (isActive) {
+        selectedMesses.delete('other');
+        otherMessWrap.style.display = 'none';
+      } else {
+        selectedMesses.add('other');
+        otherMessWrap.style.display = 'block';
+        const input = document.getElementById('other-mess-input');
+        if (input) input.focus();
+      }
+      otherBtn.setAttribute('aria-pressed', String(!isActive));
+      styleMessButton(otherBtn, !isActive);
     });
     messPicker.appendChild(otherBtn);
     messPicker.parentElement.insertBefore(otherMessWrap, messPicker.nextSibling);
@@ -754,7 +763,7 @@ ${currentUser && r.user_id === currentUser.id ? `
           reviewStatus.style.color = '#b91c1c';
           return;
         }
-        if (selectedMess === 'other') {
+        if (selectedMesses.has('other')) {
           const otherInput = document.getElementById('other-mess-input');
           otherMessText = otherInput ? otherInput.value.trim() : '';
           if (!otherMessText) {
@@ -868,6 +877,13 @@ ${currentUser && r.user_id === currentUser.id ? `
       // Insert the review. We try to get the new row's id back for video
       // linking, but a denied read-back (pending rows aren't publicly
       // selectable) must NOT fail the submission.
+      // Build the final mess list: real mess keys as-is, "other" replaced
+      // with whatever the user typed. Stored as a comma-separated string
+      // since mess_used_on is a single text column.
+      const finalMessList = Array.from(selectedMesses).map(function (m) {
+        return m === 'other' ? otherMessText : m;
+      }).filter(Boolean);
+
       const reviewPayload = {
         product_id: productId,
         user_id: currentUser.id,
@@ -876,7 +892,7 @@ ${currentUser && r.user_id === currentUser.id ? `
         comment: comment,
         best_for: bestFor || null,
         wish_knew: wishKnew || null,
-        mess_used_on: (selectedMess === 'other' ? otherMessText : selectedMess) || null,
+        mess_used_on: finalMessList.length ? finalMessList.join(', ') : null,
         worked_first_try: answers.worked_first_try,
         would_buy_again: answers.would_buy_again,
         before_image_url: null,
@@ -945,7 +961,7 @@ ${currentUser && r.user_id === currentUser.id ? `
       document.getElementById('reviewer-comment').value = '';
       document.getElementById('reviewer-best-for').value = '';
       document.getElementById('reviewer-wish-knew').value = '';
-      selectedMess = null;
+      selectedMesses.clear();
       otherMessText = '';
       otherMessWrap.style.display = 'none';
       const otherInputReset = document.getElementById('other-mess-input');
@@ -953,9 +969,8 @@ ${currentUser && r.user_id === currentUser.id ? `
       answers.worked_first_try = null;
       answers.would_buy_again = null;
       if (messPicker) messPicker.querySelectorAll('button').forEach(function (b) {
-        b.style.background = 'none';
-        b.style.borderColor = 'var(--gray-light)';
-        b.style.color = 'var(--ink)';
+        b.setAttribute('aria-pressed', 'false');
+        styleMessButton(b, false);
       });
       document.getElementById('photo-preview-grid').innerHTML = '';
       document.getElementById('photo-upload').value = '';
